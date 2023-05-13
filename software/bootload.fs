@@ -1,8 +1,8 @@
 \ ----------------------------------------------------------------------
-\ @file : bootload.fs
+\ @file : bootload.fs for the EP4CE6_OMDAZZ board.
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 05.04.2021 16:44:55
+\ Last change: KS 13.05.2023 18:43:57
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -21,7 +21,9 @@
 \ You should have received a copy of the GNU General Public License
 \ along with this program. If not, see http://www.gnu.org/licenses/.
 \
-\ @brief : The bootloader for synthesis.
+\ @brief : MicroCore load screen for a program that is synthesized into
+\          the core. It is executed immediately after the FPGA has been
+\          configured and it blinks the 4 LEDS of the OMDAZZ board
 \
 \ Version Author   Date       Changes
 \   210     ks   14-Jun-2020  initial version
@@ -38,10 +40,21 @@ include microcross.fs           \ the cross-compiler
 
 Target new                      \ go into target compilation mode and initialize target compiler
 
-0 code-origin
+2 code-origin
 0 data-origin
 
-] 0 BEGIN REPEAT [          \ hang in endless loop waiting for program loading via umbilical
+include constants.fs            \ microCore Register addresses and bits
+
+: delay ( -- )  &500 time + BEGIN  dup time? UNTIL drop ;
+
+: next-led  ( n -- n' )
+   dup -ctrl !   dup +
+   dup #c-led3 > IF  drop #c-led0  THEN
+   dup ctrl !
+;
+: blinking  ( -- )  #c-led0 BEGIN  next-led delay  REPEAT ;
+
+#reset TRAP: rst ( -- )    blinking ;
 
 end
 
