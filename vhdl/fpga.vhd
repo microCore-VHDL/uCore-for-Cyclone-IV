@@ -2,7 +2,7 @@
 -- @file : fpga.vhd for the Intel EP4CE6_OMDAZZ prototyping board
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 10.05.2023 21:23:50
+-- Last change: KS 14.05.2023 13:00:02
 -- @project: EP4CE6_OMDAZZ
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -28,15 +28,48 @@ USE IEEE.NUMERIC_STD.ALL;
 USE work.functions_pkg.ALL;
 USE work.architecture_pkg.ALL;
 
-ENTITY fpga IS PORT (                        -- pins
-   reset_n     : IN    STD_LOGIC;            --  25
-   clock       : IN    STD_LOGIC;            --  23  external clock input
--- Demoboard specific pins
-   int_n       : IN    STD_LOGIC;            --  88  used as external interrupt input
-   leds_n      : OUT   UNSIGNED(3 DOWNTO 0); --  84, 85, 86, 87
+ENTITY fpga IS PORT (                         -- pins
+   reset_n     : IN    STD_LOGIC;             --  25
+   clock       : IN    STD_LOGIC;             --  23  external clock input
+-- Demoboard specific pins                    
+   keys_n      : IN    UNSIGNED(3 DOWNTO 0);  --  91, 90, 89, 88 <= used as interrupt input during simulation
+   beep        : OUT   STD_LOGIC;             -- 110
+   leds_n      : OUT   UNSIGNED(3 DOWNTO 0);  --  84, 85, 86, 87
+-- temp sensor                                
+   SCL         : OUT   STD_LOGIC;             -- 112
+   SDA         : INOUT STD_LOGIC;             -- 113
+-- serial E2prom                              
+   I2C_SCL     : OUT   STD_LOGIC;             --  99
+   I2C_SDA     : INOUT STD_LOGIC;             --  98
+-- IR es ist mir unklar, ob das ein Sender oder ein Empfänger ist, deshal erstmal auskommentiert
+--   IR          : ????? STD_LOGIC;             -- 100
+-- VGA
+   VGA_HSYNC   : OUT   STD_LOGIC;             -- 101
+   VGA_VSYNC   : OUT   STD_LOGIC;             -- 103
+   VGA_BGR     : OUT   UNSIGNED(2 DOWNTO 0);  -- 104, 105, 106
+-- LCD                                        
+   LCD_RS      : OUT   STD_LOGIC;             -- 141
+   LCD_RW      : OUT   STD_LOGIC;             -- 138
+   LCD_E       : OUT   STD_LOGIC;             -- 143
+   LCD_Data    : OUT   UNSIGNED(7 DOWNTO 0);  --  11, 7, 10, 2, 3, 144, 1, 142
+-- 7-Segment                                  
+   DIG         : OUT   UNSIGNED(3 DOWNTO 0);  -- 137, 136, 135, 133
+   SEG         : OUT   UNSIGNED(7 DOWNTO 0);  -- 127, 124, 126, 132, 129, 125, 121, 128
+-- SDRAM                                      
+   SD_DQ       : INOUT UNSIGNED(15 DOWNTO 0); -- 44, 46, 49, 50, 51, 52, 53, 54, 39, 38, 34, 33, 32, 31, 30, 28
+   SD_A        : OUT   UNSIGNED(11 DOWNTO 0); -- 59, 75, 60, 64, 65, 66, 67, 68, 83, 80, 77, 76
+   SD_BA       : OUT   UNSIGNED( 1 DOWNTO 0); -- 74, 73
+   SD_LDQM     : OUT   STD_LOGIC;             -- 42
+   SD_UDQM     : OUT   STD_LOGIC;             -- 55
+   SD_CKE      : OUT   STD_LOGIC;             -- 58
+   SD_CLK      : OUT   STD_LOGIC;             -- 43
+   SD_CS_n     : OUT   STD_LOGIC;             -- 72
+   SD_RAS_n    : OUT   STD_LOGIC;             -- 71
+   SD_CAS_n    : OUT   STD_LOGIC;             -- 70
+   SD_WE_n     : OUT   STD_LOGIC;             -- 69
 -- umbilical uart for debugging
-   dsu_rxd     : IN    STD_LOGIC;            -- 115  UART receive
-   dsu_txd     : OUT   STD_LOGIC             -- 114  UART transmit
+   dsu_rxd     : IN    STD_LOGIC;             -- 115  UART receive
+   dsu_txd     : OUT   STD_LOGIC              -- 114  UART transmit
 ); END fpga;
 
 ARCHITECTURE technology OF fpga IS
@@ -121,8 +154,8 @@ reset_a <= NOT reset_n;
 synch_reset: synchronize PORT MAP(clk, reset_a, reset_s);
 reset <= reset_a OR reset_s; -- this is an instantaneous and metastable safe reset
 
-synch_dsu_rxd:   synchronize   PORT MAP(clk, dsu_rxd, dsu_rxd_s);
-synch_interrupt: synchronize_n PORT MAP(clk, int_n,   flags(i_ext));
+synch_dsu_rxd:   synchronize   PORT MAP(clk, dsu_rxd,   dsu_rxd_s);
+synch_interrupt: synchronize_n PORT MAP(clk, keys_n(0), flags(i_ext));
 
 -----------------------------------------------------------------------
 -- flags
@@ -265,9 +298,16 @@ END PROCESS memaddr_proc;
 ext_rdata <= (OTHERS => '0');
 
 -- ---------------------------------------------------------------------
--- XP2_8_protoboard specific IO
+-- OMDAZZ board specific IO
+--
+-- At present, only the leds are actually used for signalling nad
+-- keys_n(0) as interrupt input during simulation
+--
+-- all other output are set to an inactive state, so the peripheral
+-- does not consume extra power.
 -- ---------------------------------------------------------------------
 
+-- leds
 simulating: IF  SIMULATION  GENERATE
 
 leds_n(3 DOWNTO 1) <= NOT Ctrl(c_led3 DOWNTO c_led1);
@@ -279,5 +319,43 @@ leds_n <= NOT ctrl(c_led3 DOWNTO c_led0);
 
 END GENERATE executing;
 
+-- beeper
+beep <= '1'; -- no current consumption
+
+-- temp sensor
+SCL <= '1';
+SDA <= 'Z'; -- INOUT pin
+
+-- serial E2prom
+I2C_SCL <= '1';
+I2C_SDA <= 'Z'; -- INOUT pin
+
+-- VGA
+VGA_HSYNC <= '0';
+VGA_VSYNC <= '0';
+VGA_BGR   <= (OTHERS => '0');
+
+-- LCD
+LCD_RS    <= '0';
+LCD_RW    <= '0';
+LCD_E     <= '0';
+LCD_Data  <= (OTHERS => '0');
+
+-- 7-Segmant
+DIG       <= (OTHERS => '0');
+SEG       <= (OTHERS => '0');
+
+-- SDRAM
+SD_DQ     <= (OTHERS => 'Z'); -- INOUT pins
+SD_A      <= (OTHERS => '0');
+SD_BA     <= (OTHERS => '0');
+SD_LDQM   <= '0';
+SD_UDQM   <= '0';
+SD_CKE    <= '0';
+SD_CLK    <= '0';
+SD_CS_n   <= '1';
+SD_RAS_n  <= '1';
+SD_CAS_n  <= '1';
+SD_WE_n   <= '1';
 
 END technology;

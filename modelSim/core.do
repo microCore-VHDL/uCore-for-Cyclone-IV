@@ -10,7 +10,6 @@ add wave -noupdate /bench/myFPGA/uBus
 add wave -noupdate /bench/myFPGA/uCore/uCntrl/r
 add wave -noupdate /bench/myFPGA/uCore/uCntrl/s
 add wave -noupdate /bench/myFPGA/flags
-add wave -noupdate /bench/myFPGA/leds_n
 add wave -noupdate /bench/bitout
 add wave -noupdate -divider Sequencer
 add wave -noupdate /bench/myFPGA/uCore/uCntrl/s.lit
@@ -47,7 +46,7 @@ add wave -noupdate -divider interrupt
 add wave -noupdate /bench/myFPGA/flags(0)
 add wave -noupdate /bench/myFPGA/uCore/uCntrl/ienable
 add wave -noupdate /bench/myFPGA/uCore/uCntrl/s.ie
-add wave -noupdate /bench/myFPGA/int_n
+add wave -noupdate /bench/int_n
 add wave -noupdate /bench/myFPGA/uCore/uCntrl/pending
 add wave -noupdate /bench/myFPGA/uCore/uCntrl/interrupt
 add wave -noupdate /bench/myFPGA/uCore/uCntrl/s.iis

@@ -2,7 +2,7 @@
 -- @file : bench.vhd testbench for the EP4CE6 OMDAZZ Board
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 10.05.2023 21:57:24
+-- Last change: KS 14.05.2023 13:02:38
 -- @project: microCore
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -26,9 +26,7 @@
 -- the cross compiler.
 --
 -- Version Author   Date       Changes
---   210     ks    8-Jun-2020  initial version
---  2300     ks   11-Mar-2021  update of umbilical tests
---                             STD_LOGIC_(UN)SIGNED replaced by NUMERIC_STD
+--  1000     ks   14-May-2023  initial version
 -- ---------------------------------------------------------------------
 
 LIBRARY IEEE;
@@ -52,14 +50,47 @@ CONSTANT download   : STD_LOGIC := '0'; -- use sim_download.fs   download.do   M
 CONSTANT break      : STD_LOGIC := '0'; -- use sim_break.fs      break.do      MEM_FILE := "../software/program.mem" 210 usec
 
 COMPONENT fpga PORT (                        -- pins
-   reset_n     : IN    STD_LOGIC;            --  25
-   clock       : IN    STD_LOGIC;            --  23  external clock input
--- Demoboard specific pins
-   int_n       : IN    STD_LOGIC;            --  88  used as external interrupt input
-   leds_n      : OUT   UNSIGNED(3 DOWNTO 0); --  84, 85, 86, 87
+   reset_n     : IN    STD_LOGIC;             --  25
+   clock       : IN    STD_LOGIC;             --  23  external clock input
+-- Demoboard specific pins                    
+   keys_n      : IN    UNSIGNED(3 DOWNTO 0);  --  91, 90, 89, 88 <= used as interrupt input during simulation
+   beep        : OUT   STD_LOGIC;             -- 110
+   leds_n      : OUT   UNSIGNED(3 DOWNTO 0);  --  84, 85, 86, 87
+-- temp sensor                                
+   SCL         : OUT   STD_LOGIC;             -- 112
+   SDA         : INOUT STD_LOGIC;             -- 113
+-- serial E2prom                              
+   I2C_SCL     : OUT   STD_LOGIC;             --  99
+   I2C_SDA     : INOUT STD_LOGIC;             --  98
+-- IR es ist mir unklar, ob das ein Sender oder ein Empfänger ist, deshal erstmal auskommentiert
+--   IR          : ????? STD_LOGIC;             -- 100
+-- VGA
+   VGA_HSYNC   : OUT   STD_LOGIC;             -- 101
+   VGA_VSYNC   : OUT   STD_LOGIC;             -- 103
+   VGA_BGR     : OUT   UNSIGNED(2 DOWNTO 0);  -- 104, 105, 106
+-- LCD                                        
+   LCD_RS      : OUT   STD_LOGIC;             -- 141
+   LCD_RW      : OUT   STD_LOGIC;             -- 138
+   LCD_E       : OUT   STD_LOGIC;             -- 143
+   LCD_Data    : OUT   UNSIGNED(7 DOWNTO 0);  --  11, 7, 10, 2, 3, 144, 1, 142
+-- 7-Segment                                  
+   DIG         : OUT   UNSIGNED(3 DOWNTO 0);  -- 137, 136, 135, 133
+   SEG         : OUT   UNSIGNED(7 DOWNTO 0);  -- 127, 124, 126, 132, 129, 125, 121, 128
+-- SDRAM                                      
+   SD_DQ       : INOUT UNSIGNED(15 DOWNTO 0); -- 44, 46, 49, 50, 51, 52, 53, 54, 39, 38, 34, 33, 32, 31, 30, 28
+   SD_A        : OUT   UNSIGNED(11 DOWNTO 0); -- 59, 75, 60, 64, 65, 66, 67, 68, 83, 80, 77, 76
+   SD_BA       : OUT   UNSIGNED( 1 DOWNTO 0); -- 74, 73
+   SD_LDQM     : OUT   STD_LOGIC;             -- 42
+   SD_UDQM     : OUT   STD_LOGIC;             -- 55
+   SD_CKE      : OUT   STD_LOGIC;             -- 58
+   SD_CLK      : OUT   STD_LOGIC;             -- 43
+   SD_CS_n     : OUT   STD_LOGIC;             -- 72
+   SD_RAS_n    : OUT   STD_LOGIC;             -- 71
+   SD_CAS_n    : OUT   STD_LOGIC;             -- 70
+   SD_WE_n     : OUT   STD_LOGIC;             -- 69
 -- umbilical uart for debugging
-   dsu_rxd     : IN    STD_LOGIC;            -- 115  incoming asynchronous data stream
-   dsu_txd     : OUT   STD_LOGIC             -- 114  outgoing data stream
+   dsu_rxd     : IN    STD_LOGIC;             -- 115  UART receive
+   dsu_txd     : OUT   STD_LOGIC              -- 114  UART transmit
 ); END COMPONENT fpga;
 
 SIGNAL reset_n    : STD_LOGIC;
@@ -96,16 +127,23 @@ CONSTANT int_time   : TIME := 26500 ns + 0 * 40 ns;
 
 -- Demoboard specific signals
 
--- SIGNAL switch_n     : UNSIGNED(3 DOWNTO 0);
 SIGNAL leds_n       : UNSIGNED(3 DOWNTO 0);
+SIGNAL keys_n       : UNSIGNED(3 DOWNTO 0);
 
 BEGIN
+
+-- ---------------------------------------------------------------------
+-- demoboard pins
+-- ---------------------------------------------------------------------
+
+keys_n(0)          <= int_n;
+keys_n(3 DOWNTO 1) <= (OTHERS => '0');
 
 -- ---------------------------------------------------------------------
 -- Test vector generation
 -- ---------------------------------------------------------------------
 
-int_n <= '1', '0' AFTER int_time, '1' AFTER int_time + 600 ns;
+int_n  <= '1', '0' AFTER int_time, '1' AFTER int_time + 600 ns;
 
 bitout <= '1' WHEN  leds_n(0) = '0' OR (debug = '1' AND host_reg = 16#4002#)  ELSE '0';
 
@@ -468,9 +506,42 @@ END PROCESS xtal_clock;
 myFPGA: fpga PORT MAP (
    reset_n    => reset_n,
    clock      => xtal,
--- demoboard specific pins
-   int_n      => int_n,
+-- Demoboard specific pins                    
+   keys_n     => keys_n,
+--   beep       => OUT   STD_LOGIC;
    leds_n     => leds_n,
+-- temp sensor
+--   SCL        => OUT   STD_LOGIC;
+--   SDA        => INOUT STD_LOGIC;
+-- serial E2prom
+--   I2C_SCL    => OUT   STD_LOGIC;
+--   I2C_SDA    => INOUT STD_LOGIC;
+-- IR es ist mir unklar, ob das ein Sender oder ein Empfänger ist, deshal erstmal auskommentiert
+--   IR         => ????? STD_LOGIC;
+-- VGA
+--   VGA_HSYNC  => OUT   STD_LOGIC;
+--   VGA_VSYNC  => OUT   STD_LOGIC;
+--   VGA_BGR    => OUT   UNSIGNED(2 DOWNTO 0);
+-- LCD                                        
+--   LCD_RS     => OUT   STD_LOGIC;
+--   LCD_RW     => OUT   STD_LOGIC;
+--   LCD_E      => OUT   STD_LOGIC;
+--   LCD_Data   => OUT   UNSIGNED(7 DOWNTO 0);
+-- 7-Segment                                  
+--   DIG        => OUT   UNSIGNED(3 DOWNTO 0);
+--   SEG        => OUT   UNSIGNED(7 DOWNTO 0);
+-- SDRAM                                      
+--   SD_DQ      => INOUT UNSIGNED(15 DOWNTO 0);
+--   SD_A       => OUT   UNSIGNED(11 DOWNTO 0);
+--   SD_BA      => OUT   UNSIGNED( 1 DOWNTO 0);
+--   SD_LDQM    => OUT   STD_LOGIC;
+--   SD_UDQM    => OUT   STD_LOGIC;
+--   SD_CKE     => OUT   STD_LOGIC;
+--   SD_CLK     => OUT   STD_LOGIC;
+--   SD_CS_n    => OUT   STD_LOGIC;
+--   SD_RAS_n   => OUT   STD_LOGIC;
+--   SD_CAS_n   => OUT   STD_LOGIC;
+--   SD_WE_n    => OUT   STD_LOGIC;
 -- umbilical port for debugging
    dsu_rxd    => host_txd, -- host -> target
    dsu_txd    => host_rxd  -- target -> host
