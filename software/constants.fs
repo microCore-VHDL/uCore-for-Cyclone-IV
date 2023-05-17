@@ -2,7 +2,7 @@
 \ @file : constants.fs for the EP4CE6_OMDAZZ prototyping board
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 10.05.2023 00:31:34
+\ Last change: KS 17.05.2023 19:52:23
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -59,15 +59,19 @@ H i_ext        T Bit #i-ext
 H FLAG_REG        T Register Flags
 H f_dsu        T Bit #f-dsu        \ set when the dsu is connected to the umbilical (no break!)
 H f_sema       T Bit #f-sema
-H f_bitout     T Bit #f-bitout
+H f_key0       T Bit #f-key0   H f_bitout T Bit #f-bitout \ Alias name for coretest
+H f_key1       T Bit #f-key1
+H f_key2       T Bit #f-key2
+H f_key3       T Bit #f-key3
+
+
 
 H VERSION_REG     T Register Version-reg
 
 H DEBUG_REG       T Register Debug-reg
 
 H CTRL_REG        T Register Ctrl-reg
-H c_led0       T Bit #c-led0
-H c_bitout     T Bit #c-bitout
+H c_led0       T Bit #c-led0   H c_bitout T Bit #c-bitout \ Alias name for coretest
 H c_led1       T Bit #c-led1
 H c_led2       T Bit #c-led2
 H c_led3       T Bit #c-led3

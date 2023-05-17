@@ -2,7 +2,7 @@
 -- @file : fpga.vhd for the Intel EP4CE6_OMDAZZ prototyping board
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 14.05.2023 13:00:02
+-- Last change: KS 17.05.2023 19:54:14
 -- @project: EP4CE6_OMDAZZ
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -161,13 +161,21 @@ synch_interrupt: synchronize_n PORT MAP(clk, keys_n(0), flags(i_ext));
 -- flags
 -----------------------------------------------------------------------
 
--- synopsys translate_off
-flags         <= (OTHERS => 'L');
--- synopsys translate_on
-
-flags(f_dsu)    <= NOT dsu_break;     -- '1' if debug terminal present
+flags(f_dsu)    <= NOT dsu_break; -- '1' if debug terminal present
 flags(f_sema)   <= flag_sema;
-flags(f_bitout) <= ctrl(c_bitout);    -- just for coretest
+
+sim_keys: IF  SIMULATION  GENERATE
+
+flags                       <= (OTHERS => 'L')
+flags(f_bitout)             <= ctrl(c_bitout); -- just for coretest
+flags(f_key3 DOWNTO f_key1) <= NOT keys_n(3 DOWNTO 1);
+
+END GENERATE sim_keys; exe_keys: IF  NOT SIMULATION  GENERATE
+
+flags(f_key3 DOWNTO f_key0) <= NOT keys_n;
+
+END GENERATE exe_keys;
+
 
 ------------------------------------------------------------------------
 -- ctrl-register (bitwise)
@@ -308,16 +316,16 @@ ext_rdata <= (OTHERS => '0');
 -- ---------------------------------------------------------------------
 
 -- leds
-simulating: IF  SIMULATION  GENERATE
+sim_leds: IF  SIMULATION  GENERATE
 
 leds_n(3 DOWNTO 1) <= NOT Ctrl(c_led3 DOWNTO c_led1);
 leds_n(0)          <= NOT Ctrl(c_bitout);
 
-END GENERATE simulating; executing: IF  NOT SIMULATION  GENERATE
+END GENERATE sim_leds; exe_leds: IF  NOT SIMULATION  GENERATE
 
 leds_n <= NOT ctrl(c_led3 DOWNTO c_led0);
 
-END GENERATE executing;
+END GENERATE exe_leds;
 
 -- beeper
 beep <= '1'; -- no current consumption

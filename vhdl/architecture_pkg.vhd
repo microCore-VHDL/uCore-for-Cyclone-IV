@@ -2,7 +2,7 @@
 -- @file : architecture_pkg_16.vhd for the EP4CE6_OMDAZZ Demoboard
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 10.05.2023 22:07:28
+-- Last change: KS 17.05.2023 19:33:35
 -- @project: EP4CE6_OMDAZZ
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -32,7 +32,7 @@ USE work.functions_pkg.ALL;
 PACKAGE architecture_pkg IS
 --~--  \ when loaded by the microForth cross-compiler, code between "--~" up to "--~--" will be skipped.
 
-CONSTANT version            : NATURAL := 10000; -- <major_release> <functionality_added> <HW_fix> <SW_fix> <pre-release#>
+CONSTANT version            : NATURAL := 10001; -- <major_release> <functionality_added> <HW_fix> <SW_fix> <pre-release#>
 
 -- ---------------------------------------------------------------------
 -- Configuration flags
@@ -63,13 +63,13 @@ CONSTANT MEM_file           : string  := ""; -- ../software/program.mem";
 CONSTANT DMEM_file          : string  := ""; -- ../software/data.mem";
 --~--
 -- ---------------------------------------------------------------------
--- EP4CE6 internal Memory Map 29 M9K memory blocks (1024x9)
+-- EP4CE6 internal Memory Map 30 M9K memory blocks (1024x9)
 -- ---------------------------------------------------------------------
 -- memory sizes for 16/18 bits::
 -- entity   size   composition   M9Ks
--- stack   1kx16    1kx18x1       1   ds_addr_width := 7, tasks_addr_width := 3
--- data    8kx16    4kx4x6        8   cache_addr_width := 13, addr_rstack := 16#1C00#
--- prog    8kx8     4kx4x4        4   prog_addr_width := 13
+-- stack   1kx16                  1   ds_addr_width := 7, tasks_addr_width := 3
+-- data    8kx16                  8   cache_addr_width := 13, addr_rstack := 16#1C00#
+-- prog    8kx8                   4   prog_addr_width := 13
 
 -- ---------------------------------------------------------------------
 -- data, cache, register, and external data memory parameters:
@@ -152,8 +152,12 @@ CONSTANT max_registers         : INTEGER :=  -1;
    CONSTANT FLAG_REG           : INTEGER :=  -5; -- flags@, pass
       CONSTANT f_dsu        : NATURAL :=  1; -- set when the dsu is connected to the umbilical (no break!)
       CONSTANT f_sema       : NATURAL :=  2;
-      CONSTANT f_bitout     : NATURAL :=  3;
-   CONSTANT flag_width      : NATURAL :=  4;
+-- gap
+      CONSTANT f_key0       : NATURAL :=  4;  CONSTANT f_bitout : NATURAL :=  4; -- Alias name
+      CONSTANT f_key1       : NATURAL :=  5;
+      CONSTANT f_key2       : NATURAL :=  6;
+      CONSTANT f_key3       : NATURAL :=  7;
+   CONSTANT flag_width      : NATURAL :=  8;
 
    CONSTANT VERSION_REG        : INTEGER :=  -6; -- FPGA Version
 
@@ -163,8 +167,7 @@ CONSTANT max_registers         : INTEGER :=  -1;
       CONSTANT ticks_per_ms : NATURAL := 4;
 
    CONSTANT CTRL_REG           : INTEGER :=  -9;
-      CONSTANT c_led0       : NATURAL := 0;
-      CONSTANT c_bitout     : NATURAL := 0; -- alias of c_led0 for simulation
+      CONSTANT c_led0       : NATURAL := 0;  CONSTANT c_bitout : NATURAL := 0; -- alias of c_led0 during simulation
       CONSTANT c_led1       : NATURAL := 1;
       CONSTANT c_led2       : NATURAL := 2;
       CONSTANT c_led3       : NATURAL := 3;
