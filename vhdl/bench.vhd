@@ -2,7 +2,7 @@
 -- @file : bench.vhd testbench for the EP4CE6 OMDAZZ Board
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 14.05.2023 13:02:38
+-- Last change: KS 20.05.2023 19:28:49
 -- @project: microCore
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -77,17 +77,17 @@ COMPONENT fpga PORT (                        -- pins
    DIG         : OUT   UNSIGNED(3 DOWNTO 0);  -- 137, 136, 135, 133
    SEG         : OUT   UNSIGNED(7 DOWNTO 0);  -- 127, 124, 126, 132, 129, 125, 121, 128
 -- SDRAM                                      
-   SD_DQ       : INOUT UNSIGNED(15 DOWNTO 0); -- 44, 46, 49, 50, 51, 52, 53, 54, 39, 38, 34, 33, 32, 31, 30, 28
+   SD_CLK      : OUT   STD_LOGIC;             -- 43
+   SD_CKE      : OUT   STD_LOGIC;             -- 58
+   SD_CS_n     : OUT   STD_LOGIC;             -- 72
+   SD_WE_n     : OUT   STD_LOGIC;             -- 69
    SD_A        : OUT   UNSIGNED(11 DOWNTO 0); -- 59, 75, 60, 64, 65, 66, 67, 68, 83, 80, 77, 76
    SD_BA       : OUT   UNSIGNED( 1 DOWNTO 0); -- 74, 73
-   SD_LDQM     : OUT   STD_LOGIC;             -- 42
-   SD_UDQM     : OUT   STD_LOGIC;             -- 55
-   SD_CKE      : OUT   STD_LOGIC;             -- 58
-   SD_CLK      : OUT   STD_LOGIC;             -- 43
-   SD_CS_n     : OUT   STD_LOGIC;             -- 72
    SD_RAS_n    : OUT   STD_LOGIC;             -- 71
    SD_CAS_n    : OUT   STD_LOGIC;             -- 70
-   SD_WE_n     : OUT   STD_LOGIC;             -- 69
+   SD_LDQM     : OUT   STD_LOGIC;             -- 42
+   SD_UDQM     : OUT   STD_LOGIC;             -- 55
+   SD_DQ       : INOUT UNSIGNED(15 DOWNTO 0); -- 44, 46, 49, 50, 51, 52, 53, 54, 39, 38, 34, 33, 32, 31, 30, 28
 -- umbilical uart for debugging
    dsu_rxd     : IN    STD_LOGIC;             -- 115  UART receive
    dsu_txd     : OUT   STD_LOGIC              -- 114  UART transmit
@@ -531,17 +531,17 @@ myFPGA: fpga PORT MAP (
 --   DIG        => OUT   UNSIGNED(3 DOWNTO 0);
 --   SEG        => OUT   UNSIGNED(7 DOWNTO 0);
 -- SDRAM                                      
---   SD_DQ      => INOUT UNSIGNED(15 DOWNTO 0);
---   SD_A       => OUT   UNSIGNED(11 DOWNTO 0);
---   SD_BA      => OUT   UNSIGNED( 1 DOWNTO 0);
---   SD_LDQM    => OUT   STD_LOGIC;
---   SD_UDQM    => OUT   STD_LOGIC;
---   SD_CKE     => OUT   STD_LOGIC;
---   SD_CLK     => OUT   STD_LOGIC;
---   SD_CS_n    => OUT   STD_LOGIC;
---   SD_RAS_n   => OUT   STD_LOGIC;
---   SD_CAS_n   => OUT   STD_LOGIC;
---   SD_WE_n    => OUT   STD_LOGIC;
+--   SD_CLK      : OUT   STD_LOGIC;
+--   SD_CKE      : OUT   STD_LOGIC;            
+--   SD_CS_n     : OUT   STD_LOGIC;            
+--   SD_WE_n     : OUT   STD_LOGIC;
+--   SD_A        : OUT   UNSIGNED(11 DOWNTO 0);
+--   SD_BA       : OUT   UNSIGNED( 1 DOWNTO 0);
+--   SD_RAS_n    : OUT   STD_LOGIC;            
+--   SD_CAS_n    : OUT   STD_LOGIC;            
+--   SD_LDQM     : OUT   STD_LOGIC;
+--   SD_UDQM     : OUT   STD_LOGIC;            
+--   SD_DQ       : INOUT UNSIGNED(15 DOWNTO 0);
 -- umbilical port for debugging
    dsu_rxd    => host_txd, -- host -> target
    dsu_txd    => host_rxd  -- target -> host
