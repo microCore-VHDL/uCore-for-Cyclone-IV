@@ -31,42 +31,42 @@ USE work.architecture_pkg.ALL;
 ENTITY fpga IS PORT (                         -- pins
    reset_n     : IN    STD_LOGIC;             --  25
    clock       : IN    STD_LOGIC;             --  23  external clock input
--- Demoboard specific pins                    
+-- Demoboard specific pins
    keys_n      : IN    UNSIGNED(3 DOWNTO 0);  --  91, 90, 89, 88 <= used as interrupt input during simulation
    beep        : OUT   STD_LOGIC;             -- 110
    leds_n      : OUT   UNSIGNED(3 DOWNTO 0);  --  84, 85, 86, 87
--- temp sensor                                
-   SCL         : OUT   STD_LOGIC;             -- 112
-   SDA         : INOUT STD_LOGIC;             -- 113
--- serial E2prom                              
-   I2C_SCL     : OUT   STD_LOGIC;             --  99
-   I2C_SDA     : INOUT STD_LOGIC;             --  98
+-- temp sensor
+   scl         : OUT   STD_LOGIC;             -- 112
+   sda         : INOUT STD_LOGIC;             -- 113
+-- serial E2prom
+   i2c_scl     : OUT   STD_LOGIC;             --  99
+   i2c_sda     : INOUT STD_LOGIC;             --  98
 -- IR es ist mir unklar, ob das ein Sender oder ein Empfänger ist, deshal erstmal auskommentiert
 --   IR          : ????? STD_LOGIC;             -- 100
 -- VGA
-   VGA_HSYNC   : OUT   STD_LOGIC;             -- 101
-   VGA_VSYNC   : OUT   STD_LOGIC;             -- 103
-   VGA_BGR     : OUT   UNSIGNED(2 DOWNTO 0);  -- 104, 105, 106
--- LCD                                        
-   LCD_RS      : OUT   STD_LOGIC;             -- 141
-   LCD_RW      : OUT   STD_LOGIC;             -- 138
-   LCD_E       : OUT   STD_LOGIC;             -- 143
-   LCD_Data    : OUT   UNSIGNED(7 DOWNTO 0);  --  11, 7, 10, 2, 3, 144, 1, 142
--- 7-Segment                                  
-   DIG         : OUT   UNSIGNED(3 DOWNTO 0);  -- 137, 136, 135, 133
-   SEG         : OUT   UNSIGNED(7 DOWNTO 0);  -- 127, 124, 126, 132, 129, 125, 121, 128
--- SDRAM                                      
-   SD_CLK      : OUT   STD_LOGIC;             -- 43
-   SD_CKE      : OUT   STD_LOGIC;             -- 58
-   SD_CS_n     : OUT   STD_LOGIC;             -- 72
-   SD_WE_n     : OUT   STD_LOGIC;             -- 69
-   SD_A        : OUT   UNSIGNED(11 DOWNTO 0); -- 59, 75, 60, 64, 65, 66, 67, 68, 83, 80, 77, 76
-   SD_BA       : OUT   UNSIGNED( 1 DOWNTO 0); -- 74, 73
-   SD_RAS_n    : OUT   STD_LOGIC;             -- 71
-   SD_CAS_n    : OUT   STD_LOGIC;             -- 70
-   SD_LDQM     : OUT   STD_LOGIC;             -- 42
-   SD_UDQM     : OUT   STD_LOGIC;             -- 55
-   SD_DQ       : INOUT UNSIGNED(15 DOWNTO 0); -- 44, 46, 49, 50, 51, 52, 53, 54, 39, 38, 34, 33, 32, 31, 30, 28
+   vga_hsync   : OUT   STD_LOGIC;             -- 101
+   vga_vsync   : OUT   STD_LOGIC;             -- 103
+   vga_bgr     : OUT   UNSIGNED(2 DOWNTO 0);  -- 104, 105, 106
+-- LCD
+   lcd_rs      : OUT   STD_LOGIC;             -- 141
+   lcd_rw      : OUT   STD_LOGIC;             -- 138
+   lcd_e       : OUT   STD_LOGIC;             -- 143
+   lcd_data    : OUT   UNSIGNED(7 DOWNTO 0);  --  11, 7, 10, 2, 3, 144, 1, 142
+-- 7-Segment
+   dig         : OUT   UNSIGNED(3 DOWNTO 0);  -- 137, 136, 135, 133
+   seg         : OUT   UNSIGNED(7 DOWNTO 0);  -- 127, 124, 126, 132, 129, 125, 121, 128
+-- SDRAM
+   sd_clk      : OUT   STD_LOGIC;             -- 43
+   sd_cke      : OUT   STD_LOGIC;             -- 58
+   sd_cs_n     : OUT   STD_LOGIC;             -- 72
+   sd_we_n     : OUT   STD_LOGIC;             -- 69
+   sd_a        : OUT   UNSIGNED(11 DOWNTO 0); -- 59, 75, 60, 64, 65, 66, 67, 68, 83, 80, 77, 76
+   sd_ba       : OUT   UNSIGNED( 1 DOWNTO 0); -- 74, 73
+   sd_ras_n    : OUT   STD_LOGIC;             -- 71
+   sd_cas_n    : OUT   STD_LOGIC;             -- 70
+   sd_ldqm     : OUT   STD_LOGIC;             -- 42
+   sd_udqm     : OUT   STD_LOGIC;             -- 55
+   sd_dq       : INOUT UNSIGNED(15 DOWNTO 0); -- 44, 46, 49, 50, 51, 52, 53, 54, 39, 38, 34, 33, 32, 31, 30, 28
 -- umbilical uart for debugging
    dsu_rxd     : IN    STD_LOGIC;             -- 115  UART receive
    dsu_txd     : OUT   STD_LOGIC              -- 114  UART transmit
@@ -166,7 +166,7 @@ flags(f_sema)   <= flag_sema;
 
 sim_keys: IF  SIMULATION  GENERATE
 
-flags                       <= (OTHERS => 'L')
+flags                       <= (OTHERS => 'L');
 flags(f_bitout)             <= ctrl(c_bitout); -- just for coretest
 flags(f_key3 DOWNTO f_key1) <= NOT keys_n(3 DOWNTO 1);
 
@@ -305,6 +305,18 @@ END PROCESS memaddr_proc;
 
 ext_rdata <= (OTHERS => '0');
 
+sd_clk    <= '0';
+sd_cke    <= '0';
+sd_cs_n   <= '1';
+sd_we_n   <= '1';
+sd_a      <= (OTHERS => '0');
+sd_ba     <= (OTHERS => '0');
+sd_ras_n  <= '1';
+sd_cas_n  <= '1';
+sd_ldqm   <= '0';
+sd_udqm   <= '0';
+sd_dq     <= (OTHERS => 'Z'); -- INOUT pins
+
 -- ---------------------------------------------------------------------
 -- OMDAZZ board specific IO
 --
@@ -331,39 +343,26 @@ END GENERATE exe_leds;
 beep <= '1'; -- no current consumption
 
 -- temp sensor
-SCL <= '1';
-SDA <= 'Z'; -- INOUT pin
+scl <= '1';
+sda <= 'Z'; -- INOUT pin
 
 -- serial E2prom
-I2C_SCL <= '1';
-I2C_SDA <= 'Z'; -- INOUT pin
+i2c_scl <= '1';
+i2c_sda <= 'Z'; -- INOUT pin
 
 -- VGA
-VGA_HSYNC <= '0';
-VGA_VSYNC <= '0';
-VGA_BGR   <= (OTHERS => '0');
+vga_hsync <= '0';
+vga_vsync <= '0';
+vga_bgr   <= (OTHERS => '0');
 
 -- LCD
-LCD_RS    <= '0';
-LCD_RW    <= '0';
-LCD_E     <= '0';
-LCD_Data  <= (OTHERS => '0');
+lcd_rs    <= '0';
+lcd_rw    <= '0';
+lcd_e     <= '0';
+lcd_data  <= (OTHERS => '0');
 
 -- 7-Segmant
-DIG       <= (OTHERS => '0');
-SEG       <= (OTHERS => '0');
-
--- SDRAM
-SD_CLK    <= '0';
-SD_CKE    <= '0';
-SD_CS_n   <= '1';
-SD_WE_n   <= '1';
-SD_A      <= (OTHERS => '0');
-SD_BA     <= (OTHERS => '0');
-SD_RAS_n  <= '1';
-SD_CAS_n  <= '1';
-SD_LDQM   <= '0';
-SD_UDQM   <= '0';
-SD_DQ     <= (OTHERS => 'Z'); -- INOUT pins
+dig       <= (OTHERS => '0');
+seg       <= (OTHERS => '0');
 
 END technology;

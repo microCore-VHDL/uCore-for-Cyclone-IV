@@ -1,4 +1,16 @@
 ************************************************************************
+*** EP4CE6_OMDAZZ 1.000.2  9-Jun-2023 ks
+************************************************************************
+
+The dual port bram for the data memory has been replaced by a single
+port one, namely internal_ram in functions_pkd.vhd.
+
+Altera does not have a global clk_enable signal for its bram but two
+independent we_en and rd_en - Intel processor style. Therefore the
+entity definition in functions_pkg.vhd has been modified in the hope
+that it might now infer bram for all internal memories.
+
+************************************************************************
 *** EP4CE6_OMDAZZ 1.000.1 17-May-2023 ks
 ************************************************************************
 

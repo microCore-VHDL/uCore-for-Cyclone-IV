@@ -2,7 +2,7 @@
 -- @file : uDatacache_cell.vhd
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 07.05.2023 23:54:43
+-- Last change: KS 08.06.2023 23:28:23
 -- @project: microCore
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -64,45 +64,35 @@ SIGNAL dma_mem_rdata : data_bus;
 
 BEGIN
 
+dma_rdata <= (OTHERS => '0');
+
 enable <= clk_en AND mem_en;
 
 make_sim_mem: IF  SIMULATION  GENERATE
 
-   internal_data_mem: internal_dpram
+   internal_data_mem: internal_ram
    GENERIC MAP (data_width, cache_size, "rw_check", DMEM_file)
    PORT MAP (
       clk     => clk,
-      ena     => enable,
-      wea     => write,
-      addra   => addr(cache_addr_width-1 DOWNTO 0),
-      dia     => wdata,
-      doa     => rdata,
-   -- dma port
-      enb     => dma_enable,
-      web     => dma_write,
-      addrb   => dma_addr(cache_addr_width-1 DOWNTO 0),
-      dib     => dma_wdata,
-      dob     => dma_rdata
+      en      => enable,
+      we      => write,
+      addr    => addr(cache_addr_width-1 DOWNTO 0),
+      di      => wdata,
+      do      => rdata
    );
 
 END GENERATE make_sim_mem; make_syn_mem: IF  NOT SIMULATION  GENERATE
 -- instantiate FPGA specific IP for cell addressed memory here:
 
-   internal_data_mem: internal_dpram
+   internal_data_mem: internal_ram
    GENERIC MAP (data_width, cache_size, "rw_check")
    PORT MAP (
       clk     => clk,
-      ena     => enable,
-      wea     => write,
-      addra   => addr(cache_addr_width-1 DOWNTO 0),
-      dia     => wdata,
-      doa     => rdata,
-   -- dma port
-      enb     => dma_enable,
-      web     => dma_write,
-      addrb   => dma_addr(cache_addr_width-1 DOWNTO 0),
-      dib     => dma_wdata,
-      dob     => dma_rdata
+      en      => enable,
+      we      => write,
+      addr    => addr(cache_addr_width-1 DOWNTO 0),
+      di      => wdata,
+      do      => rdata
    );
 
 END GENERATE make_syn_mem;
