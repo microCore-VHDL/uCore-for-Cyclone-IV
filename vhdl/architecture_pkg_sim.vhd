@@ -250,6 +250,16 @@ TYPE  progmem_port  IS RECORD
    wdata       : inst_bus;     -- write to program memory during boot phase
 END RECORD;
 
+-- TYPE  SDRAM_signals  IS RECORD
+--    cke      : OUT STD_LOGIC;             --                           3    2     1     0
+--    ctrl     : OUT UNSIGNED( 3 DOWNTO 0); -- combines SDRAM inputs: | cs | we | ras | cas |
+--    a        : OUT UNSIGNED(11 DOWNTO 0);
+--    ba       : OUT UNSIGNED( 1 DOWNTO 0);
+--    ldqm     : OUT STD_LOGIC;
+--    udqm     : OUT STD_LOGIC;
+--    wdata    : OUT UNSIGNED(15 DOWNTO 0);
+-- END RECORD;
+
 -- ---------------------------------------------------------------------
 -- umbilical debugger command bytes
 -- ---------------------------------------------------------------------

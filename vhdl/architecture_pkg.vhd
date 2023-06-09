@@ -2,7 +2,7 @@
 -- @file : architecture_pkg_16.vhd for the EP4CE6_OMDAZZ Demoboard
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 09.06.2023 17:20:46
+-- Last change: KS 09.06.2023 20:34:28
 -- @project: EP4CE6_OMDAZZ
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.

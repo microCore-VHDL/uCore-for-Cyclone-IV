@@ -7,8 +7,9 @@ port one, namely internal_ram in functions_pkd.vhd.
 
 Altera does not have a global clk_enable signal for its bram but two
 independent we_en and rd_en - Intel processor style. Therefore the
-entity definition in functions_pkg.vhd has been modified in the hope
-that it might now infer bram for all internal memories.
+entity definition in functions_pkg.vhd has been modified.
+
+This 16 bit design works and would run @ 50 MHz
 
 ************************************************************************
 *** EP4CE6_OMDAZZ 1.000.1 17-May-2023 ks

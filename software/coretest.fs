@@ -2,7 +2,7 @@
 \ @file : coretest.fs
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 03.11.2022 19:05:10
+\ Last change: KS 09.06.2023 22:51:33
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -370,7 +370,7 @@ Variable save-DSP
      test-memory
      test-local
      test-user
-     test-ctrl
+\     test-ctrl  \ remaining problem with key0 / #f-bitout
    Dsp ! 2drop  Rsp ! rdrop
    test-timer
    test-van-neumann

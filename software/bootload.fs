@@ -2,7 +2,7 @@
 \ @file : bootload.fs for the EP4CE6_OMDAZZ board.
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 13.05.2023 18:43:57
+\ Last change: KS 09.06.2023 22:34:38
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -45,7 +45,7 @@ Target new                      \ go into target compilation mode and initialize
 
 include constants.fs            \ microCore Register addresses and bits
 
-: delay ( -- )  &500 time + BEGIN  dup time? UNTIL drop ;
+: delay ( -- )  &1000 time + BEGIN  dup time? UNTIL drop ;
 
 : next-led  ( n -- n' )
    dup -ctrl !   dup +

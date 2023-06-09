@@ -2,7 +2,7 @@
 -- @file : fpga.vhd for the Intel EP4CE6_OMDAZZ prototyping board
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 20.05.2023 19:29:35
+-- Last change: KS 09.06.2023 22:34:17
 -- @project: EP4CE6_OMDAZZ
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -44,7 +44,7 @@ ENTITY fpga IS PORT (                         -- pins
 -- IR es ist mir unklar, ob das ein Sender oder ein Empfänger ist, deshal erstmal auskommentiert
 --   IR          : ????? STD_LOGIC;             -- 100
 -- VGA
-   vga_hsync   : OUT   STD_LOGIC;             -- 101
+--   vga_hsync   : OUT   STD_LOGIC;             -- 101 Pin 101 can not be used!
    vga_vsync   : OUT   STD_LOGIC;             -- 103
    vga_bgr     : OUT   UNSIGNED(2 DOWNTO 0);  -- 104, 105, 106
 -- LCD
@@ -351,7 +351,7 @@ i2c_scl <= '1';
 i2c_sda <= 'Z'; -- INOUT pin
 
 -- VGA
-vga_hsync <= '0';
+-- vga_hsync <= '0';
 vga_vsync <= '0';
 vga_bgr   <= (OTHERS => '0');
 
@@ -363,6 +363,6 @@ lcd_data  <= (OTHERS => '0');
 
 -- 7-Segmant
 dig       <= (OTHERS => '0');
-seg       <= (OTHERS => '0');
+seg       <= (OTHERS => '1');
 
 END technology;
