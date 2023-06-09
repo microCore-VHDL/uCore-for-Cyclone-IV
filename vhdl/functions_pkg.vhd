@@ -2,7 +2,7 @@
 -- @file : functions_pkg.vhd
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 09.06.2023 16:37:19
+-- Last change: KS 09.06.2023 18:09:15
 -- @project: microCore
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -791,14 +791,14 @@ TYPE ram_type IS ARRAY (ram_size-1 DOWNTO 0) OF UNSIGNED(data_width-1 DOWNTO 0);
 SIGNAL ram        : ram_type; ATTRIBUTE syn_ramstyle OF ram : SIGNAL IS ramstyle;
 SIGNAL addr_d     : UNSIGNED(log2(ram_size)-1 DOWNTO 0);
 SIGNAL rd_en      : STD_LOGIC;
-SIGNAL wr_en      : STD_LOGIC;
+SIGNAL we_en      : STD_LOGIC;
 
 CONSTANT data_hex : INTEGER := next_quad(data_width);
 
 BEGIN
 
 rd_en <= en;
-wr_en <= en AND we;
+we_en <= en AND we;
 
 initialized_ram: PROCESS(clk)
 	FILE tcf         : TEXT;
