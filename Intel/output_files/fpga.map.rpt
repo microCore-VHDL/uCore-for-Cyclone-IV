@@ -1,0 +1,1507 @@
+Analysis & Synthesis report for fpga
+Fri Jun 09 22:36:25 2023
+Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. Analysis & Synthesis DSP Block Usage Summary
+ 10. State Machine - |fpga|microcore:uCore|debugger:debug_unit|in_state
+ 11. State Machine - |fpga|microcore:uCore|debugger:debug_unit|out_state
+ 12. Registers Protected by Synthesis
+ 13. Registers Removed During Synthesis
+ 14. General Register Statistics
+ 15. Inverted Register Statistics
+ 16. Registers Added for RAM Pass-Through Logic
+ 17. Registers Packed Into Inferred Megafunctions
+ 18. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 19. Source assignments for microcore:uCore
+ 20. Source assignments for microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0|altsyncram_v2e1:auto_generated
+ 21. Source assignments for microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|altsyncram:ram_rtl_0|altsyncram_t4e1:auto_generated
+ 22. Source assignments for uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|altsyncram:ram_rtl_0|altsyncram_t5e1:auto_generated
+ 23. Parameter Settings for User Entity Instance: microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem
+ 24. Parameter Settings for User Entity Instance: microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack
+ 25. Parameter Settings for User Entity Instance: microcore:uCore|debugger:debug_unit|uart:debug_uart
+ 26. Parameter Settings for User Entity Instance: microcore:uCore|debugger:debug_unit|uart:debug_uart|fifo:rx_fifo
+ 27. Parameter Settings for User Entity Instance: uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem
+ 28. Parameter Settings for Inferred Entity Instance: microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0
+ 29. Parameter Settings for Inferred Entity Instance: microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|altsyncram:ram_rtl_0
+ 30. Parameter Settings for Inferred Entity Instance: uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|altsyncram:ram_rtl_0
+ 31. Parameter Settings for Inferred Entity Instance: microcore:uCore|microcontrol:uCntrl|uArithmetic:uCntrl_arith|lpm_mult:Mult0
+ 32. altsyncram Parameter Settings by Entity Instance
+ 33. lpm_mult Parameter Settings by Entity Instance
+ 34. Port Connectivity Checks: "uDatacache:internal_data_mem"
+ 35. Port Connectivity Checks: "microcore:uCore|debugger:debug_unit|uart:debug_uart"
+ 36. Port Connectivity Checks: "microcore:uCore|debugger:debug_unit"
+ 37. Port Connectivity Checks: "microcore:uCore|microcontrol:uCntrl|uArithmetic:uCntrl_arith"
+ 38. Port Connectivity Checks: "microcore:uCore|microcontrol:uCntrl"
+ 39. Port Connectivity Checks: "microcore:uCore"
+ 40. Post-Synthesis Netlist Statistics for Top Partition
+ 41. Elapsed Time Per Partition
+ 42. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2020  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Fri Jun 09 22:36:25 2023       ;
+; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
+; Revision Name                      ; fpga                                        ;
+; Top-level Entity Name              ; fpga                                        ;
+; Family                             ; Cyclone IV E                                ;
+; Total logic elements               ; 2,254                                       ;
+;     Total combinational functions  ; 2,158                                       ;
+;     Dedicated logic registers      ; 453                                         ;
+; Total registers                    ; 453                                         ;
+; Total pins                         ; 82                                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 212,992                                     ;
+; Embedded Multiplier 9-bit elements ; 2                                           ;
+; Total PLLs                         ; 0                                           ;
++------------------------------------+---------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                              ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                           ; Setting            ; Default Value      ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                           ; EP4CE6E22C8        ;                    ;
+; Top-level entity name                                            ; fpga               ; fpga               ;
+; Family name                                                      ; Cyclone IV E       ; Cyclone V          ;
+; Type of Retiming Performed During Resynthesis                    ; Full               ;                    ;
+; Resynthesis Optimization Effort                                  ; Normal             ;                    ;
+; Physical Synthesis Level for Resynthesis                         ; Normal             ;                    ;
+; Use Generated Physical Constraints File                          ; On                 ;                    ;
+; Use smart compilation                                            ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                      ; Off                ; Off                ;
+; Restructure Multiplexers                                         ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                ; Off                ;
+; Preserve fewer node names                                        ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto               ; Auto               ;
+; Safe State Machine                                               ; Off                ; Off                ;
+; Extract Verilog State Machines                                   ; On                 ; On                 ;
+; Extract VHDL State Machines                                      ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                 ; On                 ;
+; Parallel Synthesis                                               ; On                 ; On                 ;
+; DSP Block Balancing                                              ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                               ; On                 ; On                 ;
+; Power-Up Don't Care                                              ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                ; Off                ;
+; Remove Duplicate Registers                                       ; On                 ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                ; Off                ;
+; Ignore SOFT Buffers                                              ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                ; Off                ;
+; Optimization Technique                                           ; Balanced           ; Balanced           ;
+; Carry Chain Length                                               ; 70                 ; 70                 ;
+; Auto Carry Chains                                                ; On                 ; On                 ;
+; Auto Open-Drain Pins                                             ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                ; Off                ;
+; Auto ROM Replacement                                             ; On                 ; On                 ;
+; Auto RAM Replacement                                             ; On                 ; On                 ;
+; Auto DSP Block Replacement                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                  ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                 ; On                 ;
+; Strict RAM Replacement                                           ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                ; Off                ;
+; Auto RAM Block Balancing                                         ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                ; Off                ; Off                ;
+; Auto Resource Sharing                                            ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                    ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                ; Off                ;
+; Timing-Driven Synthesis                                          ; On                 ; On                 ;
+; Report Parameter Settings                                        ; On                 ; On                 ;
+; Report Source Assignments                                        ; On                 ; On                 ;
+; Report Connectivity Checks                                       ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                ; Off                ;
+; Synchronization Register Chain Length                            ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                ; 100                ;
+; Clock MUX Protection                                             ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                      ; Off                ; Off                ;
+; Block Design Naming                                              ; Auto               ; Auto               ;
+; SDC constraint protection                                        ; Off                ; Off                ;
+; Synthesis Effort                                                 ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                             ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                               ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                           ; On                 ; On                 ;
++------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 2           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 2           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.1%      ;
++----------------------------+-------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                      ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                  ; Library ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------+---------+
+; ../vhdl/uProgmem.vhd             ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uProgmem.vhd                 ;         ;
+; ../vhdl/uDatacache.vhd           ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uDatacache.vhd               ;         ;
+; ../vhdl/uCore.vhd                ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd                    ;         ;
+; ../vhdl/uCntrl.vhd               ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd                   ;         ;
+; ../vhdl/uart.vhd                 ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uart.vhd                     ;         ;
+; ../vhdl/uArithmetic.vhd          ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uArithmetic.vhd              ;         ;
+; ../vhdl/functions_pkg.vhd        ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd            ;         ;
+; ../vhdl/fpga.vhd                 ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd                     ;         ;
+; ../vhdl/debugger.vhd             ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd                 ;         ;
+; ../vhdl/bootload.vhd             ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bootload.vhd                 ;         ;
+; ../vhdl/architecture_pkg.vhd     ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/architecture_pkg.vhd         ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/lpm_decode.inc        ;         ;
+; aglobal201.inc                   ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/aglobal201.inc        ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/a_rdenreg.inc         ;         ;
+; altrom.inc                       ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/altrom.inc            ;         ;
+; altram.inc                       ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/altram.inc            ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/altdpram.inc          ;         ;
+; db/altsyncram_v2e1.tdf           ; yes             ; Auto-Generated Megafunction  ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/Intel/db/altsyncram_v2e1.tdf      ;         ;
+; db/altsyncram_t4e1.tdf           ; yes             ; Auto-Generated Megafunction  ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/Intel/db/altsyncram_t4e1.tdf      ;         ;
+; db/altsyncram_t5e1.tdf           ; yes             ; Auto-Generated Megafunction  ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/Intel/db/altsyncram_t5e1.tdf      ;         ;
+; lpm_mult.tdf                     ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/lpm_mult.tdf          ;         ;
+; lpm_add_sub.inc                  ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/lpm_add_sub.inc       ;         ;
+; multcore.inc                     ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/multcore.inc          ;         ;
+; bypassff.inc                     ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/bypassff.inc          ;         ;
+; altshift.inc                     ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/altshift.inc          ;         ;
+; db/mult_76t.tdf                  ; yes             ; Auto-Generated Megafunction  ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/Intel/db/mult_76t.tdf             ;         ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary               ;
++---------------------------------------------+-------------+
+; Resource                                    ; Usage       ;
++---------------------------------------------+-------------+
+; Estimated Total logic elements              ; 2,254       ;
+;                                             ;             ;
+; Total combinational functions               ; 2158        ;
+; Logic element usage by number of LUT inputs ;             ;
+;     -- 4 input functions                    ; 1452        ;
+;     -- 3 input functions                    ; 480         ;
+;     -- <=2 input functions                  ; 226         ;
+;                                             ;             ;
+; Logic elements by mode                      ;             ;
+;     -- normal mode                          ; 2017        ;
+;     -- arithmetic mode                      ; 141         ;
+;                                             ;             ;
+; Total registers                             ; 453         ;
+;     -- Dedicated logic registers            ; 453         ;
+;     -- I/O registers                        ; 0           ;
+;                                             ;             ;
+; I/O pins                                    ; 82          ;
+; Total memory bits                           ; 212992      ;
+;                                             ;             ;
+; Embedded Multiplier 9-bit elements          ; 2           ;
+;                                             ;             ;
+; Maximum fan-out node                        ; clock~input ;
+; Maximum fan-out                             ; 493         ;
+; Total fan-out                               ; 9976        ;
+; Average fan-out                             ; 3.52        ;
++---------------------------------------------+-------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                    ;
++------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
+; Compilation Hierarchy Node                           ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                 ; Entity Name     ; Library Name ;
++------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
+; |fpga                                                ; 2158 (19)           ; 453 (6)                   ; 212992      ; 2            ; 0       ; 1         ; 82   ; 0            ; |fpga                                                                                                                               ; fpga            ; work         ;
+;    |microcore:uCore|                                 ; 2109 (244)          ; 398 (7)                   ; 81920       ; 2            ; 0       ; 1         ; 0    ; 0            ; |fpga|microcore:uCore                                                                                                               ; microcore       ; work         ;
+;       |debugger:debug_unit|                          ; 260 (162)           ; 175 (88)                  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|debugger:debug_unit                                                                                           ; debugger        ; work         ;
+;          |uart:debug_uart|                           ; 98 (65)             ; 87 (48)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart                                                                           ; uart            ; work         ;
+;             |fifo:rx_fifo|                           ; 33 (33)             ; 39 (39)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|fifo:rx_fifo                                                              ; fifo            ; work         ;
+;       |microcontrol:uCntrl|                          ; 1593 (1545)         ; 181 (144)                 ; 16384       ; 2            ; 0       ; 1         ; 0    ; 0            ; |fpga|microcore:uCore|microcontrol:uCntrl                                                                                           ; microcontrol    ; work         ;
+;          |internal_ram:data_stack|                   ; 29 (29)             ; 37 (37)                   ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack                                                                   ; internal_ram    ; work         ;
+;             |altsyncram:ram_rtl_0|                   ; 0 (0)               ; 0 (0)                     ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|altsyncram:ram_rtl_0                                              ; altsyncram      ; work         ;
+;                |altsyncram_t4e1:auto_generated|      ; 0 (0)               ; 0 (0)                     ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|altsyncram:ram_rtl_0|altsyncram_t4e1:auto_generated               ; altsyncram_t4e1 ; work         ;
+;          |uArithmetic:uCntrl_arith|                  ; 19 (19)             ; 0 (0)                     ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |fpga|microcore:uCore|microcontrol:uCntrl|uArithmetic:uCntrl_arith                                                                  ; uArithmetic     ; work         ;
+;             |lpm_mult:Mult0|                         ; 0 (0)               ; 0 (0)                     ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |fpga|microcore:uCore|microcontrol:uCntrl|uArithmetic:uCntrl_arith|lpm_mult:Mult0                                                   ; lpm_mult        ; work         ;
+;                |mult_76t:auto_generated|             ; 0 (0)               ; 0 (0)                     ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |fpga|microcore:uCore|microcontrol:uCntrl|uArithmetic:uCntrl_arith|lpm_mult:Mult0|mult_76t:auto_generated                           ; mult_76t        ; work         ;
+;       |uProgmem:internal_prog_mem|                   ; 12 (0)              ; 35 (0)                    ; 65536       ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|uProgmem:internal_prog_mem                                                                                    ; uProgmem        ; work         ;
+;          |internal_ram:internal_prog_mem|            ; 12 (12)             ; 35 (35)                   ; 65536       ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem                                                     ; internal_ram    ; work         ;
+;             |altsyncram:ram_rtl_0|                   ; 0 (0)               ; 0 (0)                     ; 65536       ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0                                ; altsyncram      ; work         ;
+;                |altsyncram_v2e1:auto_generated|      ; 0 (0)               ; 0 (0)                     ; 65536       ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0|altsyncram_v2e1:auto_generated ; altsyncram_v2e1 ; work         ;
+;    |synchronize:synch_dsu_rxd|                       ; 2 (2)               ; 2 (2)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|synchronize:synch_dsu_rxd                                                                                                     ; synchronize     ; work         ;
+;    |synchronize:synch_reset|                         ; 1 (1)               ; 2 (2)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|synchronize:synch_reset                                                                                                       ; synchronize     ; work         ;
+;    |synchronize_n:synch_interrupt|                   ; 0 (0)               ; 2 (2)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|synchronize_n:synch_interrupt                                                                                                 ; synchronize_n   ; work         ;
+;    |uDatacache:internal_data_mem|                    ; 27 (1)              ; 43 (0)                    ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|uDatacache:internal_data_mem                                                                                                  ; uDatacache      ; work         ;
+;       |internal_ram:\make_syn_mem:internal_data_mem| ; 26 (26)             ; 43 (43)                   ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem                                                     ; internal_ram    ; work         ;
+;          |altsyncram:ram_rtl_0|                      ; 0 (0)               ; 0 (0)                     ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|altsyncram:ram_rtl_0                                ; altsyncram      ; work         ;
+;             |altsyncram_t5e1:auto_generated|         ; 0 (0)               ; 0 (0)                     ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|altsyncram:ram_rtl_0|altsyncram_t5e1:auto_generated ; altsyncram_t5e1 ; work         ;
++------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                                                               ;
++------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------+------+
+; Name                                                                                                                                     ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size   ; MIF  ;
++------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------+------+
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|altsyncram:ram_rtl_0|altsyncram_t4e1:auto_generated|ALTSYNCRAM               ; AUTO ; Simple Dual Port ; 1024         ; 16           ; 1024         ; 16           ; 16384  ; None ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0|altsyncram_v2e1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 8192         ; 8            ; 8192         ; 8            ; 65536  ; None ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|altsyncram:ram_rtl_0|altsyncram_t5e1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 8192         ; 16           ; 8192         ; 16           ; 131072 ; None ;
++------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------+------+
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary        ;
++---------------------------------------+-------------+
+; Statistic                             ; Number Used ;
++---------------------------------------+-------------+
+; Simple Multipliers (9-bit)            ; 0           ;
+; Simple Multipliers (18-bit)           ; 1           ;
+; Embedded Multiplier Blocks            ; --          ;
+; Embedded Multiplier 9-bit elements    ; 2           ;
+; Signed Embedded Multipliers           ; 1           ;
+; Unsigned Embedded Multipliers         ; 0           ;
+; Mixed Sign Embedded Multipliers       ; 0           ;
+; Variable Sign Embedded Multipliers    ; 0           ;
+; Dedicated Input Shift Register Chains ; 0           ;
++---------------------------------------+-------------+
+Note: number of Embedded Multiplier Blocks used is only available after a successful fit.
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |fpga|microcore:uCore|debugger:debug_unit|in_state                                                                                                                             ;
++----------------------+----------------------+--------------------+--------------+---------------+-------------------+------------------+--------------------+------------------+---------------+
+; Name                 ; in_state.downloading ; in_state.uploading ; in_state.ack ; in_state.full ; in_state.rx_debug ; in_state.loading ; in_state.getlength ; in_state.getaddr ; in_state.idle ;
++----------------------+----------------------+--------------------+--------------+---------------+-------------------+------------------+--------------------+------------------+---------------+
+; in_state.idle        ; 0                    ; 0                  ; 0            ; 0             ; 0                 ; 0                ; 0                  ; 0                ; 0             ;
+; in_state.getaddr     ; 0                    ; 0                  ; 0            ; 0             ; 0                 ; 0                ; 0                  ; 1                ; 1             ;
+; in_state.getlength   ; 0                    ; 0                  ; 0            ; 0             ; 0                 ; 0                ; 1                  ; 0                ; 1             ;
+; in_state.loading     ; 0                    ; 0                  ; 0            ; 0             ; 0                 ; 1                ; 0                  ; 0                ; 1             ;
+; in_state.rx_debug    ; 0                    ; 0                  ; 0            ; 0             ; 1                 ; 0                ; 0                  ; 0                ; 1             ;
+; in_state.full        ; 0                    ; 0                  ; 0            ; 1             ; 0                 ; 0                ; 0                  ; 0                ; 1             ;
+; in_state.ack         ; 0                    ; 0                  ; 1            ; 0             ; 0                 ; 0                ; 0                  ; 0                ; 1             ;
+; in_state.uploading   ; 0                    ; 1                  ; 0            ; 0             ; 0                 ; 0                ; 0                  ; 0                ; 1             ;
+; in_state.downloading ; 1                    ; 0                  ; 0            ; 0             ; 0                 ; 0                ; 0                  ; 0                ; 1             ;
++----------------------+----------------------+--------------------+--------------+---------------+-------------------+------------------+--------------------+------------------+---------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |fpga|microcore:uCore|debugger:debug_unit|out_state                                                                                             ;
++-----------------------+-----------------------+-------------------+--------------------+--------------------+----------------+----------------+-----------------+
+; Name                  ; out_state.downloading ; out_state.readmem ; out_state.wait_ack ; out_state.tx_debug ; out_state.mark ; out_state.idle ; out_state.start ;
++-----------------------+-----------------------+-------------------+--------------------+--------------------+----------------+----------------+-----------------+
+; out_state.start       ; 0                     ; 0                 ; 0                  ; 0                  ; 0              ; 0              ; 0               ;
+; out_state.idle        ; 0                     ; 0                 ; 0                  ; 0                  ; 0              ; 1              ; 1               ;
+; out_state.mark        ; 0                     ; 0                 ; 0                  ; 0                  ; 1              ; 0              ; 1               ;
+; out_state.tx_debug    ; 0                     ; 0                 ; 0                  ; 1                  ; 0              ; 0              ; 1               ;
+; out_state.wait_ack    ; 0                     ; 0                 ; 1                  ; 0                  ; 0              ; 0              ; 1               ;
+; out_state.readmem     ; 0                     ; 1                 ; 0                  ; 0                  ; 0              ; 0              ; 1               ;
+; out_state.downloading ; 1                     ; 0                 ; 0                  ; 0                  ; 0              ; 0              ; 1               ;
++-----------------------+-----------------------+-------------------+--------------------+--------------------+----------------+----------------+-----------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Protected by Synthesis                                                                                                                         ;
++------------------------------------------+------------------------------------------------------------------+--------------------------------------------+
+; Register Name                            ; Protected by Synthesis Attribute or Preserve Register Assignment ; Not to be Touched by Netlist Optimizations ;
++------------------------------------------+------------------------------------------------------------------+--------------------------------------------+
+; microcore:uCore|warmboot                 ; yes                                                              ; yes                                        ;
+; Total number of protected registers is 1 ;                                                                  ;                                            ;
++------------------------------------------+------------------------------------------------------------------+--------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                        ;
++-----------------------------------------------+-----------------------------------------------------------+
+; Register name                                 ; Reason for Removal                                        ;
++-----------------------------------------------+-----------------------------------------------------------+
+; microcore:uCore|microcontrol:uCntrl|r.inst[7] ; Merged with microcore:uCore|microcontrol:uCntrl|r.inst[4] ;
+; microcore:uCore|debugger:debug_unit|progload  ; Lost fanout                                               ;
+; microcore:uCore|microcontrol:uCntrl|r.inst[4] ; Stuck at GND due to stuck port data_in                    ;
+; Total Number of Removed Registers = 3         ;                                                           ;
++-----------------------------------------------+-----------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 453   ;
+; Number of registers using Synchronous Clear  ; 2     ;
+; Number of registers using Synchronous Load   ; 65    ;
+; Number of registers using Asynchronous Clear ; 173   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 331   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------------------------------+
+; Inverted Register Statistics                                              ;
++-----------------------------------------------------------------+---------+
+; Inverted Register                                               ; Fan out ;
++-----------------------------------------------------------------+---------+
+; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[0] ; 1       ;
+; microcore:uCore|microcontrol:uCntrl|r.chain                     ; 103     ;
+; microcore:uCore|microcontrol:uCntrl|r.rsp[0]                    ; 12      ;
+; microcore:uCore|microcontrol:uCntrl|r.rsp[2]                    ; 11      ;
+; microcore:uCore|microcontrol:uCntrl|r.rsp[1]                    ; 12      ;
+; microcore:uCore|microcontrol:uCntrl|r.rsp[4]                    ; 11      ;
+; microcore:uCore|microcontrol:uCntrl|r.rsp[3]                    ; 12      ;
+; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_empty_i  ; 17      ;
+; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[1] ; 1       ;
+; synchronize_n:synch_interrupt|temp[1]                           ; 3       ;
+; microcore:uCore|microcontrol:uCntrl|r.rsp[6]                    ; 11      ;
+; microcore:uCore|microcontrol:uCntrl|r.rsp[5]                    ; 12      ;
+; microcore:uCore|microcontrol:uCntrl|r.dsp[0]                    ; 4       ;
+; microcore:uCore|debugger:debug_unit|out_ctr                     ; 4       ;
+; microcore:uCore|microcontrol:uCntrl|r.rsp[9]                    ; 3       ;
+; microcore:uCore|microcontrol:uCntrl|r.rsp[8]                    ; 3       ;
+; microcore:uCore|microcontrol:uCntrl|r.rsp[7]                    ; 3       ;
+; synchronize:synch_reset|temp[0]                                 ; 1       ;
+; microcore:uCore|microcontrol:uCntrl|r.dsp[1]                    ; 4       ;
+; microcore:uCore|microcontrol:uCntrl|r.dsp[2]                    ; 4       ;
+; microcore:uCore|microcontrol:uCntrl|r.dsp[3]                    ; 4       ;
+; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[2] ; 1       ;
+; microcore:uCore|microcontrol:uCntrl|r.dsp[4]                    ; 4       ;
+; microcore:uCore|microcontrol:uCntrl|r.dsp[6]                    ; 4       ;
+; microcore:uCore|microcontrol:uCntrl|r.dsp[7]                    ; 3       ;
+; microcore:uCore|microcontrol:uCntrl|r.dsp[5]                    ; 4       ;
+; microcore:uCore|microcontrol:uCntrl|r.dsp[8]                    ; 3       ;
+; microcore:uCore|microcontrol:uCntrl|r.dsp[9]                    ; 3       ;
+; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[3] ; 1       ;
+; synchronize:synch_dsu_rxd|temp[0]                               ; 1       ;
+; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[4] ; 1       ;
+; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[5] ; 1       ;
+; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[6] ; 1       ;
+; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[7] ; 1       ;
+; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[8] ; 1       ;
+; Total number of inverted registers = 35                         ;         ;
++-----------------------------------------------------------------+---------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Added for RAM Pass-Through Logic                                                                                                                                           ;
++------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------+
+; Register Name                                                                                  ; RAM Name                                                                            ;
++------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------+
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[0]  ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[1]  ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[2]  ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[3]  ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[4]  ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[5]  ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[6]  ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[7]  ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[8]  ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[9]  ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[10] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[11] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[12] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[13] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[14] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[15] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[16] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[17] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[18] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[19] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[20] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[21] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[22] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[23] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[24] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[25] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[26] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[27] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[28] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[29] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[30] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[31] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[32] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[33] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[34] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[0]                ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[1]                ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[2]                ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[3]                ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[4]                ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[5]                ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[6]                ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[7]                ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[8]                ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[9]                ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[10]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[11]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[12]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[13]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[14]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[15]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[16]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[17]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[18]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[19]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[20]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[21]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[22]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[23]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[24]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[25]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[26]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[27]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[28]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[29]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[30]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[31]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[32]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[33]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[34]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[35]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[36]               ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[0]  ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[1]  ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[2]  ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[3]  ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[4]  ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[5]  ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[6]  ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[7]  ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[8]  ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[9]  ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[10] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[11] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[12] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[13] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[14] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[15] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[16] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[17] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[18] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[19] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[20] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[21] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[22] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[23] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[24] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[25] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[26] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[27] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[28] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[29] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[30] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[31] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[32] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[33] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[34] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[35] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[36] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[37] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[38] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[39] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[40] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[41] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0_bypass[42] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ;
++------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Packed Into Inferred Megafunctions                                                                                                                                         ;
++-----------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------+------+
+; Register Name                                                                           ; Megafunction                                                                        ; Type ;
++-----------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------+------+
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|addr_d[0..12] ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0 ; RAM  ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|addr_d[0..9]                ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0               ; RAM  ;
+; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|addr_d[0..12] ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0 ; RAM  ;
++-----------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------+------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------+
+; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|addr_ctr[11]                              ;
+; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|addr_ptr[2]                               ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|rx_sync[0]                ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_buf[0]                 ;
+; 17:1               ; 3 bits    ; 33 LEs        ; 3 LEs                ; 30 LEs                 ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_ctr[3]                 ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|rx_shift[1]               ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|in_reg[11]                                ;
+; 7:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|out_reg[6]                                ;
+; 7:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|out_reg[14]                               ;
+; 8:1                ; 3 bits    ; 15 LEs        ; 6 LEs                ; 9 LEs                  ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|rx_ctr[3]                 ;
+; 131:1              ; 3 bits    ; 261 LEs       ; 3 LEs                ; 258 LEs                ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.status[7]                               ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.status[5]                               ;
+; 261:1              ; 7 bits    ; 1218 LEs      ; 28 LEs               ; 1190 LEs               ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.inst[0]                                 ;
+; 132:1              ; 13 bits   ; 1144 LEs      ; 26 LEs               ; 1118 LEs               ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.pc[4]                                   ;
+; 10:1               ; 3 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.tor[13]                                 ;
+; 10:1               ; 13 bits   ; 78 LEs        ; 39 LEs               ; 39 LEs                 ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.tor[3]                                  ;
+; 61:1               ; 5 bits    ; 200 LEs       ; 65 LEs               ; 135 LEs                ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.tos[3]                                  ;
+; 64:1               ; 5 bits    ; 210 LEs       ; 70 LEs               ; 140 LEs                ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.tos[10]                                 ;
+; 64:1               ; 3 bits    ; 126 LEs       ; 42 LEs               ; 84 LEs                 ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.tos[9]                                  ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 0 LEs                ; 6 LEs                  ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.rsp[9]                                  ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[1]               ;
+; 125:1              ; 6 bits    ; 498 LEs       ; 48 LEs               ; 450 LEs                ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.nos[12]                                 ;
+; 125:1              ; 2 bits    ; 166 LEs       ; 20 LEs               ; 146 LEs                ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.nos[9]                                  ;
+; 125:1              ; 3 bits    ; 249 LEs       ; 30 LEs               ; 219 LEs                ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.nos[6]                                  ;
+; 125:1              ; 2 bits    ; 166 LEs       ; 20 LEs               ; 146 LEs                ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.nos[1]                                  ;
+; 31:1               ; 7 bits    ; 140 LEs       ; 56 LEs               ; 84 LEs                 ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.rsp[4]                                  ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|Mux172                                    ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|ladd_y[16]                                ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|Mux119                                    ;
+; 3:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|ds_wdata[4]                               ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|fifo:rx_fifo|read_addr[0] ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|multiplier[3]                             ;
+; 47:1               ; 8 bits    ; 248 LEs       ; 240 LEs              ; 8 LEs                  ; No         ; |fpga|microcore:uCore|prog_rdata[2]                                                 ;
+; 10:1               ; 7 bits    ; 42 LEs        ; 28 LEs               ; 14 LEs                 ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|Mux92                                     ;
+; 129:1              ; 3 bits    ; 258 LEs       ; 6 LEs                ; 252 LEs                ; No         ; |fpga|microcore:uCore|memory.addr[9]                                                ;
+; 130:1              ; 3 bits    ; 258 LEs       ; 6 LEs                ; 252 LEs                ; No         ; |fpga|microcore:uCore|memory.addr[12]                                               ;
+; 7:1                ; 16 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; No         ; |fpga|microcore:uCore|memory.wdata[1]                                               ;
+; 8:1                ; 4 bits    ; 20 LEs        ; 16 LEs               ; 4 LEs                  ; No         ; |fpga|microcore:uCore|debugger:debug_unit|out_state                                 ;
+; 112:1              ; 7 bits    ; 518 LEs       ; 14 LEs               ; 504 LEs                ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|ds_addr[1]                                ;
+; 12:1               ; 8 bits    ; 64 LEs        ; 24 LEs               ; 40 LEs                 ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|progmem.addr[11]                          ;
+; 12:1               ; 2 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|progmem.addr[6]                           ;
+; 20:1               ; 7 bits    ; 91 LEs        ; 70 LEs               ; 21 LEs                 ; No         ; |fpga|microcore:uCore|memory.addr[6]                                                ;
+; 13:1               ; 2 bits    ; 16 LEs        ; 10 LEs               ; 6 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|progmem.addr[5]                           ;
+; 132:1              ; 6 bits    ; 528 LEs       ; 24 LEs               ; 504 LEs                ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|ladd_y[8]                                 ;
+; 132:1              ; 7 bits    ; 616 LEs       ; 28 LEs               ; 588 LEs                ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|ladd_y[0]                                 ;
+; 132:1              ; 2 bits    ; 176 LEs       ; 8 LEs                ; 168 LEs                ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|ladd_y[14]                                ;
+; 267:1              ; 4 bits    ; 712 LEs       ; 16 LEs               ; 696 LEs                ; No         ; |fpga|microcore:uCore|debugger:debug_unit|in_state                                  ;
+; 270:1              ; 2 bits    ; 360 LEs       ; 4 LEs                ; 356 LEs                ; No         ; |fpga|microcore:uCore|debugger:debug_unit|in_state                                  ;
+; 21:1               ; 15 bits   ; 210 LEs       ; 30 LEs               ; 180 LEs                ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|ladd_x[1]                                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------+
+; Source assignments for microcore:uCore      ;
++-------------------+-------+------+----------+
+; Assignment        ; Value ; From ; To       ;
++-------------------+-------+------+----------+
+; PRESERVE_REGISTER ; on    ; -    ; warmboot ;
++-------------------+-------+------+----------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0|altsyncram_v2e1:auto_generated ;
++---------------------------------+--------------------+------+----------------------------------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                                                     ;
++---------------------------------+--------------------+------+----------------------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                                      ;
++---------------------------------+--------------------+------+----------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|altsyncram:ram_rtl_0|altsyncram_t4e1:auto_generated ;
++---------------------------------+--------------------+------+--------------------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                                       ;
++---------------------------------+--------------------+------+--------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                        ;
++---------------------------------+--------------------+------+--------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|altsyncram:ram_rtl_0|altsyncram_t5e1:auto_generated ;
++---------------------------------+--------------------+------+----------------------------------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                                                     ;
++---------------------------------+--------------------+------+----------------------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                                      ;
++---------------------------------+--------------------+------+----------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem ;
++----------------+-------------+-----------------------------------------------------------------------------------------+
+; Parameter Name ; Value       ; Type                                                                                    ;
++----------------+-------------+-----------------------------------------------------------------------------------------+
+; data_width     ; 8           ; Signed Integer                                                                          ;
+; ram_size       ; 8192        ; Signed Integer                                                                          ;
+; ramstyle       ; no_rw_check ; String                                                                                  ;
+; init_file      ;             ; String                                                                                  ;
++----------------+-------------+-----------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack ;
++----------------+----------+------------------------------------------------------------------------------+
+; Parameter Name ; Value    ; Type                                                                         ;
++----------------+----------+------------------------------------------------------------------------------+
+; data_width     ; 16       ; Signed Integer                                                               ;
+; ram_size       ; 1024     ; Signed Integer                                                               ;
+; ramstyle       ; rw_check ; String                                                                       ;
+; init_file      ;          ; String                                                                       ;
++----------------+----------+------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: microcore:uCore|debugger:debug_unit|uart:debug_uart ;
++----------------+-----------+---------------------------------------------------------------------+
+; Parameter Name ; Value     ; Type                                                                ;
++----------------+-----------+---------------------------------------------------------------------+
+; rate           ; 115200    ; Signed Integer                                                      ;
+; depth          ; 4         ; Signed Integer                                                      ;
+; ramstyle       ; registers ; String                                                              ;
++----------------+-----------+---------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: microcore:uCore|debugger:debug_unit|uart:debug_uart|fifo:rx_fifo ;
++----------------+-----------+----------------------------------------------------------------------------------+
+; Parameter Name ; Value     ; Type                                                                             ;
++----------------+-----------+----------------------------------------------------------------------------------+
+; width          ; 8         ; Signed Integer                                                                   ;
+; depth          ; 4         ; Signed Integer                                                                   ;
+; ramstyle       ; registers ; String                                                                           ;
++----------------+-----------+----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem ;
++----------------+----------+--------------------------------------------------------------------------------------------+
+; Parameter Name ; Value    ; Type                                                                                       ;
++----------------+----------+--------------------------------------------------------------------------------------------+
+; data_width     ; 16       ; Signed Integer                                                                             ;
+; ram_size       ; 8192     ; Signed Integer                                                                             ;
+; ramstyle       ; rw_check ; String                                                                                     ;
+; init_file      ;          ; String                                                                                     ;
++----------------+----------+--------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0 ;
++------------------------------------+----------------------+-------------------------------------------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                                                ;
++------------------------------------+----------------------+-------------------------------------------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                                                             ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                                                          ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                                                        ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                                                        ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                                                      ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                                                             ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                                                                             ;
+; WIDTH_A                            ; 8                    ; Untyped                                                                             ;
+; WIDTHAD_A                          ; 13                   ; Untyped                                                                             ;
+; NUMWORDS_A                         ; 8192                 ; Untyped                                                                             ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                                                             ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                                                             ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                                                             ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                                                             ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                                                             ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                                                             ;
+; WIDTH_B                            ; 8                    ; Untyped                                                                             ;
+; WIDTHAD_B                          ; 13                   ; Untyped                                                                             ;
+; NUMWORDS_B                         ; 8192                 ; Untyped                                                                             ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                                                             ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                                                             ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                                                             ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                                                                             ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                                                             ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                                                             ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                                                             ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                                             ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                                                             ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                                                             ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                                             ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                                                             ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                                                                             ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                                                             ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                                                             ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                                                             ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                                                             ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                                                             ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                                                             ;
+; INIT_FILE                          ;                      ; Untyped                                                                             ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                                                             ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                                                             ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                                                                             ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                                                             ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                                                                             ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                                                             ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                                                             ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                                                             ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                                                             ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                                                             ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                                                             ;
+; DEVICE_FAMILY                      ; Cyclone IV E         ; Untyped                                                                             ;
+; CBXI_PARAMETER                     ; altsyncram_v2e1      ; Untyped                                                                             ;
++------------------------------------+----------------------+-------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|altsyncram:ram_rtl_0 ;
++------------------------------------+----------------------+-----------------------------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                                  ;
++------------------------------------+----------------------+-----------------------------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                                               ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                                            ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                                          ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                                          ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                                        ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                                               ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                                                               ;
+; WIDTH_A                            ; 16                   ; Untyped                                                               ;
+; WIDTHAD_A                          ; 10                   ; Untyped                                                               ;
+; NUMWORDS_A                         ; 1024                 ; Untyped                                                               ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                                               ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                                               ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                                               ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                                               ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                                               ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                                               ;
+; WIDTH_B                            ; 16                   ; Untyped                                                               ;
+; WIDTHAD_B                          ; 10                   ; Untyped                                                               ;
+; NUMWORDS_B                         ; 1024                 ; Untyped                                                               ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                                               ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                                               ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                                               ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                                                               ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                                               ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                                               ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                                               ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                               ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                                               ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                                               ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                               ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                                               ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                                                               ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                                               ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                                               ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                                               ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                                               ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                                               ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                                               ;
+; INIT_FILE                          ;                      ; Untyped                                                               ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                                               ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                                               ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                                                               ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                                               ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                                                               ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                                               ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                                               ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                                               ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                                               ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                                               ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                                               ;
+; DEVICE_FAMILY                      ; Cyclone IV E         ; Untyped                                                               ;
+; CBXI_PARAMETER                     ; altsyncram_t4e1      ; Untyped                                                               ;
++------------------------------------+----------------------+-----------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|altsyncram:ram_rtl_0 ;
++------------------------------------+----------------------+-------------------------------------------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                                                ;
++------------------------------------+----------------------+-------------------------------------------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                                                             ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                                                          ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                                                        ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                                                        ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                                                      ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                                                             ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                                                                             ;
+; WIDTH_A                            ; 16                   ; Untyped                                                                             ;
+; WIDTHAD_A                          ; 13                   ; Untyped                                                                             ;
+; NUMWORDS_A                         ; 8192                 ; Untyped                                                                             ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                                                             ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                                                             ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                                                             ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                                                             ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                                                             ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                                                             ;
+; WIDTH_B                            ; 16                   ; Untyped                                                                             ;
+; WIDTHAD_B                          ; 13                   ; Untyped                                                                             ;
+; NUMWORDS_B                         ; 8192                 ; Untyped                                                                             ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                                                             ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                                                             ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                                                             ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                                                                             ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                                                             ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                                                             ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                                                             ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                                             ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                                                             ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                                                             ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                                             ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                                                             ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                                                                             ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                                                             ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                                                             ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                                                             ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                                                             ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                                                             ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                                                             ;
+; INIT_FILE                          ;                      ; Untyped                                                                             ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                                                             ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                                                             ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                                                                             ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                                                             ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                                                                             ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                                                             ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                                                             ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                                                             ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                                                             ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                                                             ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                                                             ;
+; DEVICE_FAMILY                      ; Cyclone IV E         ; Untyped                                                                             ;
+; CBXI_PARAMETER                     ; altsyncram_t5e1      ; Untyped                                                                             ;
++------------------------------------+----------------------+-------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: microcore:uCore|microcontrol:uCntrl|uArithmetic:uCntrl_arith|lpm_mult:Mult0 ;
++------------------------------------------------+--------------+--------------------------------------------------------------+
+; Parameter Name                                 ; Value        ; Type                                                         ;
++------------------------------------------------+--------------+--------------------------------------------------------------+
+; AUTO_CARRY_CHAINS                              ; ON           ; AUTO_CARRY                                                   ;
+; IGNORE_CARRY_BUFFERS                           ; OFF          ; IGNORE_CARRY                                                 ;
+; AUTO_CASCADE_CHAINS                            ; ON           ; AUTO_CASCADE                                                 ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF          ; IGNORE_CASCADE                                               ;
+; LPM_WIDTHA                                     ; 17           ; Untyped                                                      ;
+; LPM_WIDTHB                                     ; 17           ; Untyped                                                      ;
+; LPM_WIDTHP                                     ; 34           ; Untyped                                                      ;
+; LPM_WIDTHR                                     ; 34           ; Untyped                                                      ;
+; LPM_WIDTHS                                     ; 1            ; Untyped                                                      ;
+; LPM_REPRESENTATION                             ; SIGNED       ; Untyped                                                      ;
+; LPM_PIPELINE                                   ; 0            ; Untyped                                                      ;
+; LATENCY                                        ; 0            ; Untyped                                                      ;
+; INPUT_A_IS_CONSTANT                            ; NO           ; Untyped                                                      ;
+; INPUT_B_IS_CONSTANT                            ; NO           ; Untyped                                                      ;
+; USE_EAB                                        ; OFF          ; Untyped                                                      ;
+; MAXIMIZE_SPEED                                 ; 5            ; Untyped                                                      ;
+; DEVICE_FAMILY                                  ; Cyclone IV E ; Untyped                                                      ;
+; CARRY_CHAIN                                    ; MANUAL       ; Untyped                                                      ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT          ; TECH_MAPPER_APEX20K                                          ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO         ; Untyped                                                      ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0            ; Untyped                                                      ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0            ; Untyped                                                      ;
+; CBXI_PARAMETER                                 ; mult_76t     ; Untyped                                                      ;
+; INPUT_A_FIXED_VALUE                            ; Bx           ; Untyped                                                      ;
+; INPUT_B_FIXED_VALUE                            ; Bx           ; Untyped                                                      ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF          ; Untyped                                                      ;
++------------------------------------------------+--------------+--------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                                                                           ;
++-------------------------------------------+------------------------------------------------------------------------------------------------+
+; Name                                      ; Value                                                                                          ;
++-------------------------------------------+------------------------------------------------------------------------------------------------+
+; Number of entity instances                ; 3                                                                                              ;
+; Entity Instance                           ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                                                                      ;
+;     -- WIDTH_A                            ; 8                                                                                              ;
+;     -- NUMWORDS_A                         ; 8192                                                                                           ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                                   ;
+;     -- WIDTH_B                            ; 8                                                                                              ;
+;     -- NUMWORDS_B                         ; 8192                                                                                           ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                                                                         ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                                   ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                                           ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                                      ;
+; Entity Instance                           ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|altsyncram:ram_rtl_0               ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                                                                      ;
+;     -- WIDTH_A                            ; 16                                                                                             ;
+;     -- NUMWORDS_A                         ; 1024                                                                                           ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                                   ;
+;     -- WIDTH_B                            ; 16                                                                                             ;
+;     -- NUMWORDS_B                         ; 1024                                                                                           ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                                                                         ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                                   ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                                           ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                                      ;
+; Entity Instance                           ; uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|altsyncram:ram_rtl_0 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                                                                      ;
+;     -- WIDTH_A                            ; 16                                                                                             ;
+;     -- NUMWORDS_A                         ; 8192                                                                                           ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                                   ;
+;     -- WIDTH_B                            ; 16                                                                                             ;
+;     -- NUMWORDS_B                         ; 8192                                                                                           ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                                                                         ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                                   ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                                           ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                                      ;
++-------------------------------------------+------------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; lpm_mult Parameter Settings by Entity Instance                                                                      ;
++---------------------------------------+-----------------------------------------------------------------------------+
+; Name                                  ; Value                                                                       ;
++---------------------------------------+-----------------------------------------------------------------------------+
+; Number of entity instances            ; 1                                                                           ;
+; Entity Instance                       ; microcore:uCore|microcontrol:uCntrl|uArithmetic:uCntrl_arith|lpm_mult:Mult0 ;
+;     -- LPM_WIDTHA                     ; 17                                                                          ;
+;     -- LPM_WIDTHB                     ; 17                                                                          ;
+;     -- LPM_WIDTHP                     ; 34                                                                          ;
+;     -- LPM_REPRESENTATION             ; SIGNED                                                                      ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                                                                          ;
+;     -- INPUT_B_IS_CONSTANT            ; NO                                                                          ;
+;     -- USE_EAB                        ; OFF                                                                         ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                                                                        ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                                                                          ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                                                                          ;
++---------------------------------------+-----------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "uDatacache:internal_data_mem"                                                                           ;
++--------------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port                     ; Type   ; Severity ; Details                                                                             ;
++--------------------------+--------+----------+-------------------------------------------------------------------------------------+
+; ubus.delay               ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-1][15..10] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-2][15..10] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-3][15..10] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-4][15..1]  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-5][15..8]  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-5][3]      ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-6][10..8]  ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; ubus.sources[-6][15..14] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-6][12..11] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-6][7..5]   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-6][3..2]   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-6][13]     ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; ubus.sources[-6][4]      ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; ubus.sources[-6][1]      ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; ubus.sources[-6][0]      ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-9][15..4]  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; dma_mem                  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; dma_rdata                ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "microcore:uCore|debugger:debug_unit|uart:debug_uart"                                   ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; pause   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; rx_ovrn ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; tx_busy ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; dtr     ; Input  ; Info     ; Stuck at VCC                                                                        ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "microcore:uCore|debugger:debug_unit"                                                            ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port             ; Type   ; Severity ; Details                                                                             ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+; umbilical.enable ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; umbilical.read   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "microcore:uCore|microcontrol:uCntrl|uArithmetic:uCntrl_arith"                                  ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; product[33..32] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "microcore:uCore|microcontrol:uCntrl"                                                          ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port           ; Type   ; Severity ; Details                                                                             ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+; uctrl.debug    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; progmem.enable ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; progmem.read   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "microcore:uCore"                                                                                        ;
++--------------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port                     ; Type   ; Severity ; Details                                                                             ;
++--------------------------+--------+----------+-------------------------------------------------------------------------------------+
+; ubus.delay               ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-1][15..10] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-2][15..10] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-3][15..10] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-4][15..1]  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-5][15..8]  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-5][3]      ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-6][10..8]  ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; ubus.sources[-6][15..14] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-6][12..11] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-6][7..5]   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-6][3..2]   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-6][13]     ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; ubus.sources[-6][4]      ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; ubus.sources[-6][1]      ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; ubus.sources[-6][0]      ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-9][15..4]  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; memory.enable            ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 82                          ;
+; cycloneiii_ff         ; 453                         ;
+;     CLR               ; 34                          ;
+;     CLR SCLR          ; 1                           ;
+;     ENA               ; 143                         ;
+;     ENA CLR           ; 123                         ;
+;     ENA CLR SLD       ; 15                          ;
+;     ENA SCLR SLD      ; 1                           ;
+;     ENA SLD           ; 49                          ;
+;     plain             ; 87                          ;
+; cycloneiii_io_obuf    ; 18                          ;
+; cycloneiii_lcell_comb ; 2165                        ;
+;     arith             ; 141                         ;
+;         2 data inputs ; 110                         ;
+;         3 data inputs ; 31                          ;
+;     normal            ; 2024                        ;
+;         0 data inputs ; 3                           ;
+;         1 data inputs ; 33                          ;
+;         2 data inputs ; 87                          ;
+;         3 data inputs ; 449                         ;
+;         4 data inputs ; 1452                        ;
+; cycloneiii_mac_mult   ; 1                           ;
+; cycloneiii_mac_out    ; 1                           ;
+; cycloneiii_ram_block  ; 40                          ;
+;                       ;                             ;
+; Max LUT depth         ; 25.00                       ;
+; Average LUT depth     ; 13.27                       ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:35     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+    Info: Processing started: Fri Jun 09 22:35:33 2023
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off EP4CE6_Altera -c fpga
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/uprogmem.vhd
+    Info (12022): Found design unit 1: uProgmem-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uProgmem.vhd Line: 39
+    Info (12023): Found entity 1: uProgmem File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uProgmem.vhd Line: 30
+Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/udatacache.vhd
+    Info (12022): Found design unit 1: uDatacache-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uDatacache.vhd Line: 40
+    Info (12023): Found entity 1: uDatacache File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uDatacache.vhd Line: 33
+Warning (10335): Unrecognized synthesis attribute "init" at ../vhdl/uCore.vhd(102) File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd Line: 102
+Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/ucore.vhd
+    Info (12022): Found design unit 1: microcore-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd Line: 44
+    Info (12023): Found entity 1: microcore File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd Line: 34
+Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/ucntrl.vhd
+    Info (12022): Found design unit 1: microcontrol-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 48
+    Info (12023): Found entity 1: microcontrol File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 36
+Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/uart.vhd
+    Info (12022): Found design unit 1: uart-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uart.vhd Line: 54
+    Info (12023): Found entity 1: uart File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uart.vhd Line: 32
+Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/uarithmetic.vhd
+    Info (12022): Found design unit 1: uArithmetic-inference File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uArithmetic.vhd Line: 44
+    Info (12023): Found entity 1: uArithmetic File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uArithmetic.vhd Line: 32
+Info (12021): Found 34 design units, including 16 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/functions_pkg.vhd
+    Info (12022): Found design unit 1: functions_pkg File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 34
+    Info (12022): Found design unit 2: functions_pkg-body File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 255
+    Info (12022): Found design unit 3: synchronize-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 448
+    Info (12022): Found design unit 4: synchronize_n-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 479
+    Info (12022): Found design unit 5: debounce-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 514
+    Info (12022): Found design unit 6: debounce_n-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 562
+    Info (12022): Found design unit 7: edge-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 608
+    Info (12022): Found design unit 8: edge_n-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 650
+    Info (12022): Found design unit 9: asynch_dpram-inference_model File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 696
+    Info (12022): Found design unit 10: asynch_ram-inference_model File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 736
+    Info (12022): Found design unit 11: internal_ram-inference_model File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 785
+    Info (12022): Found design unit 12: internal_dpram-inference_model File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 887
+    Info (12022): Found design unit 13: internal_dpbram-inference_model File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 995
+    Info (12022): Found design unit 14: external_ram-sim_model File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 1129
+    Info (12022): Found design unit 15: fifo_dpram-inference_model File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 1222
+    Info (12022): Found design unit 16: monoflop-behavior File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 1278
+    Info (12022): Found design unit 17: fifo-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 1353
+    Info (12022): Found design unit 18: dpfifo-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 1446
+    Info (12023): Found entity 1: synchronize File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 442
+    Info (12023): Found entity 2: synchronize_n File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 473
+    Info (12023): Found entity 3: debounce File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 505
+    Info (12023): Found entity 4: debounce_n File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 553
+    Info (12023): Found entity 5: edge File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 601
+    Info (12023): Found entity 6: edge_n File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 643
+    Info (12023): Found entity 7: asynch_dpram File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 685
+    Info (12023): Found entity 8: asynch_ram File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 726
+    Info (12023): Found entity 9: internal_ram File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 771
+    Info (12023): Found entity 10: internal_dpram File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 868
+    Info (12023): Found entity 11: internal_dpbram File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 973
+    Info (12023): Found entity 12: external_ram File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 1118
+    Info (12023): Found entity 13: fifo_dpram File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 1206
+    Info (12023): Found entity 14: monoflop File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 1270
+    Info (12023): Found entity 15: fifo File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 1338
+    Info (12023): Found entity 16: dpfifo File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 1431
+Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/fpga.vhd
+    Info (12022): Found design unit 1: fpga-technology File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 75
+    Info (12023): Found entity 1: fpga File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 31
+Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/debugger.vhd
+    Info (12022): Found design unit 1: debugger-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 53
+    Info (12023): Found entity 1: debugger File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 36
+Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/bootload.vhd
+    Info (12022): Found design unit 1: boot_rom-sim_model File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bootload.vhd Line: 16
+    Info (12023): Found entity 1: boot_rom File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bootload.vhd Line: 11
+Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/bench.vhd
+    Info (12022): Found design unit 1: bench-testbench File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bench.vhd Line: 42
+    Info (12023): Found entity 1: bench File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bench.vhd Line: 39
+Info (12021): Found 4 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/architecture_pkg.vhd
+    Info (12022): Found design unit 1: architecture_pkg File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/architecture_pkg.vhd Line: 32
+    Info (12022): Found design unit 2: architecture_pkg-body File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/architecture_pkg.vhd Line: 496
+    Info (12022): Found design unit 3: semaphor-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/architecture_pkg.vhd Line: 552
+    Info (12023): Found entity 1: semaphor File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/architecture_pkg.vhd Line: 545
+Info (12127): Elaborating entity "fpga" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at fpga.vhd(117): object "dma_rdata" assigned a value but never read File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 117
+Warning (10873): Using initial value X (don't care) for net "flags[3]" at fpga.vhd(100) File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 100
+Info (12128): Elaborating entity "synchronize" for hierarchy "synchronize:synch_reset" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 154
+Info (12128): Elaborating entity "synchronize_n" for hierarchy "synchronize_n:synch_interrupt" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 158
+Info (12128): Elaborating entity "microcore" for hierarchy "microcore:uCore" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 229
+Warning (10037): Verilog HDL or VHDL warning at uCore.vhd(164): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd Line: 164
+Info (12128): Elaborating entity "uProgmem" for hierarchy "microcore:uCore|uProgmem:internal_prog_mem" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd Line: 146
+Warning (10296): VHDL warning at uProgmem.vhd(44): ignored assignment of value to null range File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uProgmem.vhd Line: 44
+Info (12128): Elaborating entity "internal_ram" for hierarchy "microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uProgmem.vhd Line: 43
+Warning (10296): VHDL warning at functions_pkg.vhd(775): ignored assignment of value to null range File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 775
+Info (12128): Elaborating entity "boot_rom" for hierarchy "microcore:uCore|boot_rom:boot_loader" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd Line: 180
+Info (12128): Elaborating entity "microcontrol" for hierarchy "microcore:uCore|microcontrol:uCntrl" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd Line: 186
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(209): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 209
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(221): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 221
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(337): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 337
+Warning (10036): Verilog HDL or VHDL warning at uCntrl.vhd(388): object "nos_dspush" assigned a value but never read File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 388
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(486): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 486
+Warning (10445): VHDL Subtype or Type Declaration warning at uCntrl.vhd(558): subtype or type has null range File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 558
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(649): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 649
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(653): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 653
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(661): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 661
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(679): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 679
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(707): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 707
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(721): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 721
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(759): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 759
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(772): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 772
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(785): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 785
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(791): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 791
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(810): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 810
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(827): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 827
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(847): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 847
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(950): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 950
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(969): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 969
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(975): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 975
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(980): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 980
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(1031): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 1031
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(1127): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 1127
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(1141): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 1141
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(1151): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 1151
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(1161): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 1161
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(1171): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 1171
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(1181): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 1181
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(1186): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 1186
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(1191): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 1191
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(1201): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 1201
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(1232): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 1232
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(1285): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 1285
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(1308): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 1308
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(1352): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 1352
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(1410): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 1410
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(1428): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 1428
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(1449): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 1449
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(1482): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 1482
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(1515): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 1515
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(1556): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 1556
+Info (12128): Elaborating entity "internal_ram" for hierarchy "microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 268
+Warning (10296): VHDL warning at functions_pkg.vhd(775): ignored assignment of value to null range File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 775
+Info (12128): Elaborating entity "uArithmetic" for hierarchy "microcore:uCore|microcontrol:uCntrl|uArithmetic:uCntrl_arith" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 353
+Info (12128): Elaborating entity "debugger" for hierarchy "microcore:uCore|debugger:debug_unit" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd Line: 231
+Warning (10036): Verilog HDL or VHDL warning at debugger.vhd(91): object "tx_busy" assigned a value but never read File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 91
+Warning (10037): Verilog HDL or VHDL warning at debugger.vhd(174): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 174
+Warning (10037): Verilog HDL or VHDL warning at debugger.vhd(257): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 257
+Warning (10037): Verilog HDL or VHDL warning at debugger.vhd(261): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 261
+Warning (10037): Verilog HDL or VHDL warning at debugger.vhd(293): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 293
+Warning (10037): Verilog HDL or VHDL warning at debugger.vhd(335): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 335
+Warning (10037): Verilog HDL or VHDL warning at debugger.vhd(343): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 343
+Warning (10037): Verilog HDL or VHDL warning at debugger.vhd(369): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 369
+Warning (10037): Verilog HDL or VHDL warning at debugger.vhd(422): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 422
+Warning (10037): Verilog HDL or VHDL warning at debugger.vhd(431): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 431
+Warning (10037): Verilog HDL or VHDL warning at debugger.vhd(440): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 440
+Info (12128): Elaborating entity "uart" for hierarchy "microcore:uCore|debugger:debug_unit|uart:debug_uart" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 484
+Info (12128): Elaborating entity "fifo" for hierarchy "microcore:uCore|debugger:debug_unit|uart:debug_uart|fifo:rx_fifo" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uart.vhd Line: 97
+Info (12128): Elaborating entity "uDatacache" for hierarchy "uDatacache:internal_data_mem" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 277
+Info (12128): Elaborating entity "internal_ram" for hierarchy "uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uDatacache.vhd Line: 87
+Warning (10296): VHDL warning at functions_pkg.vhd(775): ignored assignment of value to null range File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 775
+Warning (276020): Inferred RAM node "microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
+Warning (276020): Inferred RAM node "microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
+Warning (276020): Inferred RAM node "uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276004): RAM logic "microcore:uCore|debugger:debug_unit|uart:debug_uart|fifo:rx_fifo|fifomem" is uninferred due to inappropriate RAM size File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 1359
+Info (19000): Inferred 3 megafunctions from design logic
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 8
+        Info (286033): Parameter WIDTHAD_A set to 13
+        Info (286033): Parameter NUMWORDS_A set to 8192
+        Info (286033): Parameter WIDTH_B set to 8
+        Info (286033): Parameter WIDTHAD_B set to 13
+        Info (286033): Parameter NUMWORDS_B set to 8192
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 16
+        Info (286033): Parameter WIDTHAD_A set to 10
+        Info (286033): Parameter NUMWORDS_A set to 1024
+        Info (286033): Parameter WIDTH_B set to 16
+        Info (286033): Parameter WIDTHAD_B set to 10
+        Info (286033): Parameter NUMWORDS_B set to 1024
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|ram_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 16
+        Info (286033): Parameter WIDTHAD_A set to 13
+        Info (286033): Parameter NUMWORDS_A set to 8192
+        Info (286033): Parameter WIDTH_B set to 16
+        Info (286033): Parameter WIDTHAD_B set to 13
+        Info (286033): Parameter NUMWORDS_B set to 8192
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+Info (278001): Inferred 1 megafunctions from design logic
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "microcore:uCore|microcontrol:uCntrl|uArithmetic:uCntrl_arith|Mult0" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uArithmetic.vhd Line: 58
+Info (12130): Elaborated megafunction instantiation "microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0"
+Info (12133): Instantiated megafunction "microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "8"
+    Info (12134): Parameter "WIDTHAD_A" = "13"
+    Info (12134): Parameter "NUMWORDS_A" = "8192"
+    Info (12134): Parameter "WIDTH_B" = "8"
+    Info (12134): Parameter "WIDTHAD_B" = "13"
+    Info (12134): Parameter "NUMWORDS_B" = "8192"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_v2e1.tdf
+    Info (12023): Found entity 1: altsyncram_v2e1 File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/Intel/db/altsyncram_v2e1.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|altsyncram:ram_rtl_0"
+Info (12133): Instantiated megafunction "microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|altsyncram:ram_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "16"
+    Info (12134): Parameter "WIDTHAD_A" = "10"
+    Info (12134): Parameter "NUMWORDS_A" = "1024"
+    Info (12134): Parameter "WIDTH_B" = "16"
+    Info (12134): Parameter "WIDTHAD_B" = "10"
+    Info (12134): Parameter "NUMWORDS_B" = "1024"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_t4e1.tdf
+    Info (12023): Found entity 1: altsyncram_t4e1 File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/Intel/db/altsyncram_t4e1.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|altsyncram:ram_rtl_0"
+Info (12133): Instantiated megafunction "uDatacache:internal_data_mem|internal_ram:\make_syn_mem:internal_data_mem|altsyncram:ram_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "16"
+    Info (12134): Parameter "WIDTHAD_A" = "13"
+    Info (12134): Parameter "NUMWORDS_A" = "8192"
+    Info (12134): Parameter "WIDTH_B" = "16"
+    Info (12134): Parameter "WIDTHAD_B" = "13"
+    Info (12134): Parameter "NUMWORDS_B" = "8192"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_t5e1.tdf
+    Info (12023): Found entity 1: altsyncram_t5e1 File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/Intel/db/altsyncram_t5e1.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "microcore:uCore|microcontrol:uCntrl|uArithmetic:uCntrl_arith|lpm_mult:Mult0" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uArithmetic.vhd Line: 58
+Info (12133): Instantiated megafunction "microcore:uCore|microcontrol:uCntrl|uArithmetic:uCntrl_arith|lpm_mult:Mult0" with the following parameter: File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uArithmetic.vhd Line: 58
+    Info (12134): Parameter "LPM_WIDTHA" = "17"
+    Info (12134): Parameter "LPM_WIDTHB" = "17"
+    Info (12134): Parameter "LPM_WIDTHP" = "34"
+    Info (12134): Parameter "LPM_WIDTHR" = "34"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_76t.tdf
+    Info (12023): Found entity 1: mult_76t File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/Intel/db/mult_76t.tdf Line: 29
+Info (13000): Registers with preset signals will power-up high File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uart.vhd Line: 178
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "beep" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 36
+    Warning (13410): Pin "scl" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 39
+    Warning (13410): Pin "i2c_scl" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 42
+    Warning (13410): Pin "vga_vsync" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 48
+    Warning (13410): Pin "vga_bgr[0]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 49
+    Warning (13410): Pin "vga_bgr[1]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 49
+    Warning (13410): Pin "vga_bgr[2]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 49
+    Warning (13410): Pin "lcd_rs" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 51
+    Warning (13410): Pin "lcd_rw" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 52
+    Warning (13410): Pin "lcd_e" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 53
+    Warning (13410): Pin "lcd_data[0]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 54
+    Warning (13410): Pin "lcd_data[1]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 54
+    Warning (13410): Pin "lcd_data[2]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 54
+    Warning (13410): Pin "lcd_data[3]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 54
+    Warning (13410): Pin "lcd_data[4]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 54
+    Warning (13410): Pin "lcd_data[5]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 54
+    Warning (13410): Pin "lcd_data[6]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 54
+    Warning (13410): Pin "lcd_data[7]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 54
+    Warning (13410): Pin "dig[0]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 56
+    Warning (13410): Pin "dig[1]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 56
+    Warning (13410): Pin "dig[2]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 56
+    Warning (13410): Pin "dig[3]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 56
+    Warning (13410): Pin "seg[0]" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 57
+    Warning (13410): Pin "seg[1]" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 57
+    Warning (13410): Pin "seg[2]" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 57
+    Warning (13410): Pin "seg[3]" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 57
+    Warning (13410): Pin "seg[4]" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 57
+    Warning (13410): Pin "seg[5]" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 57
+    Warning (13410): Pin "seg[6]" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 57
+    Warning (13410): Pin "seg[7]" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 57
+    Warning (13410): Pin "sd_clk" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 59
+    Warning (13410): Pin "sd_cke" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 60
+    Warning (13410): Pin "sd_cs_n" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 61
+    Warning (13410): Pin "sd_we_n" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 62
+    Warning (13410): Pin "sd_a[0]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
+    Warning (13410): Pin "sd_a[1]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
+    Warning (13410): Pin "sd_a[2]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
+    Warning (13410): Pin "sd_a[3]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
+    Warning (13410): Pin "sd_a[4]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
+    Warning (13410): Pin "sd_a[5]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
+    Warning (13410): Pin "sd_a[6]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
+    Warning (13410): Pin "sd_a[7]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
+    Warning (13410): Pin "sd_a[8]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
+    Warning (13410): Pin "sd_a[9]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
+    Warning (13410): Pin "sd_a[10]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
+    Warning (13410): Pin "sd_a[11]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
+    Warning (13410): Pin "sd_ba[0]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 64
+    Warning (13410): Pin "sd_ba[1]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 64
+    Warning (13410): Pin "sd_ras_n" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 65
+    Warning (13410): Pin "sd_cas_n" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 66
+    Warning (13410): Pin "sd_ldqm" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 67
+    Warning (13410): Pin "sd_udqm" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 68
+Info (286030): Timing-Driven Synthesis is running
+Critical Warning (18061): Ignored Power-Up Level option on the following registers
+    Critical Warning (18010): Register microcore:uCore|debugger:debug_unit|out_ctr will power up to High File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 115
+Info (17049): 1 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 2480 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 7 input pins
+    Info (21059): Implemented 57 output pins
+    Info (21060): Implemented 18 bidirectional pins
+    Info (21061): Implemented 2356 logic cells
+    Info (21064): Implemented 40 RAM segments
+    Info (21062): Implemented 2 DSP elements
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 121 warnings
+    Info: Peak virtual memory: 699 megabytes
+    Info: Processing ended: Fri Jun 09 22:36:25 2023
+    Info: Elapsed time: 00:00:52
+    Info: Total CPU time (on all processors): 00:00:59
+
+
