@@ -2,7 +2,7 @@
 \ @file : coretest.fs
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 09.06.2023 22:51:33
+\ Last change: KS 11.06.2023 15:39:55
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -316,9 +316,11 @@ WITH_EXTMEM [IF]
 : test-ctrl  ( -- )
    #c-bitout ctrl?                       IF  $B4 throw THEN
    #c-bitout dup  ctrl !  ctrl?       0= IF  $B5 throw THEN
+SIMULATION [IF]
    #f-bitout flag?                    0= IF  $B6 throw THEN
    #c-bitout dup -ctrl !  ctrl?          IF  $B7 throw THEN
    #f-bitout flag?                       IF  $B8 throw THEN
+[THEN]
 ;
 : test-timer ( -- )
    time 1- time?                      0= IF  $B9 throw THEN
@@ -370,7 +372,7 @@ Variable save-DSP
      test-memory
      test-local
      test-user
-\     test-ctrl  \ remaining problem with key0 / #f-bitout
+     test-ctrl
    Dsp ! 2drop  Rsp ! rdrop
    test-timer
    test-van-neumann

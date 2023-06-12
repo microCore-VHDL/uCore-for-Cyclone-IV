@@ -1,4 +1,15 @@
 ************************************************************************
+*** EP4CE6_OMDAZZ 1.000.3 12-Jun-2023 ks
+************************************************************************
+
+Now both single and dual port ram is correctly inferred by Altera.
+
+The coretest bug has been fixed. f-bitout will only be used during simulation.
+
+Constant cycles (architecture_pkg.vhd) has been set to 1 and therefore, 
+uCore_16 actually executes 50M instructions/second.
+
+************************************************************************
 *** EP4CE6_OMDAZZ 1.000.2  9-Jun-2023 ks
 ************************************************************************
 

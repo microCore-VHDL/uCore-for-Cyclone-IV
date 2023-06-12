@@ -2,7 +2,7 @@
 -- @file : uCntrl.vhd
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 22.11.2022 19:06:13
+-- Last change: KS 11.06.2023 20:09:40
 -- @project: microCore
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -266,7 +266,7 @@ BEGIN
 END PROCESS uReg_proc;
 
 data_stack: internal_ram
-GENERIC MAP (data_width, 2**dsp_width, "rw_check")
+GENERIC MAP (data_width, 2**dsp_width, "no_rw_check")
 PORT MAP (
    clk   => clk,
    en    => core_en,

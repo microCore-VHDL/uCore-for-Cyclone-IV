@@ -2,7 +2,7 @@
 -- @file : debugger.vhd
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 03.11.2022 19:30:56
+-- Last change: KS 12.06.2023 23:11:50
 -- @project: microCore
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -482,7 +482,8 @@ END PROCESS umbilical_proc;
 rx_read <= rx_full AND clk_en;
 
 debug_uart: uart
-GENERIC MAP (umbilical_rate, 4, "registers") PORT MAP (
+GENERIC MAP (umbilical_rate, 4, "logic")
+PORT MAP (
    uBus       => uBus,
    pause      => OPEN,
    rx_full    => rx_full,    -- rx data buffer full

@@ -2,7 +2,7 @@
 -- @file : functions_pkg.vhd
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 09.06.2023 18:09:15
+-- Last change: KS 11.06.2023 19:52:45
 -- @project: microCore
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -790,15 +790,10 @@ TYPE ram_type IS ARRAY (ram_size-1 DOWNTO 0) OF UNSIGNED(data_width-1 DOWNTO 0);
 
 SIGNAL ram        : ram_type; ATTRIBUTE syn_ramstyle OF ram : SIGNAL IS ramstyle;
 SIGNAL addr_d     : UNSIGNED(log2(ram_size)-1 DOWNTO 0);
-SIGNAL rd_en      : STD_LOGIC;
-SIGNAL we_en      : STD_LOGIC;
 
 CONSTANT data_hex : INTEGER := next_quad(data_width);
 
 BEGIN
-
-rd_en <= en;
-we_en <= en AND we;
 
 initialized_ram: PROCESS(clk)
 	FILE tcf         : TEXT;
@@ -835,10 +830,10 @@ BEGIN
    ELSE
 -- pragma translate_on
       IF  rising_edge(clk)   THEN
-         IF  rd_en = '1'  THEN
+         IF  en = '1'  THEN
             addr_d <= addr;
          END IF;
-         IF  we_en = '1'  THEN
+         IF  (en AND we) = '1'  THEN
             ram(to_integer(addr)) <= di;
          END IF;
       END IF;
@@ -935,15 +930,15 @@ BEGIN
       IF  rising_edge(clk)   THEN
          IF  ena = '1'  THEN
             addra_d <= addra;
-            IF  wea = '1'  THEN
-               ram(to_integer(addra)) <= dia;
-            END IF;
+         END IF;
+         IF  (ena AND wea) = '1'  THEN
+            ram(to_integer(addra)) <= dia;
          END IF;
          IF  enb = '1'  THEN
             addrb_d <= addrb;
-            IF  web = '1'  THEN
-               ram(to_integer(addrb)) <= dib;
-            END IF;
+         END IF;
+         IF  (enb AND web) = '1'  THEN
+            ram(to_integer(addrb)) <= dib;
          END IF;
       END IF;
 -- pragma translate_off

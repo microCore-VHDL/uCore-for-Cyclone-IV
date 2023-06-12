@@ -2,7 +2,7 @@
 -- @file : uDatacache_cell.vhd
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 08.06.2023 23:28:23
+-- Last change: KS 12.06.2023 23:37:58
 -- @project: microCore
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -20,9 +20,7 @@
 --         Here fpga specific dual port memory IP can be included.
 --
 -- Version Author   Date       Changes
---   210     ks    8-Jun-2020  initial version
---  2300     ks    8-Mar-2021  Conversion to NUMERIC_STD
---  2400     ks   17-Jun-2022  byte addressing using byte_addr_width
+--  10003    ks   12-Jun-2023  for EP4CE6 Altera/Intel FPGA
 -- ---------------------------------------------------------------------
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
@@ -64,35 +62,45 @@ SIGNAL dma_mem_rdata : data_bus;
 
 BEGIN
 
-dma_rdata <= (OTHERS => '0');
-
 enable <= clk_en AND mem_en;
 
 make_sim_mem: IF  SIMULATION  GENERATE
 
-   internal_data_mem: internal_ram
-   GENERIC MAP (data_width, cache_size, "rw_check", DMEM_file)
+   internal_data_mem: internal_dpram
+   GENERIC MAP (data_width, cache_size, "no_rw_check", DMEM_file)
    PORT MAP (
       clk     => clk,
-      en      => enable,
-      we      => write,
-      addr    => addr(cache_addr_width-1 DOWNTO 0),
-      di      => wdata,
-      do      => rdata
+      ena     => enable,
+      wea     => write,
+      addra   => addr(cache_addr_width-1 DOWNTO 0),
+      dia     => wdata,
+      doa     => rdata,
+   -- dma port
+      enb     => dma_enable,
+      web     => dma_write,
+      addrb   => dma_addr(cache_addr_width-1 DOWNTO 0),
+      dib     => dma_wdata,
+      dob     => dma_rdata
    );
 
 END GENERATE make_sim_mem; make_syn_mem: IF  NOT SIMULATION  GENERATE
 -- instantiate FPGA specific IP for cell addressed memory here:
 
-   internal_data_mem: internal_ram
-   GENERIC MAP (data_width, cache_size, "rw_check")
+   internal_data_mem: internal_dpram
+   GENERIC MAP (data_width, cache_size, "no_rw_check")
    PORT MAP (
       clk     => clk,
-      en      => enable,
-      we      => write,
-      addr    => addr(cache_addr_width-1 DOWNTO 0),
-      di      => wdata,
-      do      => rdata
+      ena     => enable,
+      wea     => write,
+      addra   => addr(cache_addr_width-1 DOWNTO 0),
+      dia     => wdata,
+      doa     => rdata,
+   -- dma port
+      enb     => dma_enable,
+      web     => dma_write,
+      addrb   => dma_addr(cache_addr_width-1 DOWNTO 0),
+      dib     => dma_wdata,
+      dob     => dma_rdata
    );
 
 END GENERATE make_syn_mem;
