@@ -123,8 +123,8 @@ sd_ram.rdata <= sd_rdata;
 
 -- 21  20  | 19 18 17 16 15 14 13 12 11 10 09 08 | 07 06 05 04 03 02 01 00 |
 -- BA1 BA0 |       ROW (A11-A0)  4096 rows       |  COL (A7-A0)  256 cols  |
-row  <= "00000" & addr(15 DOWNTO 9);
-col  <= "010"   & addr( 8 DOWNTO 0); -- a(10) = 1 => precharge all banks, automatic refresh
+row  <= "0000" & addr(15 DOWNTO 8);
+col  <= "0100" & addr( 7 DOWNTO 0); -- a(10) = 1 => precharge all banks, automatic refresh
 
 delay <= ext_en WHEN  sd_state /= precharge  ELSE '0';
 

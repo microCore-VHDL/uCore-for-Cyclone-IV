@@ -2,7 +2,7 @@
 -- @file : architecture_pkg_16.vhd for the EP4CE6_OMDAZZ Demoboard
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 24.06.2023 12:53:01
+-- Last change: KS 25.06.2023 00:31:33
 -- @project: EP4CE6_OMDAZZ
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -32,7 +32,7 @@ USE work.functions_pkg.ALL;
 PACKAGE architecture_pkg IS
 --~--  \ when loaded by the microForth cross-compiler, code between "--~" up to "--~--" will be skipped.
 
-CONSTANT version            : NATURAL := 1100; -- <major_release> <functionality_added> <HW_fix> <SW_fix> <pre-release#>
+CONSTANT version            : NATURAL := 1110; -- <major_release> <functionality_added> <HW_fix> <SW_fix> <pre-release#>
 
 -- ---------------------------------------------------------------------
 -- Configuration flags
@@ -71,6 +71,12 @@ CONSTANT DMEM_file          : string  := ""; -- ../software/data.mem";
 -- data    8kx16                 16   cache_addr_width := 13, addr_rstack := 16#1C00#
 -- prog    8kx8                   8   prog_addr_width := 13
 
+-- memory sizes for 32 bits::
+-- entity   size   composition   M9Ks
+-- stack   1kx32                  4   ds_addr_width := 7, tasks_addr_width := 3
+-- data    4kx32                 16   cache_addr_width := 13, addr_rstack := 16#1C00#
+-- prog    8kx8                   8   prog_addr_width := 13
+
 -- ---------------------------------------------------------------------
 -- data, cache, register, and external data memory parameters:
 -- ---------------------------------------------------------------------
@@ -90,7 +96,7 @@ CONSTANT ram_data_width     : NATURAL := 16; -- external memory word width
 --~
 CONSTANT ram_chunks         : NATURAL := ceiling(data_width, ram_data_width);
 CONSTANT ram_subbits        : NATURAL := log2(ram_chunks);
-CONSTANT ram_addr_width     : NATURAL := 12 + ram_subbits; -- external memory, virtually data_width wide
+CONSTANT ram_addr_width     : NATURAL := data_addr_width + ram_subbits; -- external memory, virtually data_width wide
 --~--
 -- ---------------------------------------------------------------------
 -- program memory parameters:
@@ -256,7 +262,7 @@ TYPE  SDRAM_signals  IS RECORD
    a           : UNSIGNED(11 DOWNTO 0);
    ba          : UNSIGNED( 1 DOWNTO 0);
    dqm         : UNSIGNED( 1 DOWNTO 0);
-   rdata       : UNSIGNED(15 DOWNTO 0);
+   rdata       : data_bus;
 END RECORD;
 
 -- ---------------------------------------------------------------------

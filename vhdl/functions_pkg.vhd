@@ -2,7 +2,7 @@
 -- @file : functions_pkg.vhd
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 11.06.2023 19:52:45
+-- Last change: KS 24.06.2023 22:39:09
 -- @project: microCore
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -35,21 +35,24 @@ PACKAGE functions_pkg IS
 
 CONSTANT ASYNC_RESET : BOOLEAN := true; -- true = async reset, false = synchronous reset
 
-FUNCTION  resize(slv : IN STD_LOGIC_VECTOR;
-                 s   : IN INTEGER        ) RETURN STD_LOGIC_VECTOR;
+--FUNCTION  resize(slv : IN STD_LOGIC_VECTOR;
+  --               s   : IN NATURAL        ) RETURN STD_LOGIC_VECTOR;
 
 FUNCTION   slice(v : IN STD_LOGIC;
-                 s : IN INTEGER          ) RETURN UNSIGNED;
+                 s : IN NATURAL          ) RETURN UNSIGNED;
 
-FUNCTION     max(v : IN INTEGER;
-                 w : IN INTEGER          ) RETURN INTEGER;
+FUNCTION    umax(v : IN NATURAL;
+                 w : IN NATURAL          ) RETURN NATURAL;
 
-FUNCTION    log2(v : IN INTEGER          ) RETURN INTEGER;
+FUNCTION    umin(v :  IN NATURAL;
+                 w :  IN NATURAL         ) RETURN NATURAL;
+                 
+FUNCTION    log2(v : IN NATURAL          ) RETURN NATURAL;
 
-FUNCTION    exp2(v : IN INTEGER          ) RETURN INTEGER;
+FUNCTION    exp2(v : IN NATURAL          ) RETURN NATURAL;
 
-FUNCTION ceiling(v : IN INTEGER;
-                 w : IN INTEGER          ) RETURN INTEGER;
+FUNCTION ceiling(v : IN NATURAL;
+                 w : IN NATURAL          ) RETURN NATURAL;
 
 FUNCTION next_quad(width : IN NATURAL    ) RETURN NATURAL;
 
@@ -259,15 +262,15 @@ PACKAGE BODY functions_pkg IS
    -- resize STD_LOGIC_VECTOR to STD_LOGIC_VECTOR, s bits long
    -- ------------------------------------------------------------------
 
-   FUNCTION  resize(slv : IN STD_LOGIC_VECTOR;
-                    s   : IN INTEGER        ) RETURN STD_LOGIC_VECTOR IS
-      VARIABLE temp   : UNSIGNED(slv'range);
-      VARIABLE result : UNSIGNED(s-1 DOWNTO 0);
-   BEGIN
-      temp := unsigned(slv);
-      result := resize(temp, s);
-      RETURN std_logic_vector(result);
-   END;
+--   FUNCTION  resize(slv : IN STD_LOGIC_VECTOR;
+--                    s   : IN NATURAL        ) RETURN STD_LOGIC_VECTOR IS
+--      VARIABLE temp   : UNSIGNED(slv'range);
+--      VARIABLE result : UNSIGNED(s-1 DOWNTO 0);
+--   BEGIN
+--      temp := unsigned(slv);
+--      result := resize(temp, s);
+--      RETURN std_logic_vector(result);
+--   END;
 
    -- ------------------------------------------------------------------
    -- slice
@@ -275,32 +278,44 @@ PACKAGE BODY functions_pkg IS
    -- ------------------------------------------------------------------
 
    FUNCTION slice(v : IN STD_LOGIC;
-                  s : IN INTEGER
+                  s : IN NATURAL
                  )   RETURN UNSIGNED IS
       VARIABLE temp : UNSIGNED (s-1 DOWNTO 0);
    BEGIN
-       temp := (OTHERS => v);
+      temp := (OTHERS => v);
       RETURN temp;
    END;
 
    -- ------------------------------------------------------------------
-   -- max
+   -- umax
    -- Return maximum of two INTEGERs w and v
    -- ------------------------------------------------------------------
 
-   FUNCTION max(v  :  IN INTEGER;
-                w  :  IN INTEGER
-               ) RETURN INTEGER IS
+   FUNCTION umax(v  :  IN NATURAL;
+                 w  :  IN NATURAL
+                ) RETURN NATURAL IS
    BEGIN
        IF (v > w) THEN  RETURN v;  ELSE  RETURN w;  END IF;
+   END;
+
+   -- ------------------------------------------------------------------
+   -- min
+   -- Return minimum of two NATURALS w and v
+   -- ------------------------------------------------------------------
+
+   FUNCTION umin(v  :  IN NATURAL;
+                 w  :  IN NATURAL
+                ) RETURN NATURAL IS
+   BEGIN
+       IF (v > w) THEN  RETURN w;  ELSE  RETURN v;  END IF;
    END;
 
    -- ------------------------------------------------------------------
    -- logarithm dualis
    -- ------------------------------------------------------------------
 
-   FUNCTION log2(v    :  IN INTEGER) RETURN INTEGER IS
-       VARIABLE temp  : INTEGER;
+   FUNCTION log2(v    :  IN NATURAL) RETURN NATURAL IS
+       VARIABLE temp  : NATURAL;
    BEGIN
        temp := 0;
        WHILE  2 ** temp < v  LOOP
@@ -313,8 +328,8 @@ PACKAGE BODY functions_pkg IS
    -- exponentiation dualis
    -- ------------------------------------------------------------------
 
-   FUNCTION exp2(v    :  IN INTEGER) RETURN INTEGER IS
-       VARIABLE temp  : INTEGER;
+   FUNCTION exp2(v    :  IN NATURAL) RETURN NATURAL IS
+       VARIABLE temp  : NATURAL;
    BEGIN
        temp := 1;
        IF  v /= 0  THEN
@@ -329,10 +344,10 @@ PACKAGE BODY functions_pkg IS
    -- ceiling of two number
    -- ------------------------------------------------------------------
 
-   FUNCTION ceiling(v : IN INTEGER;
-                    w : IN INTEGER
-                   ) RETURN INTEGER IS
-       VARIABLE temp  : INTEGER;
+   FUNCTION ceiling(v : IN NATURAL;
+                    w : IN NATURAL
+                   ) RETURN NATURAL IS
+       VARIABLE temp  : NATURAL;
    BEGIN
        temp := v/w;
        IF  temp * w < v  THEN

@@ -242,8 +242,8 @@ set_global_assignment -name VHDL_FILE ../vhdl/uart.vhd
 set_global_assignment -name VHDL_FILE ../vhdl/debugger.vhd
 set_global_assignment -name VHDL_FILE ../vhdl/uCore.vhd
 set_global_assignment -name VHDL_FILE ../vhdl/uDatacache.vhd
-set_global_assignment -name VHDL_FILE ../vhdl/external_SDRAM.vhd
 set_global_assignment -name VHDL_FILE ../vhdl/pll.vhd
+set_global_assignment -name VHDL_FILE ../vhdl/external_SDRAM.vhd
 set_global_assignment -name VHDL_FILE ../vhdl/fpga.vhd
 set_global_assignment -name SOURCE_FILE fpga.qsf
 set_global_assignment -name SDC_FILE fpga.out.sdc
