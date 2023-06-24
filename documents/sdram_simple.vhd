@@ -2,7 +2,7 @@
 -- SDRAM_SIMPLE.VHD 
 -----------------------------------------------------------------
 --
--- Last change: KS 20.05.2023 18:29:41
+-- Last change: KS 23.06.2023 19:23:16
 --
 -- Released under the 3-Clause BSD License:
 --
@@ -343,8 +343,6 @@ begin
             sd_busdir_x <= '0';
 
          when ST_RAS1 =>
-            -- 30ns since activate.
-            -- Data from the SDRAM will be registered on the next clock.
             state_x <= ST_RAS2;
             buf_dout_x <= sdData_io;
 

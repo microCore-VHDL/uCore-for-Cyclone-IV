@@ -2,7 +2,7 @@
 \ @file : constants.fs for the EP4CE6_OMDAZZ prototyping board
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 17.05.2023 19:52:23
+\ Last change: KS 14.06.2023 23:15:41
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -33,6 +33,8 @@ Target
 \ ----------------------------------------------------------------------
 \ Memory mapping
 \ ----------------------------------------------------------------------
+
+H cache_size T Constant #sdram
 
 \ ----------------------------------------------------------------------
 \ registers and bits

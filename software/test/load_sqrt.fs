@@ -1,5 +1,5 @@
 \
-\ Last change: KS 03.08.2022 18:07:28
+\ Last change: KS 24.06.2023 13:47:22
 \
 \ MicroCore load screen for the core test program that is transferred
 \ into the program memory via the debug umbilical
@@ -23,11 +23,11 @@ include constants.fs            \ MicroCore Register addresses and bits
 include debugger.fs
 library forth_lib.fs
 
-: blink       ( -- )      Leds @ $80 xor Leds ! ;
+: blink       ( -- )      #c-led0 dup ctrl? IF not THEN ctrl ! ;
 
 : sqrt-test  ( -- )
    -1 FOR  r@ sqrt dup * + r@ - IF  r>  EXIT THEN
-           r@ $3FFFF and 0= IF  blink  THEN
+\           r@ $3FFFF and 0= IF  blink  THEN
    NEXT  0
 ;
 \ ----------------------------------------------------------------------
@@ -40,7 +40,7 @@ library forth_lib.fs
 \ Booting and TRAPs
 \ ----------------------------------------------------------------------
 
-init: init-leds  ( -- )   0 Leds ! ;
+init: init-leds ( -- )  [ #c-led0 #c-led1 or #c-led2 or #c-led3 or ] Literal -ctrl ! ;
 
 : boot  ( -- )   0 #cache erase   CALL initialization  debug-service ;
 

@@ -2,7 +2,7 @@
 -- @file : fpga.vhd for the Intel EP4CE6_OMDAZZ prototyping board
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 09.06.2023 22:34:17
+-- Last change: KS 24.06.2023 12:51:17
 -- @project: EP4CE6_OMDAZZ
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -78,6 +78,7 @@ SIGNAL uBus       : uBus_port;
 ALIAS  reset      : STD_LOGIC IS uBus.reset;
 ALIAS  clk        : STD_LOGIC IS uBus.clk;
 ALIAS  clk_en     : STD_LOGIC IS uBus.clk_en;
+ALIAS  wdata      : data_bus  IS uBus.wdata;
 ALIAS  delay      : STD_LOGIC IS uBus.delay;
 
 SIGNAL reset_a    : STD_LOGIC; -- asynchronous reset positive logic
@@ -103,6 +104,15 @@ SIGNAL ctrl         : UNSIGNED(ctrl_width-1 DOWNTO 0);
 SIGNAL flag_sema    : STD_LOGIC;    -- a software semaphor for testing
 SIGNAL memory       : datamem_port; -- multiplexed memory signals
 
+COMPONENT pll PORT (
+   inclk0   : IN  STD_LOGIC;
+   c0       : OUT STD_LOGIC;
+   locked   : OUT STD_LOGIC
+); END COMPONENT pll;
+
+SIGNAL locked       : STD_LOGIC;
+SIGNAL c0           : STD_LOGIC;
+
 -- data cache memory
 COMPONENT uDatacache PORT (
    uBus        : IN  uBus_port;
@@ -117,9 +127,21 @@ SIGNAL dma_mem      : datamem_port;
 SIGNAL dma_rdata    : data_bus;
 SIGNAL cache_addr   : data_addr;    -- for simulation only
 
+-- ---------------------------------------------------------------------
 -- board specific IO
+-- ---------------------------------------------------------------------
 
+COMPONENT external_SDRAM PORT (
+   uBus        : IN  uBus_port;
+   delay       : OUT STD_LOGIC;
+-- SDRAM
+   sd_ram      : OUT SDRAM_signals;
+   sd_dq       : IN  UNSIGNED(15 DOWNTO 0)
+); END COMPONENT external_SDRAM;
+
+SIGNAL sd_ram       : SDRAM_signals;
 SIGNAL ext_rdata    : data_bus;
+SIGNAL SDRAM_delay  : STD_LOGIC;
 
 BEGIN
 
@@ -127,7 +149,20 @@ BEGIN
 -- clk generation (perhaps a PLL will be used)
 -- ---------------------------------------------------------------------
 
-clk <= clock;
+sim_clock: IF  SIMULATION  GENERATE
+
+   clk <= clock;
+   locked <= '1';
+
+END GENERATE sim_clock; syn_clock: IF  NOT SIMULATION  GENERATE
+
+   pll_100MHz: pll PORT MAP (
+     inclk0  => clock,  -- 50 MHz
+     c0      => clk,    -- 100 MHz
+     locked  => locked
+   );
+   
+END GENERATE syn_clock;
 
 enable_proc: PROCESS (clk)
 BEGIN
@@ -142,9 +177,9 @@ BEGIN
    END IF;
 END PROCESS enable_proc;
 
-delay <= '0'; -- SRAM_delay;
+delay <= SDRAM_delay;
 
-clk_en <= '1' WHEN  delay = '0' AND cycle_ctr = 0  ELSE '0';
+clk_en <= '1' WHEN  delay = '0' AND cycle_ctr = 0 AND locked = '1'  ELSE '0';
 
 -- ---------------------------------------------------------------------
 -- input signal synchronization
@@ -303,19 +338,26 @@ END PROCESS memaddr_proc;
 -- external SDRAM data memory
 -- ---------------------------------------------------------------------
 
-ext_rdata <= (OTHERS => '0');
+SDRAM: external_SDRAM PORT MAP (
+   uBus        => uBus,
+   delay       => SDRAM_delay,
+-- SDRAM
+   sd_ram      => sd_ram,
+   sd_dq       => sd_dq
+);
 
-sd_clk    <= '0';
-sd_cke    <= '0';
-sd_cs_n   <= '1';
-sd_we_n   <= '1';
-sd_a      <= (OTHERS => '0');
-sd_ba     <= (OTHERS => '0');
-sd_ras_n  <= '1';
-sd_cas_n  <= '1';
-sd_ldqm   <= '0';
-sd_udqm   <= '0';
-sd_dq     <= (OTHERS => 'Z'); -- INOUT pins
+sd_clk    <= clk;
+sd_cke    <= sd_ram.cke;
+sd_cs_n   <= NOT sd_ram.cmd(3);
+sd_ras_n  <= NOT sd_ram.cmd(2);
+sd_cas_n  <= NOT sd_ram.cmd(1);
+sd_we_n   <= NOT sd_ram.cmd(0);
+sd_a      <= sd_ram.a;
+sd_ba     <= sd_ram.ba;
+sd_ldqm   <= sd_ram.dqm(0);
+sd_udqm   <= sd_ram.dqm(1);
+sd_dq     <= wdata WHEN  sd_ram.cmd(2 DOWNTO 0) = "011"  ELSE (OTHERS => 'Z');
+ext_rdata <= sd_ram.rdata;
 
 -- ---------------------------------------------------------------------
 -- OMDAZZ board specific IO

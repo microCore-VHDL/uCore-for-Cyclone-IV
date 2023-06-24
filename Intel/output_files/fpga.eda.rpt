@@ -1,5 +1,5 @@
 EDA Netlist Writer report for fpga
-Tue Jun 13 00:27:23 2023
+Sat Jun 24 12:57:41 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -37,7 +37,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Tue Jun 13 00:27:23 2023 ;
+; EDA Netlist Writer Status ; Successful - Sat Jun 24 12:57:41 2023 ;
 ; Revision Name             ; fpga                                  ;
 ; Top-level Entity Name     ; fpga                                  ;
 ; Family                    ; Cyclone IV E                          ;
@@ -81,13 +81,13 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime EDA Netlist Writer
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Tue Jun 13 00:27:21 2023
+    Info: Processing started: Sat Jun 24 12:57:39 2023
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off EP4CE6_Altera -c fpga
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (204019): Generated file fpga.vho in folder "D:/technik/microcore/hardware/EP4CE6_OMDAZZ/Intel/simulation/modelsim/" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 504 megabytes
-    Info: Processing ended: Tue Jun 13 00:27:23 2023
+    Info: Peak virtual memory: 507 megabytes
+    Info: Processing ended: Sat Jun 24 12:57:41 2023
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:01
 

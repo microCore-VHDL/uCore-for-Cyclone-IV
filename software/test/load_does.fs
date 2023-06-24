@@ -1,5 +1,5 @@
 \ 
-\ Last change: KS 03.08.2022 18:05:59
+\ Last change: KS 24.06.2023 13:33:17
 \
 \ MicroCore load screen for testing Create ... Does
 \
@@ -43,18 +43,13 @@ WITH_BYTES [IF]   Create Einzeln  $98 c, $22 c,   [THEN]
 \ Interrupt
 \ ----------------------------------------------------------------------
 
-Variable Ticker  0 Ticker !
-
-: interrupt ( -- )  Intflags @
-   #i-time and IF  1 Ticker +!  #i-time not Flags !  THEN
-;
-init: init-int  ( -- )  #i-time int-enable ei ;
+: interrupt ;
 
 \ ----------------------------------------------------------------------
 \ Booting and TRAPs
 \ ----------------------------------------------------------------------
 
-init: init-leds  ( -- )   0 Leds ! ;
+init: init-leds ( -- )  [ #c-led0 #c-led1 or #c-led2 or #c-led3 or ] Literal -ctrl ! ;
 
 : boot  ( -- )   0 #cache erase   CALL initialization  debug-service ;
 

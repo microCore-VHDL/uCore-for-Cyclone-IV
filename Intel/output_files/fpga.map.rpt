@@ -1,5 +1,5 @@
 Analysis & Synthesis report for fpga
-Tue Jun 13 00:26:43 2023
+Sat Jun 24 12:56:59 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -15,40 +15,43 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis RAM Summary
   9. Analysis & Synthesis DSP Block Usage Summary
- 10. State Machine - |fpga|microcore:uCore|debugger:debug_unit|in_state
- 11. State Machine - |fpga|microcore:uCore|debugger:debug_unit|out_state
- 12. Registers Protected by Synthesis
- 13. Registers Removed During Synthesis
- 14. Removed Registers Triggering Further Register Optimizations
+ 10. State Machine - |fpga|external_SDRAM:SDRAM|sd_state
+ 11. State Machine - |fpga|microcore:uCore|debugger:debug_unit|in_state
+ 12. State Machine - |fpga|microcore:uCore|debugger:debug_unit|out_state
+ 13. Registers Protected by Synthesis
+ 14. Registers Removed During Synthesis
  15. General Register Statistics
  16. Inverted Register Statistics
- 17. Registers Packed Into Inferred Megafunctions
- 18. Registers Added for RAM Pass-Through Logic
+ 17. Registers Added for RAM Pass-Through Logic
+ 18. Registers Packed Into Inferred Megafunctions
  19. Multiplexer Restructuring Statistics (Restructuring Performed)
  20. Source assignments for microcore:uCore
- 21. Source assignments for microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0|altsyncram_2h41:auto_generated
+ 21. Source assignments for microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0|altsyncram_v2e1:auto_generated
  22. Source assignments for microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|altsyncram:ram_rtl_0|altsyncram_t4e1:auto_generated
  23. Source assignments for uDatacache:internal_data_mem|internal_dpram:\make_syn_mem:internal_data_mem|altsyncram:ram_rtl_0|altsyncram_lli1:auto_generated
- 24. Parameter Settings for User Entity Instance: microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem
- 25. Parameter Settings for User Entity Instance: microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack
- 26. Parameter Settings for User Entity Instance: microcore:uCore|debugger:debug_unit|uart:debug_uart
- 27. Parameter Settings for User Entity Instance: microcore:uCore|debugger:debug_unit|uart:debug_uart|fifo:rx_fifo
- 28. Parameter Settings for User Entity Instance: uDatacache:internal_data_mem|internal_dpram:\make_syn_mem:internal_data_mem
- 29. Parameter Settings for Inferred Entity Instance: microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0
- 30. Parameter Settings for Inferred Entity Instance: microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|altsyncram:ram_rtl_0
- 31. Parameter Settings for Inferred Entity Instance: uDatacache:internal_data_mem|internal_dpram:\make_syn_mem:internal_data_mem|altsyncram:ram_rtl_0
- 32. Parameter Settings for Inferred Entity Instance: microcore:uCore|microcontrol:uCntrl|uArithmetic:uCntrl_arith|lpm_mult:Mult0
- 33. altsyncram Parameter Settings by Entity Instance
- 34. lpm_mult Parameter Settings by Entity Instance
- 35. Port Connectivity Checks: "uDatacache:internal_data_mem"
- 36. Port Connectivity Checks: "microcore:uCore|debugger:debug_unit|uart:debug_uart"
- 37. Port Connectivity Checks: "microcore:uCore|debugger:debug_unit"
- 38. Port Connectivity Checks: "microcore:uCore|microcontrol:uCntrl|uArithmetic:uCntrl_arith"
- 39. Port Connectivity Checks: "microcore:uCore|microcontrol:uCntrl"
- 40. Port Connectivity Checks: "microcore:uCore"
- 41. Post-Synthesis Netlist Statistics for Top Partition
- 42. Elapsed Time Per Partition
- 43. Analysis & Synthesis Messages
+ 24. Parameter Settings for User Entity Instance: PLL:\syn_clock:pll_100MHz|altpll:altpll_component
+ 25. Parameter Settings for User Entity Instance: microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem
+ 26. Parameter Settings for User Entity Instance: microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack
+ 27. Parameter Settings for User Entity Instance: microcore:uCore|debugger:debug_unit|uart:debug_uart
+ 28. Parameter Settings for User Entity Instance: microcore:uCore|debugger:debug_unit|uart:debug_uart|fifo:rx_fifo
+ 29. Parameter Settings for User Entity Instance: uDatacache:internal_data_mem|internal_dpram:\make_syn_mem:internal_data_mem
+ 30. Parameter Settings for Inferred Entity Instance: microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0
+ 31. Parameter Settings for Inferred Entity Instance: microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|altsyncram:ram_rtl_0
+ 32. Parameter Settings for Inferred Entity Instance: uDatacache:internal_data_mem|internal_dpram:\make_syn_mem:internal_data_mem|altsyncram:ram_rtl_0
+ 33. Parameter Settings for Inferred Entity Instance: microcore:uCore|microcontrol:uCntrl|uArithmetic:uCntrl_arith|lpm_mult:Mult0
+ 34. altpll Parameter Settings by Entity Instance
+ 35. altsyncram Parameter Settings by Entity Instance
+ 36. lpm_mult Parameter Settings by Entity Instance
+ 37. Port Connectivity Checks: "external_SDRAM:SDRAM"
+ 38. Port Connectivity Checks: "uDatacache:internal_data_mem"
+ 39. Port Connectivity Checks: "microcore:uCore|debugger:debug_unit|uart:debug_uart"
+ 40. Port Connectivity Checks: "microcore:uCore|debugger:debug_unit"
+ 41. Port Connectivity Checks: "microcore:uCore|microcontrol:uCntrl|uArithmetic:uCntrl_arith"
+ 42. Port Connectivity Checks: "microcore:uCore|microcontrol:uCntrl"
+ 43. Port Connectivity Checks: "microcore:uCore"
+ 44. Post-Synthesis Netlist Statistics for Top Partition
+ 45. Elapsed Time Per Partition
+ 46. Analysis & Synthesis Messages
 
 
 
@@ -75,20 +78,20 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Jun 13 00:26:43 2023       ;
+; Analysis & Synthesis Status        ; Successful - Sat Jun 24 12:56:58 2023       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; fpga                                        ;
 ; Top-level Entity Name              ; fpga                                        ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 2,190                                       ;
-;     Total combinational functions  ; 2,108                                       ;
-;     Dedicated logic registers      ; 416                                         ;
-; Total registers                    ; 416                                         ;
+; Total logic elements               ; 2,948                                       ;
+;     Total combinational functions  ; 2,830                                       ;
+;     Dedicated logic registers      ; 552                                         ;
+; Total registers                    ; 552                                         ;
 ; Total pins                         ; 82                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 212,992                                     ;
 ; Embedded Multiplier 9-bit elements ; 2                                           ;
-; Total PLLs                         ; 0                                           ;
+; Total PLLs                         ; 1                                           ;
 +------------------------------------+---------------------------------------------+
 
 
@@ -204,27 +207,34 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                  ; Library ;
 +----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------+---------+
-; ../vhdl/uProgmem.vhd             ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uProgmem.vhd                 ;         ;
-; ../vhdl/uDatacache.vhd           ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uDatacache.vhd               ;         ;
-; ../vhdl/uCore.vhd                ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd                    ;         ;
-; ../vhdl/uCntrl.vhd               ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd                   ;         ;
-; ../vhdl/uart.vhd                 ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uart.vhd                     ;         ;
-; ../vhdl/uArithmetic.vhd          ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uArithmetic.vhd              ;         ;
 ; ../vhdl/functions_pkg.vhd        ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd            ;         ;
-; ../vhdl/fpga.vhd                 ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd                     ;         ;
-; ../vhdl/debugger.vhd             ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd                 ;         ;
-; ../vhdl/bootload.vhd             ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bootload.vhd                 ;         ;
 ; ../vhdl/architecture_pkg.vhd     ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/architecture_pkg.vhd         ;         ;
+; ../vhdl/uArithmetic.vhd          ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uArithmetic.vhd              ;         ;
+; ../vhdl/uCntrl.vhd               ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd                   ;         ;
+; ../vhdl/bootload.vhd             ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bootload.vhd                 ;         ;
+; ../vhdl/uProgmem.vhd             ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uProgmem.vhd                 ;         ;
+; ../vhdl/uart.vhd                 ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uart.vhd                     ;         ;
+; ../vhdl/debugger.vhd             ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd                 ;         ;
+; ../vhdl/uCore.vhd                ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd                    ;         ;
+; ../vhdl/uDatacache.vhd           ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uDatacache.vhd               ;         ;
+; ../vhdl/external_SDRAM.vhd       ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/external_SDRAM.vhd           ;         ;
+; ../vhdl/pll.vhd                  ; yes             ; User Wizard-Generated File   ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/pll.vhd                      ;         ;
+; ../vhdl/fpga.vhd                 ; yes             ; User VHDL File               ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd                     ;         ;
+; altpll.tdf                       ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/altpll.tdf            ;         ;
+; aglobal201.inc                   ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/aglobal201.inc        ;         ;
+; stratix_pll.inc                  ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/stratix_pll.inc       ;         ;
+; stratixii_pll.inc                ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/stratixii_pll.inc     ;         ;
+; cycloneii_pll.inc                ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/cycloneii_pll.inc     ;         ;
+; db/pll_altpll3.v                 ; yes             ; Auto-Generated Megafunction  ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/Intel/db/pll_altpll3.v            ;         ;
 ; altsyncram.tdf                   ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
 ; stratix_ram_block.inc            ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
 ; lpm_mux.inc                      ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
 ; lpm_decode.inc                   ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/lpm_decode.inc        ;         ;
-; aglobal201.inc                   ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/aglobal201.inc        ;         ;
 ; a_rdenreg.inc                    ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/a_rdenreg.inc         ;         ;
 ; altrom.inc                       ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/altrom.inc            ;         ;
 ; altram.inc                       ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/altram.inc            ;         ;
 ; altdpram.inc                     ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/altdpram.inc          ;         ;
-; db/altsyncram_2h41.tdf           ; yes             ; Auto-Generated Megafunction  ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/Intel/db/altsyncram_2h41.tdf      ;         ;
+; db/altsyncram_v2e1.tdf           ; yes             ; Auto-Generated Megafunction  ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/Intel/db/altsyncram_v2e1.tdf      ;         ;
 ; db/altsyncram_t4e1.tdf           ; yes             ; Auto-Generated Megafunction  ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/Intel/db/altsyncram_t4e1.tdf      ;         ;
 ; db/altsyncram_lli1.tdf           ; yes             ; Auto-Generated Megafunction  ; D:/technik/microcore/hardware/EP4CE6_OMDAZZ/Intel/db/altsyncram_lli1.tdf      ;         ;
 ; lpm_mult.tdf                     ; yes             ; Megafunction                 ; c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/lpm_mult.tdf          ;         ;
@@ -236,37 +246,40 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------+---------+
 
 
-+-----------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary               ;
-+---------------------------------------------+-------------+
-; Resource                                    ; Usage       ;
-+---------------------------------------------+-------------+
-; Estimated Total logic elements              ; 2,190       ;
-;                                             ;             ;
-; Total combinational functions               ; 2108        ;
-; Logic element usage by number of LUT inputs ;             ;
-;     -- 4 input functions                    ; 1421        ;
-;     -- 3 input functions                    ; 424         ;
-;     -- <=2 input functions                  ; 263         ;
-;                                             ;             ;
-; Logic elements by mode                      ;             ;
-;     -- normal mode                          ; 1967        ;
-;     -- arithmetic mode                      ; 141         ;
-;                                             ;             ;
-; Total registers                             ; 416         ;
-;     -- Dedicated logic registers            ; 416         ;
-;     -- I/O registers                        ; 0           ;
-;                                             ;             ;
-; I/O pins                                    ; 82          ;
-; Total memory bits                           ; 212992      ;
-;                                             ;             ;
-; Embedded Multiplier 9-bit elements          ; 2           ;
-;                                             ;             ;
-; Maximum fan-out node                        ; clock~input ;
-; Maximum fan-out                             ; 456         ;
-; Total fan-out                               ; 9628        ;
-; Average fan-out                             ; 3.50        ;
-+---------------------------------------------+-------------+
++---------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                                                                                 ;
++---------------------------------------------+-----------------------------------------------------------------------------------------------+
+; Resource                                    ; Usage                                                                                         ;
++---------------------------------------------+-----------------------------------------------------------------------------------------------+
+; Estimated Total logic elements              ; 2,948                                                                                         ;
+;                                             ;                                                                                               ;
+; Total combinational functions               ; 2830                                                                                          ;
+; Logic element usage by number of LUT inputs ;                                                                                               ;
+;     -- 4 input functions                    ; 1886                                                                                          ;
+;     -- 3 input functions                    ; 624                                                                                           ;
+;     -- <=2 input functions                  ; 320                                                                                           ;
+;                                             ;                                                                                               ;
+; Logic elements by mode                      ;                                                                                               ;
+;     -- normal mode                          ; 2612                                                                                          ;
+;     -- arithmetic mode                      ; 218                                                                                           ;
+;                                             ;                                                                                               ;
+; Total registers                             ; 552                                                                                           ;
+;     -- Dedicated logic registers            ; 552                                                                                           ;
+;     -- I/O registers                        ; 0                                                                                             ;
+;                                             ;                                                                                               ;
+; I/O pins                                    ; 82                                                                                            ;
+; Total memory bits                           ; 212992                                                                                        ;
+;                                             ;                                                                                               ;
+; Embedded Multiplier 9-bit elements          ; 2                                                                                             ;
+;                                             ;                                                                                               ;
+; Total PLLs                                  ; 1                                                                                             ;
+;     -- PLLs                                 ; 1                                                                                             ;
+;                                             ;                                                                                               ;
+; Maximum fan-out node                        ; PLL:\syn_clock:pll_100MHz|altpll:altpll_component|PLL_altpll3:auto_generated|wire_pll1_clk[0] ;
+; Maximum fan-out                             ; 595                                                                                           ;
+; Total fan-out                               ; 12710                                                                                         ;
+; Average fan-out                             ; 3.52                                                                                          ;
++---------------------------------------------+-----------------------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -274,27 +287,31 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
 ; Compilation Hierarchy Node                             ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                   ; Entity Name     ; Library Name ;
 +--------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
-; |fpga                                                  ; 2108 (17)           ; 416 (5)                   ; 212992      ; 2            ; 0       ; 1         ; 82   ; 0            ; |fpga                                                                                                                                 ; fpga            ; work         ;
-;    |microcore:uCore|                                   ; 2062 (252)          ; 362 (7)                   ; 81920       ; 2            ; 0       ; 1         ; 0    ; 0            ; |fpga|microcore:uCore                                                                                                                 ; microcore       ; work         ;
-;       |debugger:debug_unit|                            ; 248 (157)           ; 174 (88)                  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|debugger:debug_unit                                                                                             ; debugger        ; work         ;
-;          |uart:debug_uart|                             ; 91 (62)             ; 86 (48)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart                                                                             ; uart            ; work         ;
-;             |fifo:rx_fifo|                             ; 29 (29)             ; 38 (38)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|fifo:rx_fifo                                                                ; fifo            ; work         ;
-;       |microcontrol:uCntrl|                            ; 1562 (1515)         ; 181 (144)                 ; 16384       ; 2            ; 0       ; 1         ; 0    ; 0            ; |fpga|microcore:uCore|microcontrol:uCntrl                                                                                             ; microcontrol    ; work         ;
-;          |internal_ram:data_stack|                     ; 28 (28)             ; 37 (37)                   ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack                                                                     ; internal_ram    ; work         ;
+; |fpga                                                  ; 2830 (53)           ; 552 (7)                   ; 212992      ; 2            ; 0       ; 1         ; 82   ; 0            ; |fpga                                                                                                                                 ; fpga            ; work         ;
+;    |PLL:\syn_clock:pll_100MHz|                         ; 0 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|PLL:\syn_clock:pll_100MHz                                                                                                       ; PLL             ; work         ;
+;       |altpll:altpll_component|                        ; 0 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|PLL:\syn_clock:pll_100MHz|altpll:altpll_component                                                                               ; altpll          ; work         ;
+;          |PLL_altpll3:auto_generated|                  ; 0 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|PLL:\syn_clock:pll_100MHz|altpll:altpll_component|PLL_altpll3:auto_generated                                                    ; PLL_altpll3     ; work         ;
+;    |external_SDRAM:SDRAM|                              ; 120 (120)           ; 74 (74)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|external_SDRAM:SDRAM                                                                                                            ; external_SDRAM  ; work         ;
+;    |microcore:uCore|                                   ; 2643 (249)          ; 422 (7)                   ; 81920       ; 2            ; 0       ; 1         ; 0    ; 0            ; |fpga|microcore:uCore                                                                                                                 ; microcore       ; work         ;
+;       |debugger:debug_unit|                            ; 267 (167)           ; 182 (94)                  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|debugger:debug_unit                                                                                             ; debugger        ; work         ;
+;          |uart:debug_uart|                             ; 100 (67)            ; 88 (49)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart                                                                             ; uart            ; work         ;
+;             |fifo:rx_fifo|                             ; 33 (33)             ; 39 (39)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|fifo:rx_fifo                                                                ; fifo            ; work         ;
+;       |microcontrol:uCntrl|                            ; 2115 (2062)         ; 198 (161)                 ; 16384       ; 2            ; 0       ; 1         ; 0    ; 0            ; |fpga|microcore:uCore|microcontrol:uCntrl                                                                                             ; microcontrol    ; work         ;
+;          |internal_ram:data_stack|                     ; 34 (34)             ; 37 (37)                   ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack                                                                     ; internal_ram    ; work         ;
 ;             |altsyncram:ram_rtl_0|                     ; 0 (0)               ; 0 (0)                     ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|altsyncram:ram_rtl_0                                                ; altsyncram      ; work         ;
 ;                |altsyncram_t4e1:auto_generated|        ; 0 (0)               ; 0 (0)                     ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|altsyncram:ram_rtl_0|altsyncram_t4e1:auto_generated                 ; altsyncram_t4e1 ; work         ;
 ;          |uArithmetic:uCntrl_arith|                    ; 19 (19)             ; 0 (0)                     ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |fpga|microcore:uCore|microcontrol:uCntrl|uArithmetic:uCntrl_arith                                                                    ; uArithmetic     ; work         ;
 ;             |lpm_mult:Mult0|                           ; 0 (0)               ; 0 (0)                     ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |fpga|microcore:uCore|microcontrol:uCntrl|uArithmetic:uCntrl_arith|lpm_mult:Mult0                                                     ; lpm_mult        ; work         ;
 ;                |mult_76t:auto_generated|               ; 0 (0)               ; 0 (0)                     ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |fpga|microcore:uCore|microcontrol:uCntrl|uArithmetic:uCntrl_arith|lpm_mult:Mult0|mult_76t:auto_generated                             ; mult_76t        ; work         ;
-;       |uProgmem:internal_prog_mem|                     ; 0 (0)               ; 0 (0)                     ; 65536       ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|uProgmem:internal_prog_mem                                                                                      ; uProgmem        ; work         ;
-;          |internal_ram:internal_prog_mem|              ; 0 (0)               ; 0 (0)                     ; 65536       ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem                                                       ; internal_ram    ; work         ;
+;       |uProgmem:internal_prog_mem|                     ; 12 (0)              ; 35 (0)                    ; 65536       ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|uProgmem:internal_prog_mem                                                                                      ; uProgmem        ; work         ;
+;          |internal_ram:internal_prog_mem|              ; 12 (12)             ; 35 (35)                   ; 65536       ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem                                                       ; internal_ram    ; work         ;
 ;             |altsyncram:ram_rtl_0|                     ; 0 (0)               ; 0 (0)                     ; 65536       ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0                                  ; altsyncram      ; work         ;
-;                |altsyncram_2h41:auto_generated|        ; 0 (0)               ; 0 (0)                     ; 65536       ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0|altsyncram_2h41:auto_generated   ; altsyncram_2h41 ; work         ;
+;                |altsyncram_v2e1:auto_generated|        ; 0 (0)               ; 0 (0)                     ; 65536       ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0|altsyncram_v2e1:auto_generated   ; altsyncram_v2e1 ; work         ;
 ;    |synchronize:synch_dsu_rxd|                         ; 2 (2)               ; 2 (2)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|synchronize:synch_dsu_rxd                                                                                                       ; synchronize     ; work         ;
 ;    |synchronize:synch_reset|                           ; 1 (1)               ; 2 (2)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|synchronize:synch_reset                                                                                                         ; synchronize     ; work         ;
 ;    |synchronize_n:synch_interrupt|                     ; 0 (0)               ; 2 (2)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|synchronize_n:synch_interrupt                                                                                                   ; synchronize_n   ; work         ;
-;    |uDatacache:internal_data_mem|                      ; 26 (0)              ; 43 (0)                    ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|uDatacache:internal_data_mem                                                                                                    ; uDatacache      ; work         ;
-;       |internal_dpram:\make_syn_mem:internal_data_mem| ; 26 (26)             ; 43 (43)                   ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|uDatacache:internal_data_mem|internal_dpram:\make_syn_mem:internal_data_mem                                                     ; internal_dpram  ; work         ;
+;    |uDatacache:internal_data_mem|                      ; 11 (1)              ; 43 (0)                    ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|uDatacache:internal_data_mem                                                                                                    ; uDatacache      ; work         ;
+;       |internal_dpram:\make_syn_mem:internal_data_mem| ; 10 (10)             ; 43 (43)                   ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|uDatacache:internal_data_mem|internal_dpram:\make_syn_mem:internal_data_mem                                                     ; internal_dpram  ; work         ;
 ;          |altsyncram:ram_rtl_0|                        ; 0 (0)               ; 0 (0)                     ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|uDatacache:internal_data_mem|internal_dpram:\make_syn_mem:internal_data_mem|altsyncram:ram_rtl_0                                ; altsyncram      ; work         ;
 ;             |altsyncram_lli1:auto_generated|           ; 0 (0)               ; 0 (0)                     ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpga|uDatacache:internal_data_mem|internal_dpram:\make_syn_mem:internal_data_mem|altsyncram:ram_rtl_0|altsyncram_lli1:auto_generated ; altsyncram_lli1 ; work         ;
 +--------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
@@ -307,7 +324,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Name                                                                                                                                       ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size   ; MIF  ;
 +--------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------+------+
 ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|altsyncram:ram_rtl_0|altsyncram_t4e1:auto_generated|ALTSYNCRAM                 ; AUTO ; Simple Dual Port ; 1024         ; 16           ; 1024         ; 16           ; 16384  ; None ;
-; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0|altsyncram_2h41:auto_generated|ALTSYNCRAM   ; AUTO ; Single Port      ; 8192         ; 8            ; --           ; --           ; 65536  ; None ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0|altsyncram_v2e1:auto_generated|ALTSYNCRAM   ; AUTO ; Simple Dual Port ; 8192         ; 8            ; 8192         ; 8            ; 65536  ; None ;
 ; uDatacache:internal_data_mem|internal_dpram:\make_syn_mem:internal_data_mem|altsyncram:ram_rtl_0|altsyncram_lli1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 8192         ; 16           ; 8192         ; 16           ; 131072 ; None ;
 +--------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------+------+
 
@@ -328,6 +345,27 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Dedicated Input Shift Register Chains ; 0           ;
 +---------------------------------------+-------------+
 Note: number of Embedded Multiplier Blocks used is only available after a successful fit.
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |fpga|external_SDRAM:SDRAM|sd_state                                                                                                                                                                                                                   ;
++-------------------------+--------------------+--------------+-------------+--------------+-------------------+------------------+---------------+------------------------+------------------------+-------------------------+--------------------+--------------------+
+; Name                    ; sd_state.precharge ; sd_state.ras ; sd_state.rw ; sd_state.rcd ; sd_state.activate ; sd_state.refresh ; sd_state.idle ; sd_state.init_refresh2 ; sd_state.init_refresh1 ; sd_state.init_precharge ; sd_state.init_mode ; sd_state.init_wait ;
++-------------------------+--------------------+--------------+-------------+--------------+-------------------+------------------+---------------+------------------------+------------------------+-------------------------+--------------------+--------------------+
+; sd_state.init_wait      ; 0                  ; 0            ; 0           ; 0            ; 0                 ; 0                ; 0             ; 0                      ; 0                      ; 0                       ; 0                  ; 0                  ;
+; sd_state.init_mode      ; 0                  ; 0            ; 0           ; 0            ; 0                 ; 0                ; 0             ; 0                      ; 0                      ; 0                       ; 1                  ; 1                  ;
+; sd_state.init_precharge ; 0                  ; 0            ; 0           ; 0            ; 0                 ; 0                ; 0             ; 0                      ; 0                      ; 1                       ; 0                  ; 1                  ;
+; sd_state.init_refresh1  ; 0                  ; 0            ; 0           ; 0            ; 0                 ; 0                ; 0             ; 0                      ; 1                      ; 0                       ; 0                  ; 1                  ;
+; sd_state.init_refresh2  ; 0                  ; 0            ; 0           ; 0            ; 0                 ; 0                ; 0             ; 1                      ; 0                      ; 0                       ; 0                  ; 1                  ;
+; sd_state.idle           ; 0                  ; 0            ; 0           ; 0            ; 0                 ; 0                ; 1             ; 0                      ; 0                      ; 0                       ; 0                  ; 1                  ;
+; sd_state.refresh        ; 0                  ; 0            ; 0           ; 0            ; 0                 ; 1                ; 0             ; 0                      ; 0                      ; 0                       ; 0                  ; 1                  ;
+; sd_state.activate       ; 0                  ; 0            ; 0           ; 0            ; 1                 ; 0                ; 0             ; 0                      ; 0                      ; 0                       ; 0                  ; 1                  ;
+; sd_state.rcd            ; 0                  ; 0            ; 0           ; 1            ; 0                 ; 0                ; 0             ; 0                      ; 0                      ; 0                       ; 0                  ; 1                  ;
+; sd_state.rw             ; 0                  ; 0            ; 1           ; 0            ; 0                 ; 0                ; 0             ; 0                      ; 0                      ; 0                       ; 0                  ; 1                  ;
+; sd_state.ras            ; 0                  ; 1            ; 0           ; 0            ; 0                 ; 0                ; 0             ; 0                      ; 0                      ; 0                       ; 0                  ; 1                  ;
+; sd_state.precharge      ; 1                  ; 0            ; 0           ; 0            ; 0                 ; 0                ; 0             ; 0                      ; 0                      ; 0                       ; 0                  ; 1                  ;
++-------------------------+--------------------+--------------+-------------+--------------+-------------------+------------------+---------------+------------------------+------------------------+-------------------------+--------------------+--------------------+
 
 
 Encoding Type:  One-Hot
@@ -374,28 +412,19 @@ Encoding Type:  One-Hot
 +------------------------------------------+------------------------------------------------------------------+--------------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                                                  ;
-+-------------------------------------------------------------------------+-----------------------------------------------------------+
-; Register name                                                           ; Reason for Removal                                        ;
-+-------------------------------------------------------------------------+-----------------------------------------------------------+
-; cycle_ctr                                                               ; Stuck at GND due to stuck port data_in                    ;
-; microcore:uCore|microcontrol:uCntrl|r.inst[7]                           ; Merged with microcore:uCore|microcontrol:uCntrl|r.inst[4] ;
-; microcore:uCore|debugger:debug_unit|progload                            ; Lost fanout                                               ;
-; microcore:uCore|microcontrol:uCntrl|r.inst[4]                           ; Stuck at GND due to stuck port data_in                    ;
-; microcore:uCore|debugger:debug_unit|uart:debug_uart|fifo:rx_fifo|cnt[2] ; Stuck at GND due to stuck port data_in                    ;
-; Total Number of Removed Registers = 5                                   ;                                                           ;
-+-------------------------------------------------------------------------+-----------------------------------------------------------+
-
-
-+-------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                               ;
-+---------------+---------------------------+-----------------------------------------------+
-; Register name ; Reason for Removal        ; Registers Removed due to This Register        ;
-+---------------+---------------------------+-----------------------------------------------+
-; cycle_ctr     ; Stuck at GND              ; microcore:uCore|microcontrol:uCntrl|r.inst[4] ;
-;               ; due to stuck port data_in ;                                               ;
-+---------------+---------------------------+-----------------------------------------------+
++-----------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                        ;
++-----------------------------------------------+-----------------------------------------------------------+
+; Register name                                 ; Reason for Removal                                        ;
++-----------------------------------------------+-----------------------------------------------------------+
+; external_SDRAM:SDRAM|sd_ba[0,1]               ; Stuck at GND due to stuck port data_in                    ;
+; external_SDRAM:SDRAM|sd_a[9,11]               ; Stuck at GND due to stuck port data_in                    ;
+; external_SDRAM:SDRAM|sd_dqm[1]                ; Merged with external_SDRAM:SDRAM|sd_dqm[0]                ;
+; microcore:uCore|microcontrol:uCntrl|r.inst[7] ; Merged with microcore:uCore|microcontrol:uCntrl|r.inst[4] ;
+; microcore:uCore|debugger:debug_unit|progload  ; Lost fanout                                               ;
+; microcore:uCore|microcontrol:uCntrl|r.inst[4] ; Stuck at GND due to stuck port data_in                    ;
+; Total Number of Removed Registers = 8         ;                                                           ;
++-----------------------------------------------+-----------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -403,12 +432,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 416   ;
+; Total registers                              ; 552   ;
 ; Number of registers using Synchronous Clear  ; 2     ;
-; Number of registers using Synchronous Load   ; 65    ;
-; Number of registers using Asynchronous Clear ; 172   ;
+; Number of registers using Synchronous Load   ; 76    ;
+; Number of registers using Asynchronous Clear ; 207   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 283   ;
+; Number of registers using Clock Enable       ; 408   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -418,55 +447,44 @@ Encoding Type:  One-Hot
 +-----------------------------------------------------------------+---------+
 ; Inverted Register                                               ; Fan out ;
 +-----------------------------------------------------------------+---------+
+; external_SDRAM:SDRAM|sd_dqm[0]                                  ; 3       ;
 ; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[0] ; 1       ;
-; microcore:uCore|microcontrol:uCntrl|r.chain                     ; 44      ;
-; microcore:uCore|microcontrol:uCntrl|r.rsp[0]                    ; 10      ;
-; microcore:uCore|microcontrol:uCntrl|r.rsp[4]                    ; 10      ;
-; microcore:uCore|microcontrol:uCntrl|r.rsp[3]                    ; 11      ;
-; microcore:uCore|microcontrol:uCntrl|r.rsp[2]                    ; 10      ;
-; microcore:uCore|microcontrol:uCntrl|r.rsp[1]                    ; 11      ;
-; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_empty_i  ; 16      ;
-; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[1] ; 1       ;
-; synchronize_n:synch_interrupt|temp[1]                           ; 3       ;
-; microcore:uCore|microcontrol:uCntrl|r.rsp[6]                    ; 10      ;
-; microcore:uCore|microcontrol:uCntrl|r.rsp[5]                    ; 11      ;
+; microcore:uCore|microcontrol:uCntrl|r.chain                     ; 71      ;
+; microcore:uCore|microcontrol:uCntrl|r.rsp[0]                    ; 16      ;
 ; microcore:uCore|microcontrol:uCntrl|r.dsp[0]                    ; 4       ;
-; microcore:uCore|debugger:debug_unit|out_ctr                     ; 4       ;
-; microcore:uCore|microcontrol:uCntrl|r.rsp[9]                    ; 3       ;
-; microcore:uCore|microcontrol:uCntrl|r.rsp[8]                    ; 3       ;
-; microcore:uCore|microcontrol:uCntrl|r.rsp[7]                    ; 3       ;
-; synchronize:synch_reset|temp[0]                                 ; 1       ;
-; microcore:uCore|microcontrol:uCntrl|r.dsp[1]                    ; 4       ;
-; microcore:uCore|microcontrol:uCntrl|r.dsp[2]                    ; 4       ;
-; microcore:uCore|microcontrol:uCntrl|r.dsp[3]                    ; 4       ;
-; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[2] ; 1       ;
-; microcore:uCore|microcontrol:uCntrl|r.dsp[4]                    ; 4       ;
-; microcore:uCore|microcontrol:uCntrl|r.dsp[6]                    ; 4       ;
-; microcore:uCore|microcontrol:uCntrl|r.dsp[7]                    ; 3       ;
-; microcore:uCore|microcontrol:uCntrl|r.dsp[5]                    ; 4       ;
-; microcore:uCore|microcontrol:uCntrl|r.dsp[8]                    ; 3       ;
+; synchronize_n:synch_interrupt|temp[1]                           ; 4       ;
 ; microcore:uCore|microcontrol:uCntrl|r.dsp[9]                    ; 3       ;
-; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[3] ; 1       ;
+; microcore:uCore|microcontrol:uCntrl|r.rsp[9]                    ; 3       ;
+; microcore:uCore|microcontrol:uCntrl|r.dsp[8]                    ; 3       ;
+; microcore:uCore|microcontrol:uCntrl|r.rsp[8]                    ; 3       ;
+; microcore:uCore|microcontrol:uCntrl|r.dsp[7]                    ; 3       ;
+; microcore:uCore|microcontrol:uCntrl|r.rsp[7]                    ; 3       ;
+; microcore:uCore|microcontrol:uCntrl|r.dsp[6]                    ; 4       ;
+; microcore:uCore|microcontrol:uCntrl|r.rsp[6]                    ; 16      ;
+; microcore:uCore|microcontrol:uCntrl|r.dsp[5]                    ; 4       ;
+; microcore:uCore|microcontrol:uCntrl|r.rsp[5]                    ; 16      ;
+; microcore:uCore|microcontrol:uCntrl|r.dsp[4]                    ; 4       ;
+; microcore:uCore|microcontrol:uCntrl|r.rsp[4]                    ; 16      ;
+; microcore:uCore|microcontrol:uCntrl|r.rsp[3]                    ; 16      ;
+; microcore:uCore|microcontrol:uCntrl|r.dsp[3]                    ; 4       ;
+; microcore:uCore|microcontrol:uCntrl|r.dsp[2]                    ; 4       ;
+; microcore:uCore|microcontrol:uCntrl|r.rsp[2]                    ; 16      ;
+; microcore:uCore|microcontrol:uCntrl|r.rsp[1]                    ; 16      ;
+; microcore:uCore|microcontrol:uCntrl|r.dsp[1]                    ; 4       ;
+; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_empty_i  ; 17      ;
+; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[1] ; 1       ;
+; microcore:uCore|debugger:debug_unit|out_ctr                     ; 6       ;
+; synchronize:synch_reset|temp[0]                                 ; 1       ;
+; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[2] ; 1       ;
 ; synchronize:synch_dsu_rxd|temp[0]                               ; 1       ;
+; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[3] ; 1       ;
 ; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[4] ; 1       ;
 ; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[5] ; 1       ;
 ; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[6] ; 1       ;
 ; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[7] ; 1       ;
 ; microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[8] ; 1       ;
-; Total number of inverted registers = 35                         ;         ;
+; Total number of inverted registers = 36                         ;         ;
 +-----------------------------------------------------------------+---------+
-
-
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Registers Packed Into Inferred Megafunctions                                                                                                                                                   ;
-+-------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+------+
-; Register Name                                                                                   ; Megafunction                                                                          ; Type ;
-+-------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+------+
-; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|addr_d[0..12]         ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ; RAM  ;
-; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|addr_d[0..9]                        ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0                 ; RAM  ;
-; uDatacache:internal_data_mem|internal_dpram:\make_syn_mem:internal_data_mem|ram[0..8191][0..15] ; uDatacache:internal_data_mem|internal_dpram:\make_syn_mem:internal_data_mem|ram_rtl_0 ; RAM  ;
-; uDatacache:internal_data_mem|internal_dpram:\make_syn_mem:internal_data_mem|addra_d[0..12]      ; uDatacache:internal_data_mem|internal_dpram:\make_syn_mem:internal_data_mem|ram_rtl_0 ; RAM  ;
-+-------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -474,6 +492,41 @@ Encoding Type:  One-Hot
 +--------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+
 ; Register Name                                                                                    ; RAM Name                                                                              ;
 +--------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[0]    ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[1]    ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[2]    ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[3]    ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[4]    ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[5]    ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[6]    ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[7]    ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[8]    ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[9]    ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[10]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[11]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[12]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[13]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[14]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[15]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[16]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[17]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[18]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[19]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[20]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[21]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[22]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[23]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[24]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[25]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[26]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[27]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[28]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[29]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[30]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[31]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[32]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[33]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0_bypass[34]   ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ;
 ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[0]                  ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0                 ;
 ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[1]                  ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0                 ;
 ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0_bypass[2]                  ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0                 ;
@@ -557,60 +610,88 @@ Encoding Type:  One-Hot
 +--------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+
 
 
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Packed Into Inferred Megafunctions                                                                                                                                                   ;
++-------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+------+
+; Register Name                                                                                   ; Megafunction                                                                          ; Type ;
++-------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+------+
+; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|addr_d[0..12]         ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0   ; RAM  ;
+; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|addr_d[0..9]                        ; microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0                 ; RAM  ;
+; uDatacache:internal_data_mem|internal_dpram:\make_syn_mem:internal_data_mem|ram[0..8191][0..15] ; uDatacache:internal_data_mem|internal_dpram:\make_syn_mem:internal_data_mem|ram_rtl_0 ; RAM  ;
+; uDatacache:internal_data_mem|internal_dpram:\make_syn_mem:internal_data_mem|addra_d[0..12]      ; uDatacache:internal_data_mem|internal_dpram:\make_syn_mem:internal_data_mem|ram_rtl_0 ; RAM  ;
++-------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+------+
+
+
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                    ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                          ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------+
-; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|addr_ctr[11]                              ;
-; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|addr_ptr[2]                               ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|addr_ptr[10]                              ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|addr_ctr[10]                              ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |fpga|cycle_ctr[1]                                                                  ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.data[2]                                 ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|rx_sync[0]                ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_buf[0]                 ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_buf[4]                 ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |fpga|external_SDRAM:SDRAM|ref_ctr[0]                                               ;
 ; 17:1               ; 3 bits    ; 33 LEs        ; 3 LEs                ; 30 LEs                 ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_ctr[3]                 ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|rx_shift[1]               ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|in_reg[11]                                ;
-; 7:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|out_reg[6]                                ;
-; 7:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|out_reg[14]                               ;
-; 8:1                ; 3 bits    ; 15 LEs        ; 6 LEs                ; 9 LEs                  ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|rx_ctr[3]                 ;
-; 131:1              ; 3 bits    ; 261 LEs       ; 3 LEs                ; 258 LEs                ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.status[7]                               ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|rx_shift[5]               ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |fpga|external_SDRAM:SDRAM|refresh_ctr[4]                                           ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|in_reg[10]                                ;
+; 7:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|out_reg[5]                                ;
+; 7:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|out_reg[11]                               ;
+; 8:1                ; 3 bits    ; 15 LEs        ; 6 LEs                ; 9 LEs                  ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|rx_ctr[1]                 ;
+; 8:1                ; 9 bits    ; 45 LEs        ; 27 LEs               ; 18 LEs                 ; Yes        ; |fpga|external_SDRAM:SDRAM|wait_ctr[13]                                             ;
+; 9:1                ; 6 bits    ; 36 LEs        ; 18 LEs               ; 18 LEs                 ; Yes        ; |fpga|external_SDRAM:SDRAM|wait_ctr[5]                                              ;
+; 132:1              ; 2 bits    ; 176 LEs       ; 4 LEs                ; 172 LEs                ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.status[8]                               ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.status[5]                               ;
-; 261:1              ; 7 bits    ; 1218 LEs      ; 28 LEs               ; 1190 LEs               ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.inst[0]                                 ;
-; 132:1              ; 13 bits   ; 1144 LEs      ; 26 LEs               ; 1118 LEs               ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.pc[4]                                   ;
+; 262:1              ; 6 bits    ; 1044 LEs      ; 42 LEs               ; 1002 LEs               ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.inst[2]                                 ;
 ; 10:1               ; 3 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.tor[13]                                 ;
-; 10:1               ; 13 bits   ; 78 LEs        ; 39 LEs               ; 39 LEs                 ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.tor[3]                                  ;
-; 61:1               ; 5 bits    ; 200 LEs       ; 65 LEs               ; 135 LEs                ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.tos[3]                                  ;
-; 64:1               ; 5 bits    ; 210 LEs       ; 70 LEs               ; 140 LEs                ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.tos[10]                                 ;
-; 64:1               ; 3 bits    ; 126 LEs       ; 42 LEs               ; 84 LEs                 ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.tos[9]                                  ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 0 LEs                ; 6 LEs                  ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.rsp[9]                                  ;
-; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[1]               ;
-; 125:1              ; 6 bits    ; 498 LEs       ; 48 LEs               ; 450 LEs                ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.nos[12]                                 ;
-; 125:1              ; 2 bits    ; 166 LEs       ; 20 LEs               ; 146 LEs                ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.nos[9]                                  ;
-; 125:1              ; 3 bits    ; 249 LEs       ; 30 LEs               ; 219 LEs                ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.nos[6]                                  ;
-; 125:1              ; 2 bits    ; 166 LEs       ; 20 LEs               ; 146 LEs                ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.nos[1]                                  ;
-; 31:1               ; 7 bits    ; 140 LEs       ; 56 LEs               ; 84 LEs                 ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.rsp[4]                                  ;
-; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|Mux167                                    ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|progmem.write                             ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|Mux119                                    ;
-; 3:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|ds_wdata[12]                              ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|fifo:rx_fifo|read_addr[0] ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|multiplier[7]                             ;
-; 46:1               ; 8 bits    ; 240 LEs       ; 240 LEs              ; 0 LEs                  ; No         ; |fpga|microcore:uCore|prog_rdata[3]                                                 ;
-; 10:1               ; 7 bits    ; 42 LEs        ; 28 LEs               ; 14 LEs                 ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|Mux168                                    ;
-; 129:1              ; 3 bits    ; 258 LEs       ; 6 LEs                ; 252 LEs                ; No         ; |fpga|microcore:uCore|memory.addr[7]                                                ;
-; 130:1              ; 3 bits    ; 258 LEs       ; 6 LEs                ; 252 LEs                ; No         ; |fpga|microcore:uCore|memory.addr[10]                                               ;
-; 7:1                ; 16 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; No         ; |fpga|microcore:uCore|memory.wdata[5]                                               ;
-; 7:1                ; 4 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |fpga|microcore:uCore|debugger:debug_unit|Selector36                                ;
-; 112:1              ; 7 bits    ; 518 LEs       ; 14 LEs               ; 504 LEs                ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|ds_addr[1]                                ;
-; 12:1               ; 8 bits    ; 64 LEs        ; 24 LEs               ; 40 LEs                 ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|progmem.addr[2]                           ;
-; 12:1               ; 2 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|progmem.addr[6]                           ;
-; 20:1               ; 7 bits    ; 91 LEs        ; 70 LEs               ; 21 LEs                 ; No         ; |fpga|microcore:uCore|memory.addr[6]                                                ;
-; 13:1               ; 2 bits    ; 16 LEs        ; 10 LEs               ; 6 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|progmem.addr[4]                           ;
-; 132:1              ; 6 bits    ; 528 LEs       ; 24 LEs               ; 504 LEs                ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|ladd_y[11]                                ;
-; 132:1              ; 7 bits    ; 616 LEs       ; 28 LEs               ; 588 LEs                ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|ladd_y[3]                                 ;
-; 132:1              ; 2 bits    ; 176 LEs       ; 8 LEs                ; 168 LEs                ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|ladd_y[13]                                ;
-; 266:1              ; 4 bits    ; 708 LEs       ; 16 LEs               ; 692 LEs                ; No         ; |fpga|microcore:uCore|debugger:debug_unit|Selector7                                 ;
-; 269:1              ; 2 bits    ; 358 LEs       ; 4 LEs                ; 354 LEs                ; No         ; |fpga|microcore:uCore|debugger:debug_unit|Selector4                                 ;
-; 21:1               ; 15 bits   ; 210 LEs       ; 30 LEs               ; 180 LEs                ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|ladd_x[1]                                 ;
+; 10:1               ; 13 bits   ; 78 LEs        ; 39 LEs               ; 39 LEs                 ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.tor[10]                                 ;
+; 133:1              ; 13 bits   ; 1144 LEs      ; 26 LEs               ; 1118 LEs               ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.pc[7]                                   ;
+; 80:1               ; 5 bits    ; 265 LEs       ; 85 LEs               ; 180 LEs                ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.tos[3]                                  ;
+; 83:1               ; 5 bits    ; 275 LEs       ; 90 LEs               ; 185 LEs                ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.tos[12]                                 ;
+; 83:1               ; 3 bits    ; 165 LEs       ; 54 LEs               ; 111 LEs                ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.tos[7]                                  ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 0 LEs                ; 6 LEs                  ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.rsp[8]                                  ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|tx_shift[3]               ;
+; 27:1               ; 7 bits    ; 126 LEs       ; 56 LEs               ; 70 LEs                 ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.rsp[2]                                  ;
+; 54:1               ; 8 bits    ; 288 LEs       ; 64 LEs               ; 224 LEs                ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.nos[13]                                 ;
+; 54:1               ; 6 bits    ; 216 LEs       ; 48 LEs               ; 168 LEs                ; Yes        ; |fpga|microcore:uCore|microcontrol:uCntrl|r.nos[3]                                  ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|Mux108                                    ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|ladd_y[16]                                ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|Mux207                                    ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |fpga|external_SDRAM:SDRAM|sd_a                                                     ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|Mux150                                    ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |fpga|uBus.rdata[6]                                                                 ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |fpga|microcore:uCore|debugger:debug_unit|uart:debug_uart|fifo:rx_fifo|read_addr[1] ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|Mux108                                    ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|Mux16                                     ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|multiplier[14]                            ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|Mux21                                     ;
+; 7:1                ; 7 bits    ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|Mux108                                    ;
+; 8:1                ; 6 bits    ; 30 LEs        ; 24 LEs               ; 6 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|Mux26                                     ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |fpga|external_SDRAM:SDRAM|sd_state                                                 ;
+; 47:1               ; 8 bits    ; 248 LEs       ; 240 LEs              ; 8 LEs                  ; No         ; |fpga|microcore:uCore|prog_rdata[0]                                                 ;
+; 125:1              ; 3 bits    ; 249 LEs       ; 3 LEs                ; 246 LEs                ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|datamem.addr[15]                          ;
+; 125:1              ; 3 bits    ; 249 LEs       ; 6 LEs                ; 243 LEs                ; No         ; |fpga|microcore:uCore|memory.addr[8]                                                ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|r_in                                      ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|r_in                                      ;
+; 126:1              ; 3 bits    ; 252 LEs       ; 6 LEs                ; 246 LEs                ; No         ; |fpga|microcore:uCore|memory.addr[12]                                               ;
+; 14:1               ; 15 bits   ; 135 LEs       ; 30 LEs               ; 105 LEs                ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|ds_wdata[6]                               ;
+; 8:1                ; 4 bits    ; 20 LEs        ; 16 LEs               ; 4 LEs                  ; No         ; |fpga|microcore:uCore|debugger:debug_unit|out_state                                 ;
+; 10:1               ; 16 bits   ; 96 LEs        ; 32 LEs               ; 64 LEs                 ; No         ; |fpga|microcore:uCore|memory.wdata[5]                                               ;
+; 100:1              ; 7 bits    ; 462 LEs       ; 14 LEs               ; 448 LEs                ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|ds_addr[4]                                ;
+; 18:1               ; 7 bits    ; 84 LEs        ; 63 LEs               ; 21 LEs                 ; No         ; |fpga|microcore:uCore|memory.addr[4]                                                ;
+; 14:1               ; 8 bits    ; 72 LEs        ; 24 LEs               ; 48 LEs                 ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|progmem.addr[9]                           ;
+; 14:1               ; 2 bits    ; 18 LEs        ; 8 LEs                ; 10 LEs                 ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|progmem.addr[7]                           ;
+; 15:1               ; 2 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|progmem.addr[4]                           ;
+; 267:1              ; 4 bits    ; 712 LEs       ; 16 LEs               ; 696 LEs                ; No         ; |fpga|microcore:uCore|debugger:debug_unit|in_state                                  ;
+; 270:1              ; 2 bits    ; 360 LEs       ; 4 LEs                ; 356 LEs                ; No         ; |fpga|microcore:uCore|debugger:debug_unit|in_state                                  ;
+; 129:1              ; 2 bits    ; 172 LEs       ; 8 LEs                ; 164 LEs                ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|ladd_y[0]                                 ;
+; 129:1              ; 6 bits    ; 516 LEs       ; 24 LEs               ; 492 LEs                ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|ladd_y[10]                                ;
+; 129:1              ; 5 bits    ; 430 LEs       ; 25 LEs               ; 405 LEs                ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|ladd_y[6]                                 ;
+; 39:1               ; 11 bits   ; 286 LEs       ; 66 LEs               ; 220 LEs                ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|ladd_x[4]                                 ;
+; 39:1               ; 4 bits    ; 104 LEs       ; 24 LEs               ; 80 LEs                 ; No         ; |fpga|microcore:uCore|microcontrol:uCntrl|ladd_x[0]                                 ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------+
 
 
@@ -624,7 +705,7 @@ Encoding Type:  One-Hot
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Source assignments for microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0|altsyncram_2h41:auto_generated ;
+; Source assignments for microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0|altsyncram_v2e1:auto_generated ;
 +---------------------------------+--------------------+------+----------------------------------------------------------------------------------------+
 ; Assignment                      ; Value              ; From ; To                                                                                     ;
 +---------------------------------+--------------------+------+----------------------------------------------------------------------------------------+
@@ -648,6 +729,380 @@ Encoding Type:  One-Hot
 +---------------------------------+--------------------+------+------------------------------------------------------------------------------------------+
 ; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                                        ;
 +---------------------------------+--------------------+------+------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: PLL:\syn_clock:pll_100MHz|altpll:altpll_component ;
++-------------------------------+-----------------------+----------------------------------------+
+; Parameter Name                ; Value                 ; Type                                   ;
++-------------------------------+-----------------------+----------------------------------------+
+; OPERATION_MODE                ; NORMAL                ; Untyped                                ;
+; PLL_TYPE                      ; AUTO                  ; Untyped                                ;
+; LPM_HINT                      ; CBX_MODULE_PREFIX=PLL ; Untyped                                ;
+; QUALIFY_CONF_DONE             ; OFF                   ; Untyped                                ;
+; COMPENSATE_CLOCK              ; CLK0                  ; Untyped                                ;
+; SCAN_CHAIN                    ; LONG                  ; Untyped                                ;
+; PRIMARY_CLOCK                 ; INCLK0                ; Untyped                                ;
+; INCLK0_INPUT_FREQUENCY        ; 20000                 ; Signed Integer                         ;
+; INCLK1_INPUT_FREQUENCY        ; 0                     ; Untyped                                ;
+; GATE_LOCK_SIGNAL              ; NO                    ; Untyped                                ;
+; GATE_LOCK_COUNTER             ; 0                     ; Untyped                                ;
+; LOCK_HIGH                     ; 1                     ; Untyped                                ;
+; LOCK_LOW                      ; 1                     ; Untyped                                ;
+; VALID_LOCK_MULTIPLIER         ; 1                     ; Untyped                                ;
+; INVALID_LOCK_MULTIPLIER       ; 5                     ; Untyped                                ;
+; SWITCH_OVER_ON_LOSSCLK        ; OFF                   ; Untyped                                ;
+; SWITCH_OVER_ON_GATED_LOCK     ; OFF                   ; Untyped                                ;
+; ENABLE_SWITCH_OVER_COUNTER    ; OFF                   ; Untyped                                ;
+; SKIP_VCO                      ; OFF                   ; Untyped                                ;
+; SWITCH_OVER_COUNTER           ; 0                     ; Untyped                                ;
+; SWITCH_OVER_TYPE              ; AUTO                  ; Untyped                                ;
+; FEEDBACK_SOURCE               ; EXTCLK0               ; Untyped                                ;
+; BANDWIDTH                     ; 0                     ; Untyped                                ;
+; BANDWIDTH_TYPE                ; MEDIUM                ; Untyped                                ;
+; SPREAD_FREQUENCY              ; 0                     ; Untyped                                ;
+; DOWN_SPREAD                   ; 0                     ; Untyped                                ;
+; SELF_RESET_ON_GATED_LOSS_LOCK ; OFF                   ; Untyped                                ;
+; SELF_RESET_ON_LOSS_LOCK       ; OFF                   ; Untyped                                ;
+; CLK9_MULTIPLY_BY              ; 0                     ; Untyped                                ;
+; CLK8_MULTIPLY_BY              ; 0                     ; Untyped                                ;
+; CLK7_MULTIPLY_BY              ; 0                     ; Untyped                                ;
+; CLK6_MULTIPLY_BY              ; 0                     ; Untyped                                ;
+; CLK5_MULTIPLY_BY              ; 1                     ; Untyped                                ;
+; CLK4_MULTIPLY_BY              ; 1                     ; Untyped                                ;
+; CLK3_MULTIPLY_BY              ; 1                     ; Untyped                                ;
+; CLK2_MULTIPLY_BY              ; 1                     ; Untyped                                ;
+; CLK1_MULTIPLY_BY              ; 1                     ; Untyped                                ;
+; CLK0_MULTIPLY_BY              ; 2                     ; Signed Integer                         ;
+; CLK9_DIVIDE_BY                ; 0                     ; Untyped                                ;
+; CLK8_DIVIDE_BY                ; 0                     ; Untyped                                ;
+; CLK7_DIVIDE_BY                ; 0                     ; Untyped                                ;
+; CLK6_DIVIDE_BY                ; 0                     ; Untyped                                ;
+; CLK5_DIVIDE_BY                ; 1                     ; Untyped                                ;
+; CLK4_DIVIDE_BY                ; 1                     ; Untyped                                ;
+; CLK3_DIVIDE_BY                ; 1                     ; Untyped                                ;
+; CLK2_DIVIDE_BY                ; 1                     ; Untyped                                ;
+; CLK1_DIVIDE_BY                ; 1                     ; Untyped                                ;
+; CLK0_DIVIDE_BY                ; 1                     ; Signed Integer                         ;
+; CLK9_PHASE_SHIFT              ; 0                     ; Untyped                                ;
+; CLK8_PHASE_SHIFT              ; 0                     ; Untyped                                ;
+; CLK7_PHASE_SHIFT              ; 0                     ; Untyped                                ;
+; CLK6_PHASE_SHIFT              ; 0                     ; Untyped                                ;
+; CLK5_PHASE_SHIFT              ; 0                     ; Untyped                                ;
+; CLK4_PHASE_SHIFT              ; 0                     ; Untyped                                ;
+; CLK3_PHASE_SHIFT              ; 0                     ; Untyped                                ;
+; CLK2_PHASE_SHIFT              ; 0                     ; Untyped                                ;
+; CLK1_PHASE_SHIFT              ; 0                     ; Untyped                                ;
+; CLK0_PHASE_SHIFT              ; 0                     ; Untyped                                ;
+; CLK5_TIME_DELAY               ; 0                     ; Untyped                                ;
+; CLK4_TIME_DELAY               ; 0                     ; Untyped                                ;
+; CLK3_TIME_DELAY               ; 0                     ; Untyped                                ;
+; CLK2_TIME_DELAY               ; 0                     ; Untyped                                ;
+; CLK1_TIME_DELAY               ; 0                     ; Untyped                                ;
+; CLK0_TIME_DELAY               ; 0                     ; Untyped                                ;
+; CLK9_DUTY_CYCLE               ; 50                    ; Untyped                                ;
+; CLK8_DUTY_CYCLE               ; 50                    ; Untyped                                ;
+; CLK7_DUTY_CYCLE               ; 50                    ; Untyped                                ;
+; CLK6_DUTY_CYCLE               ; 50                    ; Untyped                                ;
+; CLK5_DUTY_CYCLE               ; 50                    ; Untyped                                ;
+; CLK4_DUTY_CYCLE               ; 50                    ; Untyped                                ;
+; CLK3_DUTY_CYCLE               ; 50                    ; Untyped                                ;
+; CLK2_DUTY_CYCLE               ; 50                    ; Untyped                                ;
+; CLK1_DUTY_CYCLE               ; 50                    ; Untyped                                ;
+; CLK0_DUTY_CYCLE               ; 50                    ; Signed Integer                         ;
+; CLK9_USE_EVEN_COUNTER_MODE    ; OFF                   ; Untyped                                ;
+; CLK8_USE_EVEN_COUNTER_MODE    ; OFF                   ; Untyped                                ;
+; CLK7_USE_EVEN_COUNTER_MODE    ; OFF                   ; Untyped                                ;
+; CLK6_USE_EVEN_COUNTER_MODE    ; OFF                   ; Untyped                                ;
+; CLK5_USE_EVEN_COUNTER_MODE    ; OFF                   ; Untyped                                ;
+; CLK4_USE_EVEN_COUNTER_MODE    ; OFF                   ; Untyped                                ;
+; CLK3_USE_EVEN_COUNTER_MODE    ; OFF                   ; Untyped                                ;
+; CLK2_USE_EVEN_COUNTER_MODE    ; OFF                   ; Untyped                                ;
+; CLK1_USE_EVEN_COUNTER_MODE    ; OFF                   ; Untyped                                ;
+; CLK0_USE_EVEN_COUNTER_MODE    ; OFF                   ; Untyped                                ;
+; CLK9_USE_EVEN_COUNTER_VALUE   ; OFF                   ; Untyped                                ;
+; CLK8_USE_EVEN_COUNTER_VALUE   ; OFF                   ; Untyped                                ;
+; CLK7_USE_EVEN_COUNTER_VALUE   ; OFF                   ; Untyped                                ;
+; CLK6_USE_EVEN_COUNTER_VALUE   ; OFF                   ; Untyped                                ;
+; CLK5_USE_EVEN_COUNTER_VALUE   ; OFF                   ; Untyped                                ;
+; CLK4_USE_EVEN_COUNTER_VALUE   ; OFF                   ; Untyped                                ;
+; CLK3_USE_EVEN_COUNTER_VALUE   ; OFF                   ; Untyped                                ;
+; CLK2_USE_EVEN_COUNTER_VALUE   ; OFF                   ; Untyped                                ;
+; CLK1_USE_EVEN_COUNTER_VALUE   ; OFF                   ; Untyped                                ;
+; CLK0_USE_EVEN_COUNTER_VALUE   ; OFF                   ; Untyped                                ;
+; LOCK_WINDOW_UI                ;  0.05                 ; Untyped                                ;
+; LOCK_WINDOW_UI_BITS           ; UNUSED                ; Untyped                                ;
+; VCO_RANGE_DETECTOR_LOW_BITS   ; UNUSED                ; Untyped                                ;
+; VCO_RANGE_DETECTOR_HIGH_BITS  ; UNUSED                ; Untyped                                ;
+; DPA_MULTIPLY_BY               ; 0                     ; Untyped                                ;
+; DPA_DIVIDE_BY                 ; 1                     ; Untyped                                ;
+; DPA_DIVIDER                   ; 0                     ; Untyped                                ;
+; EXTCLK3_MULTIPLY_BY           ; 1                     ; Untyped                                ;
+; EXTCLK2_MULTIPLY_BY           ; 1                     ; Untyped                                ;
+; EXTCLK1_MULTIPLY_BY           ; 1                     ; Untyped                                ;
+; EXTCLK0_MULTIPLY_BY           ; 1                     ; Untyped                                ;
+; EXTCLK3_DIVIDE_BY             ; 1                     ; Untyped                                ;
+; EXTCLK2_DIVIDE_BY             ; 1                     ; Untyped                                ;
+; EXTCLK1_DIVIDE_BY             ; 1                     ; Untyped                                ;
+; EXTCLK0_DIVIDE_BY             ; 1                     ; Untyped                                ;
+; EXTCLK3_PHASE_SHIFT           ; 0                     ; Untyped                                ;
+; EXTCLK2_PHASE_SHIFT           ; 0                     ; Untyped                                ;
+; EXTCLK1_PHASE_SHIFT           ; 0                     ; Untyped                                ;
+; EXTCLK0_PHASE_SHIFT           ; 0                     ; Untyped                                ;
+; EXTCLK3_TIME_DELAY            ; 0                     ; Untyped                                ;
+; EXTCLK2_TIME_DELAY            ; 0                     ; Untyped                                ;
+; EXTCLK1_TIME_DELAY            ; 0                     ; Untyped                                ;
+; EXTCLK0_TIME_DELAY            ; 0                     ; Untyped                                ;
+; EXTCLK3_DUTY_CYCLE            ; 50                    ; Untyped                                ;
+; EXTCLK2_DUTY_CYCLE            ; 50                    ; Untyped                                ;
+; EXTCLK1_DUTY_CYCLE            ; 50                    ; Untyped                                ;
+; EXTCLK0_DUTY_CYCLE            ; 50                    ; Untyped                                ;
+; VCO_MULTIPLY_BY               ; 0                     ; Untyped                                ;
+; VCO_DIVIDE_BY                 ; 0                     ; Untyped                                ;
+; SCLKOUT0_PHASE_SHIFT          ; 0                     ; Untyped                                ;
+; SCLKOUT1_PHASE_SHIFT          ; 0                     ; Untyped                                ;
+; VCO_MIN                       ; 0                     ; Untyped                                ;
+; VCO_MAX                       ; 0                     ; Untyped                                ;
+; VCO_CENTER                    ; 0                     ; Untyped                                ;
+; PFD_MIN                       ; 0                     ; Untyped                                ;
+; PFD_MAX                       ; 0                     ; Untyped                                ;
+; M_INITIAL                     ; 0                     ; Untyped                                ;
+; M                             ; 0                     ; Untyped                                ;
+; N                             ; 1                     ; Untyped                                ;
+; M2                            ; 1                     ; Untyped                                ;
+; N2                            ; 1                     ; Untyped                                ;
+; SS                            ; 1                     ; Untyped                                ;
+; C0_HIGH                       ; 0                     ; Untyped                                ;
+; C1_HIGH                       ; 0                     ; Untyped                                ;
+; C2_HIGH                       ; 0                     ; Untyped                                ;
+; C3_HIGH                       ; 0                     ; Untyped                                ;
+; C4_HIGH                       ; 0                     ; Untyped                                ;
+; C5_HIGH                       ; 0                     ; Untyped                                ;
+; C6_HIGH                       ; 0                     ; Untyped                                ;
+; C7_HIGH                       ; 0                     ; Untyped                                ;
+; C8_HIGH                       ; 0                     ; Untyped                                ;
+; C9_HIGH                       ; 0                     ; Untyped                                ;
+; C0_LOW                        ; 0                     ; Untyped                                ;
+; C1_LOW                        ; 0                     ; Untyped                                ;
+; C2_LOW                        ; 0                     ; Untyped                                ;
+; C3_LOW                        ; 0                     ; Untyped                                ;
+; C4_LOW                        ; 0                     ; Untyped                                ;
+; C5_LOW                        ; 0                     ; Untyped                                ;
+; C6_LOW                        ; 0                     ; Untyped                                ;
+; C7_LOW                        ; 0                     ; Untyped                                ;
+; C8_LOW                        ; 0                     ; Untyped                                ;
+; C9_LOW                        ; 0                     ; Untyped                                ;
+; C0_INITIAL                    ; 0                     ; Untyped                                ;
+; C1_INITIAL                    ; 0                     ; Untyped                                ;
+; C2_INITIAL                    ; 0                     ; Untyped                                ;
+; C3_INITIAL                    ; 0                     ; Untyped                                ;
+; C4_INITIAL                    ; 0                     ; Untyped                                ;
+; C5_INITIAL                    ; 0                     ; Untyped                                ;
+; C6_INITIAL                    ; 0                     ; Untyped                                ;
+; C7_INITIAL                    ; 0                     ; Untyped                                ;
+; C8_INITIAL                    ; 0                     ; Untyped                                ;
+; C9_INITIAL                    ; 0                     ; Untyped                                ;
+; C0_MODE                       ; BYPASS                ; Untyped                                ;
+; C1_MODE                       ; BYPASS                ; Untyped                                ;
+; C2_MODE                       ; BYPASS                ; Untyped                                ;
+; C3_MODE                       ; BYPASS                ; Untyped                                ;
+; C4_MODE                       ; BYPASS                ; Untyped                                ;
+; C5_MODE                       ; BYPASS                ; Untyped                                ;
+; C6_MODE                       ; BYPASS                ; Untyped                                ;
+; C7_MODE                       ; BYPASS                ; Untyped                                ;
+; C8_MODE                       ; BYPASS                ; Untyped                                ;
+; C9_MODE                       ; BYPASS                ; Untyped                                ;
+; C0_PH                         ; 0                     ; Untyped                                ;
+; C1_PH                         ; 0                     ; Untyped                                ;
+; C2_PH                         ; 0                     ; Untyped                                ;
+; C3_PH                         ; 0                     ; Untyped                                ;
+; C4_PH                         ; 0                     ; Untyped                                ;
+; C5_PH                         ; 0                     ; Untyped                                ;
+; C6_PH                         ; 0                     ; Untyped                                ;
+; C7_PH                         ; 0                     ; Untyped                                ;
+; C8_PH                         ; 0                     ; Untyped                                ;
+; C9_PH                         ; 0                     ; Untyped                                ;
+; L0_HIGH                       ; 1                     ; Untyped                                ;
+; L1_HIGH                       ; 1                     ; Untyped                                ;
+; G0_HIGH                       ; 1                     ; Untyped                                ;
+; G1_HIGH                       ; 1                     ; Untyped                                ;
+; G2_HIGH                       ; 1                     ; Untyped                                ;
+; G3_HIGH                       ; 1                     ; Untyped                                ;
+; E0_HIGH                       ; 1                     ; Untyped                                ;
+; E1_HIGH                       ; 1                     ; Untyped                                ;
+; E2_HIGH                       ; 1                     ; Untyped                                ;
+; E3_HIGH                       ; 1                     ; Untyped                                ;
+; L0_LOW                        ; 1                     ; Untyped                                ;
+; L1_LOW                        ; 1                     ; Untyped                                ;
+; G0_LOW                        ; 1                     ; Untyped                                ;
+; G1_LOW                        ; 1                     ; Untyped                                ;
+; G2_LOW                        ; 1                     ; Untyped                                ;
+; G3_LOW                        ; 1                     ; Untyped                                ;
+; E0_LOW                        ; 1                     ; Untyped                                ;
+; E1_LOW                        ; 1                     ; Untyped                                ;
+; E2_LOW                        ; 1                     ; Untyped                                ;
+; E3_LOW                        ; 1                     ; Untyped                                ;
+; L0_INITIAL                    ; 1                     ; Untyped                                ;
+; L1_INITIAL                    ; 1                     ; Untyped                                ;
+; G0_INITIAL                    ; 1                     ; Untyped                                ;
+; G1_INITIAL                    ; 1                     ; Untyped                                ;
+; G2_INITIAL                    ; 1                     ; Untyped                                ;
+; G3_INITIAL                    ; 1                     ; Untyped                                ;
+; E0_INITIAL                    ; 1                     ; Untyped                                ;
+; E1_INITIAL                    ; 1                     ; Untyped                                ;
+; E2_INITIAL                    ; 1                     ; Untyped                                ;
+; E3_INITIAL                    ; 1                     ; Untyped                                ;
+; L0_MODE                       ; BYPASS                ; Untyped                                ;
+; L1_MODE                       ; BYPASS                ; Untyped                                ;
+; G0_MODE                       ; BYPASS                ; Untyped                                ;
+; G1_MODE                       ; BYPASS                ; Untyped                                ;
+; G2_MODE                       ; BYPASS                ; Untyped                                ;
+; G3_MODE                       ; BYPASS                ; Untyped                                ;
+; E0_MODE                       ; BYPASS                ; Untyped                                ;
+; E1_MODE                       ; BYPASS                ; Untyped                                ;
+; E2_MODE                       ; BYPASS                ; Untyped                                ;
+; E3_MODE                       ; BYPASS                ; Untyped                                ;
+; L0_PH                         ; 0                     ; Untyped                                ;
+; L1_PH                         ; 0                     ; Untyped                                ;
+; G0_PH                         ; 0                     ; Untyped                                ;
+; G1_PH                         ; 0                     ; Untyped                                ;
+; G2_PH                         ; 0                     ; Untyped                                ;
+; G3_PH                         ; 0                     ; Untyped                                ;
+; E0_PH                         ; 0                     ; Untyped                                ;
+; E1_PH                         ; 0                     ; Untyped                                ;
+; E2_PH                         ; 0                     ; Untyped                                ;
+; E3_PH                         ; 0                     ; Untyped                                ;
+; M_PH                          ; 0                     ; Untyped                                ;
+; C1_USE_CASC_IN                ; OFF                   ; Untyped                                ;
+; C2_USE_CASC_IN                ; OFF                   ; Untyped                                ;
+; C3_USE_CASC_IN                ; OFF                   ; Untyped                                ;
+; C4_USE_CASC_IN                ; OFF                   ; Untyped                                ;
+; C5_USE_CASC_IN                ; OFF                   ; Untyped                                ;
+; C6_USE_CASC_IN                ; OFF                   ; Untyped                                ;
+; C7_USE_CASC_IN                ; OFF                   ; Untyped                                ;
+; C8_USE_CASC_IN                ; OFF                   ; Untyped                                ;
+; C9_USE_CASC_IN                ; OFF                   ; Untyped                                ;
+; CLK0_COUNTER                  ; G0                    ; Untyped                                ;
+; CLK1_COUNTER                  ; G0                    ; Untyped                                ;
+; CLK2_COUNTER                  ; G0                    ; Untyped                                ;
+; CLK3_COUNTER                  ; G0                    ; Untyped                                ;
+; CLK4_COUNTER                  ; G0                    ; Untyped                                ;
+; CLK5_COUNTER                  ; G0                    ; Untyped                                ;
+; CLK6_COUNTER                  ; E0                    ; Untyped                                ;
+; CLK7_COUNTER                  ; E1                    ; Untyped                                ;
+; CLK8_COUNTER                  ; E2                    ; Untyped                                ;
+; CLK9_COUNTER                  ; E3                    ; Untyped                                ;
+; L0_TIME_DELAY                 ; 0                     ; Untyped                                ;
+; L1_TIME_DELAY                 ; 0                     ; Untyped                                ;
+; G0_TIME_DELAY                 ; 0                     ; Untyped                                ;
+; G1_TIME_DELAY                 ; 0                     ; Untyped                                ;
+; G2_TIME_DELAY                 ; 0                     ; Untyped                                ;
+; G3_TIME_DELAY                 ; 0                     ; Untyped                                ;
+; E0_TIME_DELAY                 ; 0                     ; Untyped                                ;
+; E1_TIME_DELAY                 ; 0                     ; Untyped                                ;
+; E2_TIME_DELAY                 ; 0                     ; Untyped                                ;
+; E3_TIME_DELAY                 ; 0                     ; Untyped                                ;
+; M_TIME_DELAY                  ; 0                     ; Untyped                                ;
+; N_TIME_DELAY                  ; 0                     ; Untyped                                ;
+; EXTCLK3_COUNTER               ; E3                    ; Untyped                                ;
+; EXTCLK2_COUNTER               ; E2                    ; Untyped                                ;
+; EXTCLK1_COUNTER               ; E1                    ; Untyped                                ;
+; EXTCLK0_COUNTER               ; E0                    ; Untyped                                ;
+; ENABLE0_COUNTER               ; L0                    ; Untyped                                ;
+; ENABLE1_COUNTER               ; L0                    ; Untyped                                ;
+; CHARGE_PUMP_CURRENT           ; 2                     ; Untyped                                ;
+; LOOP_FILTER_R                 ;  1.000000             ; Untyped                                ;
+; LOOP_FILTER_C                 ; 5                     ; Untyped                                ;
+; CHARGE_PUMP_CURRENT_BITS      ; 9999                  ; Untyped                                ;
+; LOOP_FILTER_R_BITS            ; 9999                  ; Untyped                                ;
+; LOOP_FILTER_C_BITS            ; 9999                  ; Untyped                                ;
+; VCO_POST_SCALE                ; 0                     ; Untyped                                ;
+; CLK2_OUTPUT_FREQUENCY         ; 0                     ; Untyped                                ;
+; CLK1_OUTPUT_FREQUENCY         ; 0                     ; Untyped                                ;
+; CLK0_OUTPUT_FREQUENCY         ; 0                     ; Untyped                                ;
+; INTENDED_DEVICE_FAMILY        ; Cyclone IV E          ; Untyped                                ;
+; PORT_CLKENA0                  ; PORT_UNUSED           ; Untyped                                ;
+; PORT_CLKENA1                  ; PORT_UNUSED           ; Untyped                                ;
+; PORT_CLKENA2                  ; PORT_UNUSED           ; Untyped                                ;
+; PORT_CLKENA3                  ; PORT_UNUSED           ; Untyped                                ;
+; PORT_CLKENA4                  ; PORT_UNUSED           ; Untyped                                ;
+; PORT_CLKENA5                  ; PORT_UNUSED           ; Untyped                                ;
+; PORT_EXTCLKENA0               ; PORT_CONNECTIVITY     ; Untyped                                ;
+; PORT_EXTCLKENA1               ; PORT_CONNECTIVITY     ; Untyped                                ;
+; PORT_EXTCLKENA2               ; PORT_CONNECTIVITY     ; Untyped                                ;
+; PORT_EXTCLKENA3               ; PORT_CONNECTIVITY     ; Untyped                                ;
+; PORT_EXTCLK0                  ; PORT_UNUSED           ; Untyped                                ;
+; PORT_EXTCLK1                  ; PORT_UNUSED           ; Untyped                                ;
+; PORT_EXTCLK2                  ; PORT_UNUSED           ; Untyped                                ;
+; PORT_EXTCLK3                  ; PORT_UNUSED           ; Untyped                                ;
+; PORT_CLKBAD0                  ; PORT_UNUSED           ; Untyped                                ;
+; PORT_CLKBAD1                  ; PORT_UNUSED           ; Untyped                                ;
+; PORT_CLK0                     ; PORT_USED             ; Untyped                                ;
+; PORT_CLK1                     ; PORT_UNUSED           ; Untyped                                ;
+; PORT_CLK2                     ; PORT_UNUSED           ; Untyped                                ;
+; PORT_CLK3                     ; PORT_UNUSED           ; Untyped                                ;
+; PORT_CLK4                     ; PORT_UNUSED           ; Untyped                                ;
+; PORT_CLK5                     ; PORT_UNUSED           ; Untyped                                ;
+; PORT_CLK6                     ; PORT_UNUSED           ; Untyped                                ;
+; PORT_CLK7                     ; PORT_UNUSED           ; Untyped                                ;
+; PORT_CLK8                     ; PORT_UNUSED           ; Untyped                                ;
+; PORT_CLK9                     ; PORT_UNUSED           ; Untyped                                ;
+; PORT_SCANDATA                 ; PORT_UNUSED           ; Untyped                                ;
+; PORT_SCANDATAOUT              ; PORT_UNUSED           ; Untyped                                ;
+; PORT_SCANDONE                 ; PORT_UNUSED           ; Untyped                                ;
+; PORT_SCLKOUT1                 ; PORT_CONNECTIVITY     ; Untyped                                ;
+; PORT_SCLKOUT0                 ; PORT_CONNECTIVITY     ; Untyped                                ;
+; PORT_ACTIVECLOCK              ; PORT_UNUSED           ; Untyped                                ;
+; PORT_CLKLOSS                  ; PORT_UNUSED           ; Untyped                                ;
+; PORT_INCLK1                   ; PORT_UNUSED           ; Untyped                                ;
+; PORT_INCLK0                   ; PORT_USED             ; Untyped                                ;
+; PORT_FBIN                     ; PORT_UNUSED           ; Untyped                                ;
+; PORT_PLLENA                   ; PORT_UNUSED           ; Untyped                                ;
+; PORT_CLKSWITCH                ; PORT_UNUSED           ; Untyped                                ;
+; PORT_ARESET                   ; PORT_UNUSED           ; Untyped                                ;
+; PORT_PFDENA                   ; PORT_UNUSED           ; Untyped                                ;
+; PORT_SCANCLK                  ; PORT_UNUSED           ; Untyped                                ;
+; PORT_SCANACLR                 ; PORT_UNUSED           ; Untyped                                ;
+; PORT_SCANREAD                 ; PORT_UNUSED           ; Untyped                                ;
+; PORT_SCANWRITE                ; PORT_UNUSED           ; Untyped                                ;
+; PORT_ENABLE0                  ; PORT_CONNECTIVITY     ; Untyped                                ;
+; PORT_ENABLE1                  ; PORT_CONNECTIVITY     ; Untyped                                ;
+; PORT_LOCKED                   ; PORT_USED             ; Untyped                                ;
+; PORT_CONFIGUPDATE             ; PORT_UNUSED           ; Untyped                                ;
+; PORT_FBOUT                    ; PORT_CONNECTIVITY     ; Untyped                                ;
+; PORT_PHASEDONE                ; PORT_UNUSED           ; Untyped                                ;
+; PORT_PHASESTEP                ; PORT_UNUSED           ; Untyped                                ;
+; PORT_PHASEUPDOWN              ; PORT_UNUSED           ; Untyped                                ;
+; PORT_SCANCLKENA               ; PORT_UNUSED           ; Untyped                                ;
+; PORT_PHASECOUNTERSELECT       ; PORT_UNUSED           ; Untyped                                ;
+; PORT_VCOOVERRANGE             ; PORT_CONNECTIVITY     ; Untyped                                ;
+; PORT_VCOUNDERRANGE            ; PORT_CONNECTIVITY     ; Untyped                                ;
+; M_TEST_SOURCE                 ; 5                     ; Untyped                                ;
+; C0_TEST_SOURCE                ; 5                     ; Untyped                                ;
+; C1_TEST_SOURCE                ; 5                     ; Untyped                                ;
+; C2_TEST_SOURCE                ; 5                     ; Untyped                                ;
+; C3_TEST_SOURCE                ; 5                     ; Untyped                                ;
+; C4_TEST_SOURCE                ; 5                     ; Untyped                                ;
+; C5_TEST_SOURCE                ; 5                     ; Untyped                                ;
+; C6_TEST_SOURCE                ; 5                     ; Untyped                                ;
+; C7_TEST_SOURCE                ; 5                     ; Untyped                                ;
+; C8_TEST_SOURCE                ; 5                     ; Untyped                                ;
+; C9_TEST_SOURCE                ; 5                     ; Untyped                                ;
+; CBXI_PARAMETER                ; PLL_altpll3           ; Untyped                                ;
+; VCO_FREQUENCY_CONTROL         ; AUTO                  ; Untyped                                ;
+; VCO_PHASE_SHIFT_STEP          ; 0                     ; Untyped                                ;
+; WIDTH_CLOCK                   ; 5                     ; Signed Integer                         ;
+; WIDTH_PHASECOUNTERSELECT      ; 4                     ; Untyped                                ;
+; USING_FBMIMICBIDIR_PORT       ; OFF                   ; Untyped                                ;
+; DEVICE_FAMILY                 ; Cyclone IV E          ; Untyped                                ;
+; SCAN_CHAIN_MIF_FILE           ; UNUSED                ; Untyped                                ;
+; SIM_GATE_LOCK_DEVICE_BEHAVIOR ; OFF                   ; Untyped                                ;
+; AUTO_CARRY_CHAINS             ; ON                    ; AUTO_CARRY                             ;
+; IGNORE_CARRY_BUFFERS          ; OFF                   ; IGNORE_CARRY                           ;
+; AUTO_CASCADE_CHAINS           ; ON                    ; AUTO_CASCADE                           ;
+; IGNORE_CASCADE_BUFFERS        ; OFF                   ; IGNORE_CASCADE                         ;
++-------------------------------+-----------------------+----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +------------------------------------------------------------------------------------------------------------------------+
@@ -724,7 +1179,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                                                        ;
 ; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                                                      ;
 ; WIDTH_BYTEENA                      ; 1                    ; Untyped                                                                             ;
-; OPERATION_MODE                     ; SINGLE_PORT          ; Untyped                                                                             ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                                                                             ;
 ; WIDTH_A                            ; 8                    ; Untyped                                                                             ;
 ; WIDTHAD_A                          ; 13                   ; Untyped                                                                             ;
 ; NUMWORDS_A                         ; 8192                 ; Untyped                                                                             ;
@@ -734,13 +1189,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                                                             ;
 ; INDATA_ACLR_A                      ; NONE                 ; Untyped                                                                             ;
 ; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                                                             ;
-; WIDTH_B                            ; 1                    ; Untyped                                                                             ;
-; WIDTHAD_B                          ; 1                    ; Untyped                                                                             ;
-; NUMWORDS_B                         ; 1                    ; Untyped                                                                             ;
+; WIDTH_B                            ; 8                    ; Untyped                                                                             ;
+; WIDTHAD_B                          ; 13                   ; Untyped                                                                             ;
+; NUMWORDS_B                         ; 8192                 ; Untyped                                                                             ;
 ; INDATA_REG_B                       ; CLOCK1               ; Untyped                                                                             ;
 ; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                                                             ;
 ; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                                                             ;
-; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                                                                             ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                                                                             ;
 ; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                                                             ;
 ; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                                                             ;
 ; INDATA_ACLR_B                      ; NONE                 ; Untyped                                                                             ;
@@ -769,7 +1224,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                                                             ;
 ; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                                                             ;
 ; DEVICE_FAMILY                      ; Cyclone IV E         ; Untyped                                                                             ;
-; CBXI_PARAMETER                     ; altsyncram_2h41      ; Untyped                                                                             ;
+; CBXI_PARAMETER                     ; altsyncram_v2e1      ; Untyped                                                                             ;
 +------------------------------------+----------------------+-------------------------------------------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -931,6 +1386,23 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++-----------------------------------------------------------------------------------+
+; altpll Parameter Settings by Entity Instance                                      ;
++-------------------------------+---------------------------------------------------+
+; Name                          ; Value                                             ;
++-------------------------------+---------------------------------------------------+
+; Number of entity instances    ; 1                                                 ;
+; Entity Instance               ; PLL:\syn_clock:pll_100MHz|altpll:altpll_component ;
+;     -- OPERATION_MODE         ; NORMAL                                            ;
+;     -- PLL_TYPE               ; AUTO                                              ;
+;     -- PRIMARY_CLOCK          ; INCLK0                                            ;
+;     -- INCLK0_INPUT_FREQUENCY ; 20000                                             ;
+;     -- INCLK1_INPUT_FREQUENCY ; 0                                                 ;
+;     -- VCO_MULTIPLY_BY        ; 0                                                 ;
+;     -- VCO_DIVIDE_BY          ; 0                                                 ;
++-------------------------------+---------------------------------------------------+
+
+
 +----------------------------------------------------------------------------------------------------------------------------------------------+
 ; altsyncram Parameter Settings by Entity Instance                                                                                             ;
 +-------------------------------------------+--------------------------------------------------------------------------------------------------+
@@ -938,13 +1410,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------------------------------------+--------------------------------------------------------------------------------------------------+
 ; Number of entity instances                ; 3                                                                                                ;
 ; Entity Instance                           ; microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0   ;
-;     -- OPERATION_MODE                     ; SINGLE_PORT                                                                                      ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                                                                        ;
 ;     -- WIDTH_A                            ; 8                                                                                                ;
 ;     -- NUMWORDS_A                         ; 8192                                                                                             ;
 ;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                                     ;
-;     -- WIDTH_B                            ; 1                                                                                                ;
-;     -- NUMWORDS_B                         ; 1                                                                                                ;
-;     -- ADDRESS_REG_B                      ; CLOCK1                                                                                           ;
+;     -- WIDTH_B                            ; 8                                                                                                ;
+;     -- NUMWORDS_B                         ; 8192                                                                                             ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                                                                           ;
 ;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                                     ;
 ;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                                             ;
 ;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                                        ;
@@ -993,26 +1465,46 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------------------------------+-----------------------------------------------------------------------------+
 
 
++------------------------------------------------------------+
+; Port Connectivity Checks: "external_SDRAM:SDRAM"           ;
++--------------------------+-------+----------+--------------+
+; Port                     ; Type  ; Severity ; Details      ;
++--------------------------+-------+----------+--------------+
+; ubus.sources[-1][15..10] ; Input ; Info     ; Stuck at GND ;
+; ubus.sources[-2][15..10] ; Input ; Info     ; Stuck at GND ;
+; ubus.sources[-3][15..10] ; Input ; Info     ; Stuck at GND ;
+; ubus.sources[-4][15..1]  ; Input ; Info     ; Stuck at GND ;
+; ubus.sources[-5][15..8]  ; Input ; Info     ; Stuck at GND ;
+; ubus.sources[-5][3]      ; Input ; Info     ; Stuck at GND ;
+; ubus.sources[-6][3..2]   ; Input ; Info     ; Stuck at VCC ;
+; ubus.sources[-6][15..11] ; Input ; Info     ; Stuck at GND ;
+; ubus.sources[-6][9..7]   ; Input ; Info     ; Stuck at GND ;
+; ubus.sources[-6][5..4]   ; Input ; Info     ; Stuck at GND ;
+; ubus.sources[-6][1..0]   ; Input ; Info     ; Stuck at GND ;
+; ubus.sources[-6][10]     ; Input ; Info     ; Stuck at VCC ;
+; ubus.sources[-6][6]      ; Input ; Info     ; Stuck at VCC ;
+; ubus.sources[-9][15..4]  ; Input ; Info     ; Stuck at GND ;
++--------------------------+-------+----------+--------------+
+
+
 +------------------------------------------------------------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "uDatacache:internal_data_mem"                                                                           ;
 +--------------------------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port                     ; Type   ; Severity ; Details                                                                             ;
 +--------------------------+--------+----------+-------------------------------------------------------------------------------------+
-; ubus.delay               ; Input  ; Info     ; Stuck at GND                                                                        ;
 ; ubus.sources[-1][15..10] ; Input  ; Info     ; Stuck at GND                                                                        ;
 ; ubus.sources[-2][15..10] ; Input  ; Info     ; Stuck at GND                                                                        ;
 ; ubus.sources[-3][15..10] ; Input  ; Info     ; Stuck at GND                                                                        ;
 ; ubus.sources[-4][15..1]  ; Input  ; Info     ; Stuck at GND                                                                        ;
 ; ubus.sources[-5][15..8]  ; Input  ; Info     ; Stuck at GND                                                                        ;
 ; ubus.sources[-5][3]      ; Input  ; Info     ; Stuck at GND                                                                        ;
-; ubus.sources[-6][10..8]  ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; ubus.sources[-6][1..0]   ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; ubus.sources[-6][15..14] ; Input  ; Info     ; Stuck at GND                                                                        ;
-; ubus.sources[-6][12..11] ; Input  ; Info     ; Stuck at GND                                                                        ;
-; ubus.sources[-6][7..5]   ; Input  ; Info     ; Stuck at GND                                                                        ;
-; ubus.sources[-6][3..2]   ; Input  ; Info     ; Stuck at GND                                                                        ;
-; ubus.sources[-6][13]     ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; ubus.sources[-6][4]      ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; ubus.sources[-6][3..2]   ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; ubus.sources[-6][15..11] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-6][9..7]   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-6][5..4]   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-6][1..0]   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-6][10]     ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; ubus.sources[-6][6]      ; Input  ; Info     ; Stuck at VCC                                                                        ;
 ; ubus.sources[-9][15..4]  ; Input  ; Info     ; Stuck at GND                                                                        ;
 ; dma_mem                  ; Input  ; Info     ; Stuck at GND                                                                        ;
 ; dma_rdata                ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
@@ -1066,21 +1558,19 @@ Note: In order to hide this table in the UI and the text report file, please set
 +--------------------------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port                     ; Type   ; Severity ; Details                                                                             ;
 +--------------------------+--------+----------+-------------------------------------------------------------------------------------+
-; ubus.delay               ; Input  ; Info     ; Stuck at GND                                                                        ;
 ; ubus.sources[-1][15..10] ; Input  ; Info     ; Stuck at GND                                                                        ;
 ; ubus.sources[-2][15..10] ; Input  ; Info     ; Stuck at GND                                                                        ;
 ; ubus.sources[-3][15..10] ; Input  ; Info     ; Stuck at GND                                                                        ;
 ; ubus.sources[-4][15..1]  ; Input  ; Info     ; Stuck at GND                                                                        ;
 ; ubus.sources[-5][15..8]  ; Input  ; Info     ; Stuck at GND                                                                        ;
 ; ubus.sources[-5][3]      ; Input  ; Info     ; Stuck at GND                                                                        ;
-; ubus.sources[-6][10..8]  ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; ubus.sources[-6][1..0]   ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; ubus.sources[-6][15..14] ; Input  ; Info     ; Stuck at GND                                                                        ;
-; ubus.sources[-6][12..11] ; Input  ; Info     ; Stuck at GND                                                                        ;
-; ubus.sources[-6][7..5]   ; Input  ; Info     ; Stuck at GND                                                                        ;
-; ubus.sources[-6][3..2]   ; Input  ; Info     ; Stuck at GND                                                                        ;
-; ubus.sources[-6][13]     ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; ubus.sources[-6][4]      ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; ubus.sources[-6][3..2]   ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; ubus.sources[-6][15..11] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-6][9..7]   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-6][5..4]   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-6][1..0]   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; ubus.sources[-6][10]     ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; ubus.sources[-6][6]      ; Input  ; Info     ; Stuck at VCC                                                                        ;
 ; ubus.sources[-9][15..4]  ; Input  ; Info     ; Stuck at GND                                                                        ;
 ; memory.enable            ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
 +--------------------------+--------+----------+-------------------------------------------------------------------------------------+
@@ -1092,32 +1582,33 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 82                          ;
-; cycloneiii_ff         ; 416                         ;
-;     CLR               ; 68                          ;
+; cycloneiii_ff         ; 552                         ;
+;     CLR               ; 55                          ;
 ;     CLR SCLR          ; 1                           ;
-;     ENA               ; 130                         ;
-;     ENA CLR           ; 88                          ;
-;     ENA CLR SLD       ; 15                          ;
+;     ENA               ; 198                         ;
+;     ENA CLR           ; 134                         ;
+;     ENA CLR SLD       ; 17                          ;
 ;     ENA SCLR SLD      ; 1                           ;
-;     ENA SLD           ; 49                          ;
-;     plain             ; 64                          ;
+;     ENA SLD           ; 58                          ;
+;     plain             ; 88                          ;
 ; cycloneiii_io_obuf    ; 18                          ;
-; cycloneiii_lcell_comb ; 2115                        ;
-;     arith             ; 141                         ;
-;         2 data inputs ; 110                         ;
-;         3 data inputs ; 31                          ;
-;     normal            ; 1974                        ;
-;         0 data inputs ; 3                           ;
-;         1 data inputs ; 32                          ;
-;         2 data inputs ; 125                         ;
-;         3 data inputs ; 393                         ;
-;         4 data inputs ; 1421                        ;
+; cycloneiii_lcell_comb ; 2842                        ;
+;     arith             ; 218                         ;
+;         2 data inputs ; 157                         ;
+;         3 data inputs ; 61                          ;
+;     normal            ; 2624                        ;
+;         0 data inputs ; 4                           ;
+;         1 data inputs ; 40                          ;
+;         2 data inputs ; 131                         ;
+;         3 data inputs ; 563                         ;
+;         4 data inputs ; 1886                        ;
 ; cycloneiii_mac_mult   ; 1                           ;
 ; cycloneiii_mac_out    ; 1                           ;
+; cycloneiii_pll        ; 1                           ;
 ; cycloneiii_ram_block  ; 40                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 22.30                       ;
-; Average LUT depth     ; 12.23                       ;
+; Max LUT depth         ; 34.70                       ;
+; Average LUT depth     ; 18.45                       ;
 +-----------------------+-----------------------------+
 
 
@@ -1126,7 +1617,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:02:28     ;
+; Top            ; 00:02:27     ;
 +----------------+--------------+
 
 
@@ -1136,29 +1627,10 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Tue Jun 13 00:23:25 2023
+    Info: Processing started: Sat Jun 24 12:53:15 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off EP4CE6_Altera -c fpga
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
-Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/uprogmem.vhd
-    Info (12022): Found design unit 1: uProgmem-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uProgmem.vhd Line: 39
-    Info (12023): Found entity 1: uProgmem File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uProgmem.vhd Line: 30
-Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/udatacache.vhd
-    Info (12022): Found design unit 1: uDatacache-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uDatacache.vhd Line: 40
-    Info (12023): Found entity 1: uDatacache File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uDatacache.vhd Line: 33
-Warning (10335): Unrecognized synthesis attribute "init" at ../vhdl/uCore.vhd(102) File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd Line: 102
-Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/ucore.vhd
-    Info (12022): Found design unit 1: microcore-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd Line: 44
-    Info (12023): Found entity 1: microcore File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd Line: 34
-Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/ucntrl.vhd
-    Info (12022): Found design unit 1: microcontrol-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 48
-    Info (12023): Found entity 1: microcontrol File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 36
-Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/uart.vhd
-    Info (12022): Found design unit 1: uart-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uart.vhd Line: 54
-    Info (12023): Found entity 1: uart File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uart.vhd Line: 32
-Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/uarithmetic.vhd
-    Info (12022): Found design unit 1: uArithmetic-inference File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uArithmetic.vhd Line: 44
-    Info (12023): Found entity 1: uArithmetic File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uArithmetic.vhd Line: 32
 Info (12021): Found 34 design units, including 16 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/functions_pkg.vhd
     Info (12022): Found design unit 1: functions_pkg File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 34
     Info (12022): Found design unit 2: functions_pkg-body File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 255
@@ -1194,29 +1666,113 @@ Info (12021): Found 34 design units, including 16 entities, in source file /tech
     Info (12023): Found entity 14: monoflop File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 1265
     Info (12023): Found entity 15: fifo File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 1333
     Info (12023): Found entity 16: dpfifo File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 1426
-Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/fpga.vhd
-    Info (12022): Found design unit 1: fpga-technology File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 75
-    Info (12023): Found entity 1: fpga File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 31
-Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/debugger.vhd
-    Info (12022): Found design unit 1: debugger-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 53
-    Info (12023): Found entity 1: debugger File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 36
+Info (12021): Found 4 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/architecture_pkg.vhd
+    Info (12022): Found design unit 1: architecture_pkg File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/architecture_pkg.vhd Line: 32
+    Info (12022): Found design unit 2: architecture_pkg-body File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/architecture_pkg.vhd Line: 505
+    Info (12022): Found design unit 3: semaphor-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/architecture_pkg.vhd Line: 561
+    Info (12023): Found entity 1: semaphor File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/architecture_pkg.vhd Line: 554
+Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/uarithmetic.vhd
+    Info (12022): Found design unit 1: uArithmetic-inference File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uArithmetic.vhd Line: 44
+    Info (12023): Found entity 1: uArithmetic File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uArithmetic.vhd Line: 32
+Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/ucntrl.vhd
+    Info (12022): Found design unit 1: microcontrol-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 48
+    Info (12023): Found entity 1: microcontrol File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 36
 Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/bootload.vhd
     Info (12022): Found design unit 1: boot_rom-sim_model File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bootload.vhd Line: 16
     Info (12023): Found entity 1: boot_rom File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bootload.vhd Line: 11
-Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/bench.vhd
-    Info (12022): Found design unit 1: bench-testbench File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bench.vhd Line: 42
-    Info (12023): Found entity 1: bench File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bench.vhd Line: 39
-Info (12021): Found 4 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/architecture_pkg.vhd
-    Info (12022): Found design unit 1: architecture_pkg File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/architecture_pkg.vhd Line: 32
-    Info (12022): Found design unit 2: architecture_pkg-body File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/architecture_pkg.vhd Line: 506
-    Info (12022): Found design unit 3: semaphor-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/architecture_pkg.vhd Line: 562
-    Info (12023): Found entity 1: semaphor File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/architecture_pkg.vhd Line: 555
+Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/uprogmem.vhd
+    Info (12022): Found design unit 1: uProgmem-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uProgmem.vhd Line: 39
+    Info (12023): Found entity 1: uProgmem File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uProgmem.vhd Line: 30
+Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/uart.vhd
+    Info (12022): Found design unit 1: uart-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uart.vhd Line: 54
+    Info (12023): Found entity 1: uart File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uart.vhd Line: 32
+Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/debugger.vhd
+    Info (12022): Found design unit 1: debugger-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 53
+    Info (12023): Found entity 1: debugger File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 36
+Warning (10335): Unrecognized synthesis attribute "init" at ../vhdl/uCore.vhd(102) File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd Line: 102
+Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/ucore.vhd
+    Info (12022): Found design unit 1: microcore-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd Line: 44
+    Info (12023): Found entity 1: microcore File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd Line: 34
+Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/udatacache.vhd
+    Info (12022): Found design unit 1: uDatacache-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uDatacache.vhd Line: 38
+    Info (12023): Found entity 1: uDatacache File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uDatacache.vhd Line: 31
+Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/external_sdram.vhd
+    Info (12022): Found design unit 1: external_SDRAM-rtl File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/external_SDRAM.vhd Line: 41
+    Info (12023): Found entity 1: external_SDRAM File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/external_SDRAM.vhd Line: 33
+Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/pll.vhd
+    Info (12022): Found design unit 1: pll-SYN File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/pll.vhd Line: 53
+    Info (12023): Found entity 1: PLL File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/pll.vhd Line: 43
+Info (12021): Found 2 design units, including 1 entities, in source file /technik/microcore/hardware/ep4ce6_omdazz/vhdl/fpga.vhd
+    Info (12022): Found design unit 1: fpga-technology File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 75
+    Info (12023): Found entity 1: fpga File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 31
 Info (12127): Elaborating entity "fpga" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at fpga.vhd(117): object "dma_rdata" assigned a value but never read File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 117
-Warning (10873): Using initial value X (don't care) for net "flags[3]" at fpga.vhd(100) File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 100
-Info (12128): Elaborating entity "synchronize" for hierarchy "synchronize:synch_reset" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 154
-Info (12128): Elaborating entity "synchronize_n" for hierarchy "synchronize_n:synch_interrupt" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 158
-Info (12128): Elaborating entity "microcore" for hierarchy "microcore:uCore" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 229
+Warning (10036): Verilog HDL or VHDL warning at fpga.vhd(127): object "dma_rdata" assigned a value but never read File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 127
+Warning (10873): Using initial value X (don't care) for net "flags[3]" at fpga.vhd(101) File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 101
+Info (12128): Elaborating entity "PLL" for hierarchy "PLL:\syn_clock:pll_100MHz" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 159
+Info (12128): Elaborating entity "altpll" for hierarchy "PLL:\syn_clock:pll_100MHz|altpll:altpll_component" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/pll.vhd Line: 139
+Info (12130): Elaborated megafunction instantiation "PLL:\syn_clock:pll_100MHz|altpll:altpll_component" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/pll.vhd Line: 139
+Info (12133): Instantiated megafunction "PLL:\syn_clock:pll_100MHz|altpll:altpll_component" with the following parameter: File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/pll.vhd Line: 139
+    Info (12134): Parameter "bandwidth_type" = "MEDIUM"
+    Info (12134): Parameter "clk0_divide_by" = "1"
+    Info (12134): Parameter "clk0_duty_cycle" = "50"
+    Info (12134): Parameter "clk0_multiply_by" = "2"
+    Info (12134): Parameter "clk0_phase_shift" = "0"
+    Info (12134): Parameter "compensate_clock" = "CLK0"
+    Info (12134): Parameter "inclk0_input_frequency" = "20000"
+    Info (12134): Parameter "intended_device_family" = "Cyclone IV E"
+    Info (12134): Parameter "lpm_hint" = "CBX_MODULE_PREFIX=PLL"
+    Info (12134): Parameter "lpm_type" = "altpll"
+    Info (12134): Parameter "operation_mode" = "NORMAL"
+    Info (12134): Parameter "pll_type" = "AUTO"
+    Info (12134): Parameter "port_activeclock" = "PORT_UNUSED"
+    Info (12134): Parameter "port_areset" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkbad0" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkbad1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkloss" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkswitch" = "PORT_UNUSED"
+    Info (12134): Parameter "port_configupdate" = "PORT_UNUSED"
+    Info (12134): Parameter "port_fbin" = "PORT_UNUSED"
+    Info (12134): Parameter "port_inclk0" = "PORT_USED"
+    Info (12134): Parameter "port_inclk1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_locked" = "PORT_USED"
+    Info (12134): Parameter "port_pfdena" = "PORT_UNUSED"
+    Info (12134): Parameter "port_phasecounterselect" = "PORT_UNUSED"
+    Info (12134): Parameter "port_phasedone" = "PORT_UNUSED"
+    Info (12134): Parameter "port_phasestep" = "PORT_UNUSED"
+    Info (12134): Parameter "port_phaseupdown" = "PORT_UNUSED"
+    Info (12134): Parameter "port_pllena" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanaclr" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanclk" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanclkena" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scandata" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scandataout" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scandone" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanread" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanwrite" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk0" = "PORT_USED"
+    Info (12134): Parameter "port_clk1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk2" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk3" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk4" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk5" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena0" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena2" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena3" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena4" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena5" = "PORT_UNUSED"
+    Info (12134): Parameter "port_extclk0" = "PORT_UNUSED"
+    Info (12134): Parameter "port_extclk1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_extclk2" = "PORT_UNUSED"
+    Info (12134): Parameter "port_extclk3" = "PORT_UNUSED"
+    Info (12134): Parameter "self_reset_on_loss_lock" = "OFF"
+    Info (12134): Parameter "width_clock" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/pll_altpll3.v
+    Info (12023): Found entity 1: PLL_altpll3 File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/Intel/db/pll_altpll3.v Line: 30
+Info (12128): Elaborating entity "PLL_altpll3" for hierarchy "PLL:\syn_clock:pll_100MHz|altpll:altpll_component|PLL_altpll3:auto_generated" File: c:/intel/fpga_lite_20.1/quartus/libraries/megafunctions/altpll.tdf Line: 898
+Info (12128): Elaborating entity "synchronize" for hierarchy "synchronize:synch_reset" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 189
+Info (12128): Elaborating entity "synchronize_n" for hierarchy "synchronize_n:synch_interrupt" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 193
+Info (12128): Elaborating entity "microcore" for hierarchy "microcore:uCore" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 264
 Warning (10037): Verilog HDL or VHDL warning at uCore.vhd(164): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd Line: 164
 Info (12128): Elaborating entity "uProgmem" for hierarchy "microcore:uCore|uProgmem:internal_prog_mem" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd Line: 146
 Warning (10296): VHDL warning at uProgmem.vhd(44): ignored assignment of value to null range File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uProgmem.vhd Line: 44
@@ -1229,10 +1785,10 @@ Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(221): conditional exp
 Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(337): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 337
 Warning (10036): Verilog HDL or VHDL warning at uCntrl.vhd(388): object "nos_dspush" assigned a value but never read File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 388
 Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(486): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 486
-Warning (10445): VHDL Subtype or Type Declaration warning at uCntrl.vhd(558): subtype or type has null range File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 558
 Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(649): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 649
 Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(653): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 653
 Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(661): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 661
+Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(663): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 663
 Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(679): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 679
 Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(707): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 707
 Warning (10037): Verilog HDL or VHDL warning at uCntrl.vhd(721): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd Line: 721
@@ -1284,22 +1840,33 @@ Warning (10037): Verilog HDL or VHDL warning at debugger.vhd(431): conditional e
 Warning (10037): Verilog HDL or VHDL warning at debugger.vhd(440): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 440
 Info (12128): Elaborating entity "uart" for hierarchy "microcore:uCore|debugger:debug_unit|uart:debug_uart" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 484
 Info (12128): Elaborating entity "fifo" for hierarchy "microcore:uCore|debugger:debug_unit|uart:debug_uart|fifo:rx_fifo" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uart.vhd Line: 97
-Info (12128): Elaborating entity "uDatacache" for hierarchy "uDatacache:internal_data_mem" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 277
-Info (12128): Elaborating entity "internal_dpram" for hierarchy "uDatacache:internal_data_mem|internal_dpram:\make_syn_mem:internal_data_mem" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uDatacache.vhd Line: 91
+Info (12128): Elaborating entity "uDatacache" for hierarchy "uDatacache:internal_data_mem" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 312
+Info (12128): Elaborating entity "internal_dpram" for hierarchy "uDatacache:internal_data_mem|internal_dpram:\make_syn_mem:internal_data_mem" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uDatacache.vhd Line: 89
 Warning (10296): VHDL warning at functions_pkg.vhd(867): ignored assignment of value to null range File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 867
+Info (12128): Elaborating entity "external_SDRAM" for hierarchy "external_SDRAM:SDRAM" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 341
+Warning (10037): Verilog HDL or VHDL warning at external_SDRAM.vhd(171): conditional expression evaluates to a constant File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/external_SDRAM.vhd Line: 171
+Warning (10631): VHDL Process Statement warning at external_SDRAM.vhd(131): inferring latch(es) for signal or variable "bank", which holds its previous value in one or more paths through the process File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/external_SDRAM.vhd Line: 131
+Info (10041): Inferred latch for "bank[0]" at external_SDRAM.vhd(131) File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/external_SDRAM.vhd Line: 131
+Info (10041): Inferred latch for "bank[1]" at external_SDRAM.vhd(131) File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/external_SDRAM.vhd Line: 131
+Warning (276020): Inferred RAM node "microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
 Warning (276020): Inferred RAM node "microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
 Warning (276020): Inferred RAM node "uDatacache:internal_data_mem|internal_dpram:\make_syn_mem:internal_data_mem|ram_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
 Info (276014): Found 1 instances of uninferred RAM logic
     Info (276004): RAM logic "microcore:uCore|debugger:debug_unit|uart:debug_uart|fifo:rx_fifo|fifomem" is uninferred due to inappropriate RAM size File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd Line: 1354
 Info (19000): Inferred 3 megafunctions from design logic
     Info (276029): Inferred altsyncram megafunction from the following design logic: "microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|ram_rtl_0" 
-        Info (286033): Parameter OPERATION_MODE set to SINGLE_PORT
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
         Info (286033): Parameter WIDTH_A set to 8
         Info (286033): Parameter WIDTHAD_A set to 13
         Info (286033): Parameter NUMWORDS_A set to 8192
-        Info (286033): Parameter OUTDATA_REG_A set to UNREGISTERED
+        Info (286033): Parameter WIDTH_B set to 8
+        Info (286033): Parameter WIDTHAD_B set to 13
+        Info (286033): Parameter NUMWORDS_B set to 8192
         Info (286033): Parameter ADDRESS_ACLR_A set to NONE
-        Info (286033): Parameter OUTDATA_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
         Info (286033): Parameter INDATA_ACLR_A set to NONE
         Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
     Info (276029): Inferred altsyncram megafunction from the following design logic: "microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|ram_rtl_0" 
@@ -1337,17 +1904,22 @@ Info (278001): Inferred 1 megafunctions from design logic
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "microcore:uCore|microcontrol:uCntrl|uArithmetic:uCntrl_arith|Mult0" File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uArithmetic.vhd Line: 58
 Info (12130): Elaborated megafunction instantiation "microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0"
 Info (12133): Instantiated megafunction "microcore:uCore|uProgmem:internal_prog_mem|internal_ram:internal_prog_mem|altsyncram:ram_rtl_0" with the following parameter:
-    Info (12134): Parameter "OPERATION_MODE" = "SINGLE_PORT"
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
     Info (12134): Parameter "WIDTH_A" = "8"
     Info (12134): Parameter "WIDTHAD_A" = "13"
     Info (12134): Parameter "NUMWORDS_A" = "8192"
-    Info (12134): Parameter "OUTDATA_REG_A" = "UNREGISTERED"
+    Info (12134): Parameter "WIDTH_B" = "8"
+    Info (12134): Parameter "WIDTHAD_B" = "13"
+    Info (12134): Parameter "NUMWORDS_B" = "8192"
     Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
-    Info (12134): Parameter "OUTDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
     Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
     Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
-Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_2h41.tdf
-    Info (12023): Found entity 1: altsyncram_2h41 File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/Intel/db/altsyncram_2h41.tdf Line: 28
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_v2e1.tdf
+    Info (12023): Found entity 1: altsyncram_v2e1 File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/Intel/db/altsyncram_v2e1.tdf Line: 28
 Info (12130): Elaborated megafunction instantiation "microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|altsyncram:ram_rtl_0"
 Info (12133): Instantiated megafunction "microcore:uCore|microcontrol:uCntrl|internal_ram:data_stack|altsyncram:ram_rtl_0" with the following parameter:
     Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
@@ -1398,7 +1970,7 @@ Info (12133): Instantiated megafunction "microcore:uCore|microcontrol:uCntrl|uAr
     Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
 Info (12021): Found 1 design units, including 1 entities, in source file db/mult_76t.tdf
     Info (12023): Found entity 1: mult_76t File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/Intel/db/mult_76t.tdf Line: 29
-Info (13000): Registers with preset signals will power-up high File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uart.vhd Line: 178
+Info (13000): Registers with preset signals will power-up high File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/external_SDRAM.vhd Line: 133
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "beep" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 36
@@ -1431,45 +2003,28 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "seg[5]" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 57
     Warning (13410): Pin "seg[6]" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 57
     Warning (13410): Pin "seg[7]" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 57
-    Warning (13410): Pin "sd_clk" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 59
-    Warning (13410): Pin "sd_cke" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 60
-    Warning (13410): Pin "sd_cs_n" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 61
-    Warning (13410): Pin "sd_we_n" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 62
-    Warning (13410): Pin "sd_a[0]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
-    Warning (13410): Pin "sd_a[1]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
-    Warning (13410): Pin "sd_a[2]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
-    Warning (13410): Pin "sd_a[3]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
-    Warning (13410): Pin "sd_a[4]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
-    Warning (13410): Pin "sd_a[5]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
-    Warning (13410): Pin "sd_a[6]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
-    Warning (13410): Pin "sd_a[7]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
-    Warning (13410): Pin "sd_a[8]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
     Warning (13410): Pin "sd_a[9]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
-    Warning (13410): Pin "sd_a[10]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
     Warning (13410): Pin "sd_a[11]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 63
     Warning (13410): Pin "sd_ba[0]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 64
     Warning (13410): Pin "sd_ba[1]" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 64
-    Warning (13410): Pin "sd_ras_n" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 65
-    Warning (13410): Pin "sd_cas_n" is stuck at VCC File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 66
-    Warning (13410): Pin "sd_ldqm" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 67
-    Warning (13410): Pin "sd_udqm" is stuck at GND File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd Line: 68
 Info (286030): Timing-Driven Synthesis is running
 Critical Warning (18061): Ignored Power-Up Level option on the following registers
     Critical Warning (18010): Register microcore:uCore|debugger:debug_unit|out_ctr will power up to High File: D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd Line: 115
 Info (17049): 1 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
-    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 2395 device resources after synthesis - the final resource count might be different
+    Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 3194 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 7 input pins
     Info (21059): Implemented 57 output pins
     Info (21060): Implemented 18 bidirectional pins
-    Info (21061): Implemented 2271 logic cells
+    Info (21061): Implemented 3069 logic cells
     Info (21064): Implemented 40 RAM segments
+    Info (21065): Implemented 1 PLLs
     Info (21062): Implemented 2 DSP elements
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 120 warnings
-    Info: Peak virtual memory: 1514 megabytes
-    Info: Processing ended: Tue Jun 13 00:26:43 2023
-    Info: Elapsed time: 00:03:18
-    Info: Total CPU time (on all processors): 00:02:58
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 105 warnings
+    Info: Peak virtual memory: 1923 megabytes
+    Info: Processing ended: Sat Jun 24 12:56:59 2023
+    Info: Elapsed time: 00:03:44
+    Info: Total CPU time (on all processors): 00:03:43
 
 

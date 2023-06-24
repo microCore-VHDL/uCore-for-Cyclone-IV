@@ -1,16 +1,16 @@
-Fitter Status : Successful - Tue Jun 13 00:27:09 2023
+Fitter Status : Successful - Sat Jun 24 12:57:27 2023
 Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 Revision Name : fpga
 Top-level Entity Name : fpga
 Family : Cyclone IV E
 Device : EP4CE6E22C8
 Timing Models : Final
-Total logic elements : 2,167 / 6,272 ( 35 % )
-    Total combinational functions : 2,110 / 6,272 ( 34 % )
-    Dedicated logic registers : 416 / 6,272 ( 7 % )
-Total registers : 416
+Total logic elements : 2,931 / 6,272 ( 47 % )
+    Total combinational functions : 2,834 / 6,272 ( 45 % )
+    Dedicated logic registers : 552 / 6,272 ( 9 % )
+Total registers : 552
 Total pins : 82 / 92 ( 89 % )
 Total virtual pins : 0
 Total memory bits : 212,992 / 276,480 ( 77 % )
 Embedded Multiplier 9-bit elements : 2 / 30 ( 7 % )
-Total PLLs : 0 / 2 ( 0 % )
+Total PLLs : 1 / 2 ( 50 % )

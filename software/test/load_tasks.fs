@@ -1,5 +1,5 @@
 \
-\ Last change: KS 03.08.2022 18:06:11
+\ Last change: KS 24.06.2023 13:54:44
 \
 \ MicroCore load screen to test all aspects of the multitasker.
 \ Use  .tasks and .semas to observe the state of the system.
@@ -39,8 +39,11 @@ Semaphore Mailbox
 \ 'Sema lock' will stop it, 'Sema unlock' will make it move again.
 \ ----------------------------------------------------------------------
 
-: shiftleds  ( n -- n' )  2* dup $100 and IF  drop 1  THEN dup Leds ! ;
-
+: shiftleds  ( n -- n' )
+   dup -ctrl !   dup +
+   dup #c-led3 > IF  drop #c-led0  THEN
+   dup ctrl !
+;
 : locktask   ( -- )     1 BEGIN  Sema lock  shiftleds  Sema unlock  &200 ms sleep  REPEAT ;
 
 : golock     ( -- )     mailbox-init   Blinker ['] locktask activate ;
@@ -51,17 +54,17 @@ Semaphore Mailbox
 \ temporary difference of at most 1
 \ ----------------------------------------------------------------------
 
-Variable Signals
-Variable Waits
-
-: waittask   ( -- )     Waits  BEGIN  Mailbox wait   dup inc  REPEAT ;
-
-: itime-reset  ( -- )   #i-time not Flags ! ;
-
-: gowait     ( -- )     mailbox-init   Blinker ['] waittask activate
-                        itime-reset   0  dup Signals !  Waits !   ei
-;
-: ??         ( -- )     Status @  di  Signals @  Waits @   rot Status !  over . dup . - . ;
+\ Variable Signals
+\ Variable Waits
+\ 
+\ : waittask   ( -- )     Waits  BEGIN  Mailbox wait   dup inc  REPEAT ;
+\ 
+\ : itime-reset  ( -- )   #i-time not Flags ! ;
+\ 
+\ : gowait     ( -- )     mailbox-init   Blinker ['] waittask activate
+\                         itime-reset   0  dup Signals !  Waits !   ei
+\ ;
+\ : ??         ( -- )     Status @  di  Signals @  Waits @   rot Status !  over . dup . - . ;
 
 \ ----------------------------------------------------------------------
 \ The #i-time interrupt hits every 1/ticks_per_ms.
@@ -70,7 +73,7 @@ Variable Waits
 \ It serves a driving role during gowait.
 \ ----------------------------------------------------------------------
 
-: interrupt ( -- )   Mailbox signal   Signals inc   itime-reset ;
+: interrupt ( -- ) ; \  Mailbox signal   Signals inc   itime-reset ;
 
 \ ----------------------------------------------------------------------
 \ poll test
@@ -110,9 +113,9 @@ Variable Trigger
 
 init: init-tasks     ( -- )
    Terminal Blinker schedule
-   #i-time int-enable
+\   #i-time int-enable
 ;
-init: init-leds ( -- )  0 Leds ! ;
+init: init-leds ( -- )  [ #c-led0 #c-led1 or #c-led2 or #c-led3 or ] Literal -ctrl ! ;
 
 : boot  ( -- )   0 #cache erase   CALL initialization   debug-service ;
 

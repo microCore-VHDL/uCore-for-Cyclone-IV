@@ -2,7 +2,7 @@
 -- @file : bench.vhd testbench for the EP4CE6 OMDAZZ Board
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 09.06.2023 22:11:02
+-- Last change: KS 21.06.2023 23:12:44
 -- @project: microCore
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -32,9 +32,13 @@
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.NUMERIC_STD.ALL;
+USE IEEE.VITAL_timing.ALL;
+USE IEEE.VITAL_primitives.ALL;
 USE STD.TEXTIO.ALL;
+
 USE work.functions_pkg.ALL;
 USE work.architecture_pkg.ALL;
+USE work.gen_utils.ALL;
 
 ENTITY bench IS
 END bench;
@@ -105,6 +109,140 @@ COMPONENT program_rom PORT (
 
 SIGNAL debug_data   : inst_bus;
 SIGNAL debug_addr   : program_addr;
+
+COMPONENT mt48lc4m16 GENERIC (
+    -- tipd delays: interconnect path delays
+    tipd_BA0        : VitalDelayType01 := VitalZeroDelay01;
+    tipd_BA1        : VitalDelayType01 := VitalZeroDelay01;
+    tipd_DQML       : VitalDelayType01 := VitalZeroDelay01;
+    tipd_DQMH       : VitalDelayType01 := VitalZeroDelay01;
+    tipd_DQ0        : VitalDelayType01 := VitalZeroDelay01;
+    tipd_DQ1        : VitalDelayType01 := VitalZeroDelay01;
+    tipd_DQ2        : VitalDelayType01 := VitalZeroDelay01;
+    tipd_DQ3        : VitalDelayType01 := VitalZeroDelay01;
+    tipd_DQ4        : VitalDelayType01 := VitalZeroDelay01;
+    tipd_DQ5        : VitalDelayType01 := VitalZeroDelay01;
+    tipd_DQ6        : VitalDelayType01 := VitalZeroDelay01;
+    tipd_DQ7        : VitalDelayType01 := VitalZeroDelay01;
+    tipd_DQ8        : VitalDelayType01 := VitalZeroDelay01;
+    tipd_DQ9        : VitalDelayType01 := VitalZeroDelay01;
+    tipd_DQ10       : VitalDelayType01 := VitalZeroDelay01;
+    tipd_DQ11       : VitalDelayType01 := VitalZeroDelay01;
+    tipd_DQ12       : VitalDelayType01 := VitalZeroDelay01;
+    tipd_DQ13       : VitalDelayType01 := VitalZeroDelay01;
+    tipd_DQ14       : VitalDelayType01 := VitalZeroDelay01;
+    tipd_DQ15       : VitalDelayType01 := VitalZeroDelay01;
+    tipd_CLK        : VitalDelayType01 := VitalZeroDelay01;
+    tipd_CKE        : VitalDelayType01 := VitalZeroDelay01;
+    tipd_A0         : VitalDelayType01 := VitalZeroDelay01;
+    tipd_A1         : VitalDelayType01 := VitalZeroDelay01;
+    tipd_A2         : VitalDelayType01 := VitalZeroDelay01;
+    tipd_A3         : VitalDelayType01 := VitalZeroDelay01;
+    tipd_A4         : VitalDelayType01 := VitalZeroDelay01;
+    tipd_A5         : VitalDelayType01 := VitalZeroDelay01;
+    tipd_A6         : VitalDelayType01 := VitalZeroDelay01;
+    tipd_A7         : VitalDelayType01 := VitalZeroDelay01;
+    tipd_A8         : VitalDelayType01 := VitalZeroDelay01;
+    tipd_A9         : VitalDelayType01 := VitalZeroDelay01;
+    tipd_A10        : VitalDelayType01 := VitalZeroDelay01;
+    tipd_A11        : VitalDelayType01 := VitalZeroDelay01;
+    tipd_WENeg      : VitalDelayType01 := VitalZeroDelay01;
+    tipd_RASNeg     : VitalDelayType01 := VitalZeroDelay01;
+    tipd_CSNeg      : VitalDelayType01 := VitalZeroDelay01;
+    tipd_CASNeg     : VitalDelayType01 := VitalZeroDelay01;
+    -- tpd delays  tAC tHZ
+    tpd_CLK_DQ0              : VitalDelayType01Z := UnitDelay01Z; --CL2
+    tpd_CLK_DQ1              : VitalDelayType01Z := UnitDelay01Z; --CL3
+    -- tpw values: pulse widths
+    tpw_CLK_posedge          : VitalDelayType    := UnitDelay; --tCH
+    tpw_CLK_negedge          : VitalDelayType    := UnitDelay; --tCL
+    -- tsetup values: setup times
+    tsetup_A0_CLK            : VitalDelayType    := UnitDelay; --tAS
+    tsetup_DQ0_CLK           : VitalDelayType    := UnitDelay; --tDS
+    tsetup_CKE_CLK           : VitalDelayType    := UnitDelay; --tCKS
+    tsetup_CSNeg_CLK         : VitalDelayType    := UnitDelay; --tCMS
+    -- thold values: hold times
+    thold_A0_CLK             : VitalDelayType    := UnitDelay; --tAH
+    thold_DQ0_CLK            : VitalDelayType    := UnitDelay; --tDH
+    thold_CKE_CLK            : VitalDelayType    := UnitDelay; --tCKH
+    thold_CSNeg_CLK          : VitalDelayType    := UnitDelay; --tCMH
+    -- tperiod_min: minimum clock period = 1/max freq tCK
+    tperiod_CLK              : VitalDelayType    := UnitDelay; --CL2
+    tperiod_CLK_CAS3             : VitalDelayType    := UnitDelay; --CL3
+    -- tdevice values: values for internal delays
+    tdevice_REF              : VitalDelayType    := 15_625 ns;
+    tdevice_TRC              : VitalDelayType    := 66 ns;
+    tdevice_TRCD             : VitalDelayType    := 20 ns;
+    tdevice_TRP              : VitalDelayType    := 20 ns;
+    tdevice_TRCAR            : VitalDelayType    := 66 ns;
+    tdevice_TRAS             : VitalDelayType01  := (42 ns, 120_000 ns);
+    -- tpowerup: Power up initialization time. Data sheets say 100 us.
+    -- May be shortened during simulation debug.
+    tpowerup        : TIME      := 100 us;
+    -- generic control parameters
+    InstancePath    : STRING    := DefaultInstancePath;
+    TimingChecksOn  : BOOLEAN   := DefaultTimingChecks;
+    MsgOn           : BOOLEAN   := DefaultMsgOn;
+    XOn             : BOOLEAN   := DefaultXon;
+    SeverityMode    : SEVERITY_LEVEL := WARNING;
+    -- memory file to be loaded
+    mem_file_name   : STRING    := "none";
+    -- preload variable
+    UserPreload     : BOOLEAN   := FALSE;
+    -- For FMF SDF technology file usage
+    TimingModel     : STRING    := DefaultTimingModel
+); PORT (
+    BA0       : IN    STD_LOGIC;
+    BA1       : IN    STD_LOGIC;
+    DQML      : IN    STD_LOGIC;
+    DQMH      : IN    STD_LOGIC;
+    DQ0       : INOUT STD_LOGIC;
+    DQ1       : INOUT STD_LOGIC;
+    DQ2       : INOUT STD_LOGIC;
+    DQ3       : INOUT STD_LOGIC;
+    DQ4       : INOUT STD_LOGIC;
+    DQ5       : INOUT STD_LOGIC;
+    DQ6       : INOUT STD_LOGIC;
+    DQ7       : INOUT STD_LOGIC;
+    DQ8       : INOUT STD_LOGIC;
+    DQ9       : INOUT STD_LOGIC;
+    DQ10      : INOUT STD_LOGIC;
+    DQ11      : INOUT STD_LOGIC;
+    DQ12      : INOUT STD_LOGIC;
+    DQ13      : INOUT STD_LOGIC;
+    DQ14      : INOUT STD_LOGIC;
+    DQ15      : INOUT STD_LOGIC;
+    CLK       : IN    STD_LOGIC;
+    CKE       : IN    STD_LOGIC;
+    A0        : IN    STD_LOGIC;
+    A1        : IN    STD_LOGIC;
+    A2        : IN    STD_LOGIC;
+    A3        : IN    STD_LOGIC;
+    A4        : IN    STD_LOGIC;
+    A5        : IN    STD_LOGIC;
+    A6        : IN    STD_LOGIC;
+    A7        : IN    STD_LOGIC;
+    A8        : IN    STD_LOGIC;
+    A9        : IN    STD_LOGIC;
+    A10       : IN    STD_LOGIC;
+    A11       : IN    STD_LOGIC;
+    WENeg     : IN    STD_LOGIC;
+    RASNeg    : IN    STD_LOGIC;
+    CSNeg     : IN    STD_LOGIC;
+    CASNeg    : IN    STD_LOGIC
+); END COMPONENT mt48lc4m16;
+
+SIGNAL sd_clk       : STD_LOGIC;
+SIGNAL sd_cke       : STD_LOGIC;
+SIGNAL sd_cs_n      : STD_LOGIC;
+SIGNAL sd_we_n      : STD_LOGIC;
+SIGNAL sd_a         : UNSIGNED(11 DOWNTO 0);
+SIGNAL sd_ba        : UNSIGNED( 1 DOWNTO 0);
+SIGNAL sd_ras_n     : STD_LOGIC;
+SIGNAL sd_cas_n     : STD_LOGIC;
+SIGNAL sd_ldqm      : STD_LOGIC;
+SIGNAL sd_udqm      : STD_LOGIC;
+SIGNAL sd_dq        : UNSIGNED(15 DOWNTO 0);
 
 SIGNAL host_rxd     : STD_LOGIC;
 SIGNAL host_txd     : STD_LOGIC;
@@ -489,15 +627,56 @@ BEGIN
   WAIT FOR 500 ns;
   LOOP
     xtal <= '1';
-    WAIT FOR xtal_cycle/2;
+    WAIT FOR cycle/2;
     xtal <= '0';
-    WAIT FOR xtal_cycle/2;
+    WAIT FOR cycle/2;
   END LOOP;
 END PROCESS xtal_clock;
 
 -- ---------------------------------------------------------------------
 -- external SDRAM
 -- ---------------------------------------------------------------------
+
+SDRAM: mt48lc4m16 PORT MAP (
+    BA0      => sd_ba(0),
+    BA1      => sd_ba(1),
+    DQML     => sd_ldqm,
+    DQMH     => sd_udqm,
+    DQ0      => std_logic(sd_dq( 0)),
+    DQ1      => std_logic(sd_dq( 1)),
+    DQ2      => std_logic(sd_dq( 2)),
+    DQ3      => std_logic(sd_dq( 3)),
+    DQ4      => std_logic(sd_dq( 4)),
+    DQ5      => std_logic(sd_dq( 5)),
+    DQ6      => std_logic(sd_dq( 6)),
+    DQ7      => std_logic(sd_dq( 7)),
+    DQ8      => std_logic(sd_dq( 8)),
+    DQ9      => std_logic(sd_dq( 9)),
+    DQ10     => std_logic(sd_dq(10)),
+    DQ11     => std_logic(sd_dq(11)),
+    DQ12     => std_logic(sd_dq(12)),
+    DQ13     => std_logic(sd_dq(13)),
+    DQ14     => std_logic(sd_dq(14)),
+    DQ15     => std_logic(sd_dq(15)),
+    CLK      => sd_clk,
+    CKE      => sd_cke,
+    A0       => std_logic(sd_a( 0)),
+    A1       => std_logic(sd_a( 1)),
+    A2       => std_logic(sd_a( 2)),
+    A3       => std_logic(sd_a( 3)),
+    A4       => std_logic(sd_a( 4)),
+    A5       => std_logic(sd_a( 5)),
+    A6       => std_logic(sd_a( 6)),
+    A7       => std_logic(sd_a( 7)),
+    A8       => std_logic(sd_a( 8)),
+    A9       => std_logic(sd_a( 9)),
+    A10      => std_logic(sd_a(10)),
+    A11      => std_logic(sd_a(11)),
+    WENeg    => sd_we_n,
+    RASNeg   => sd_ras_n,
+    CSNeg    => sd_cs_n,
+    CASNeg   => sd_cas_n
+);
 
 -- ---------------------------------------------------------------------
 -- uCore FPGA
@@ -531,17 +710,17 @@ myFPGA: fpga PORT MAP (
 --   dig        => OUT   UNSIGNED(3 DOWNTO 0);
 --   seg        => OUT   UNSIGNED(7 DOWNTO 0);
 -- SDRAM
---   sd_clk      : OUT   STD_LOGIC;
---   sd_cke      : OUT   STD_LOGIC;
---   sd_cs_n     : OUT   STD_LOGIC;
---   sd_we_n     : OUT   STD_LOGIC;
---   sd_a        : OUT   UNSIGNED(11 DOWNTO 0);
---   sd_ba       : OUT   UNSIGNED( 1 DOWNTO 0);
---   sd_ras_n    : OUT   STD_LOGIC;
---   sd_cas_n    : OUT   STD_LOGIC;
---   sd_ldqm     : OUT   STD_LOGIC;
---   sd_udqm     : OUT   STD_LOGIC;
---   sd_dq       : INOUT UNSIGNED(15 DOWNTO 0);
+   sd_clk     => sd_clk,
+   sd_cke     => sd_cke,
+   sd_cs_n    => sd_cs_n,
+   sd_we_n    => sd_we_n,
+   sd_a       => sd_a,
+   sd_ba      => sd_ba,
+   sd_ras_n   => sd_ras_n,
+   sd_cas_n   => sd_cas_n,
+   sd_ldqm    => sd_ldqm,
+   sd_udqm    => sd_udqm,
+   sd_dq      => sd_dq,
 -- umbilical port for debugging
    dsu_rxd    => host_txd, -- host -> target
    dsu_txd    => host_rxd  -- target -> host

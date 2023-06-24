@@ -2,7 +2,7 @@
 \ @file : coretest.fs
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 11.06.2023 15:39:55
+\ Last change: KS 24.06.2023 13:36:34
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -314,6 +314,7 @@ WITH_EXTMEM [IF]
    2 4*       8 -                        IF  $B3 throw THEN
 ;
 : test-ctrl  ( -- )
+   #c-bitout -ctrl !
    #c-bitout ctrl?                       IF  $B4 throw THEN
    #c-bitout dup  ctrl !  ctrl?       0= IF  $B5 throw THEN
 SIMULATION [IF]

@@ -1,5 +1,5 @@
 \
-\ Last change: KS 03.08.2022 18:06:08
+\ Last change: KS 24.06.2023 13:42:33
 \
 \ Basic microCore load screen for execution on the target.
 \
@@ -65,18 +65,13 @@ Point Object Punkt   init: init-Punkt ( -- )   1 2 Punkt set ;
 \ Interrupt
 \ ----------------------------------------------------------------------
 
-Variable Ticker  0 Ticker !
-
-: interrupt ( -- )  Intflags @
-   #i-time and IF  1 Ticker +!  #i-time not Flags !  THEN
-;
-init: init-int  ( -- )  #i-time int-enable ei ;
+: interrupt ( -- )  Intflags @ drop ;
 
 \ ----------------------------------------------------------------------
 \ Booting and TRAPs
 \ ----------------------------------------------------------------------
 
-init: init-leds ( -- )  0 Leds ! ;
+init: init-leds ( -- )  [ #c-led0 #c-led1 or #c-led2 or #c-led3 or ] Literal -ctrl ! ;
 
 : boot  ( -- )   0 #cache erase   CALL initialization  debug-service ;
 

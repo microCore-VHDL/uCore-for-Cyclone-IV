@@ -1,4 +1,30 @@
 ************************************************************************
+*** EP4CE6_OMDAZZ 1.100 24-Jun-2023 ks
+************************************************************************
+
+This is no longer an experimental version. Therefore, it only has 4 digits.
+
+This is how the version number is composed as a decimal number:
+<major_release> . <added_functionality> <HW_fix> <SW_fix> . <pre-release#>
+It can be interactively displayed using "version-reg @ #.".
+
+A PLL has been integrated that produces 100 MHz as system clk to allow
+for a fast SDRAM. Please note: The PLL does not correctly simulate
+(a Quartus IP bug, which also creates needless warnings during synthesis).
+Therefore, the '..._frequency' and 'cycles' parameters have been set
+accordingly in architecture_pkg_sim.vhd to run at 100 MHz without PLL,
+which will not be generated during SIMULATION (fpga.vhd).
+
+external_SDRAM.vhd is the SDRAM controller that currently only supports
+a 16 bit cell addressed system. Other widths as well as byte addressing
+will follow soon. SDRAM model MT48LC4M16 from fmf is used for simulation.
+
+I cheated on timing constraints: Rather then setting the "base"
+clock to 100 MHz and give all internal uCore transactions 3 cycles to
+complete, I specified the clock @ 33.33 MHz. The predicted actual clock
+is 36+ MHz. That will do for the moment.
+
+************************************************************************
 *** EP4CE6_OMDAZZ 1.000.3 12-Jun-2023 ks
 ************************************************************************
 
