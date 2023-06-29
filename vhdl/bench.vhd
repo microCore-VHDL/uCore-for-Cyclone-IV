@@ -2,7 +2,7 @@
 -- @file : bench.vhd testbench for the EP4CE6 OMDAZZ Board
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 21.06.2023 23:12:44
+-- Last change: KS 27.06.2023 21:43:50
 -- @project: microCore
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -168,7 +168,7 @@ COMPONENT mt48lc4m16 GENERIC (
     thold_CSNeg_CLK          : VitalDelayType    := UnitDelay; --tCMH
     -- tperiod_min: minimum clock period = 1/max freq tCK
     tperiod_CLK              : VitalDelayType    := UnitDelay; --CL2
-    tperiod_CLK_CAS3             : VitalDelayType    := UnitDelay; --CL3
+    tperiod_CLK_CAS3         : VitalDelayType    := UnitDelay; --CL3
     -- tdevice values: values for internal delays
     tdevice_REF              : VitalDelayType    := 15_625 ns;
     tdevice_TRC              : VitalDelayType    := 66 ns;
@@ -637,7 +637,13 @@ END PROCESS xtal_clock;
 -- external SDRAM
 -- ---------------------------------------------------------------------
 
-SDRAM: mt48lc4m16 PORT MAP (
+SDRAM: mt48lc4m16 GENERIC MAP (
+   -- modified for short simulation and HY57V641620F
+    tdevice_TRC   => 63 ns,
+    tdevice_TRCAR => 63 ns,
+    tpd_CLK_DQ0   => (OTHERS => 6 ns),
+    tpowerup      => 10 us
+) PORT MAP (
     BA0      => sd_ba(0),
     BA1      => sd_ba(1),
     DQML     => sd_ldqm,

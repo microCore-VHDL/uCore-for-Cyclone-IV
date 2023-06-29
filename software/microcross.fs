@@ -2,7 +2,7 @@
 \ @file : microcross.fs
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 04.08.2022 17:04:27
+\ Last change: KS 25.06.2023 12:34:51
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -92,7 +92,7 @@ $B0B Constant #lib       \ when loading from library predefinitions
 
 prog_addr_width 2**                     Constant #maxprog
 data_addr_width cache_addr_width u> [IF]
-   data_addr_width 2**                  Constant #maxdata    \ size of data memory
+   data_addr_width 2** $10000           Constant #maxdata    \ size of data memory, limited to 64k
 [ELSE]
    cache_size                           Constant #maxdata    \ size of data memory
 [THEN]

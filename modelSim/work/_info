@@ -10,41 +10,41 @@ z2
 cModel Technology
 Z0 dD:/technik/microcore/hardware/EP4CE6_OMDAZZ/modelSim
 Parchitecture_pkg
-Z1 DPx4 work 13 functions_pkg 0 22 B]kEP:dNKnKabjk1Ec:<d1
+Z1 DPx4 work 13 functions_pkg 0 22 lE9?1B^ORWCkDGGSma4c33
 Z2 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
 Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z4 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
-!i122 619
-Z5 w1687557810
+!i122 1974
+Z5 w1688052701
 R0
 Z6 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/architecture_pkg_sim.vhd
 Z7 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/architecture_pkg_sim.vhd
 l0
 Z8 L32 1
-VYCCTLA@ZgTW^Iae^9QPV23
-!s100 bSZPoaoTbW:9mL<Omo4SP2
+VOMO=I0D864_@5>oanl1D73
+!s100 ?b2f]fCLJRgSd@_A@@W`b0
 Z9 OV;C;2020.1;71
 31
 b1
-Z10 !s110 1687557817
+Z10 !s110 1688052710
 !i10b 1
-Z11 !s108 1687557816.000000
+Z11 !s108 1688052708.000000
 Z12 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/architecture_pkg_sim.vhd|
 Z13 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/architecture_pkg_sim.vhd|
 !i113 1
 Z14 o-quiet -work work -93 -explicit -novitalcheck -novital -source -nowarn 1 -nowarn 3
 Z15 tShow_source 1 Show_Warning1 0 Show_Warning3 0 Explicit 1 NoVitalCheck 1 NoVital 1 Quiet 1 NoCoverage 1 CvgOpt 0
 Bbody
-Z16 DPx4 work 16 architecture_pkg 0 22 YCCTLA@ZgTW^Iae^9QPV23
+Z16 DPx4 work 16 architecture_pkg 0 22 OMO=I0D864_@5>oanl1D73
 R1
 R2
 R3
 R4
-!i122 619
+!i122 1974
 l0
-Z17 L505 1
-V2C;m=3U[?R>K51=?1gfjT0
-!s100 O9278b>m0?zf2cIkmY3YQ0
+L518 1
+VDgfR8nI>Vc1b?S8dK7Q_?1
+!s100 9GB<^bTnEMdDGJGmT0=]H2
 R9
 31
 R10
@@ -56,26 +56,26 @@ R13
 R14
 R15
 Easynch_dpram
-Z18 w1686505965
+Z17 w1687688753
 R1
 R2
 R3
 R4
-!i122 618
+!i122 1973
 R0
-Z19 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd
-Z20 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd
+Z18 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd
+Z19 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd
 l0
-L685 1
-VWI1bJFGUfi=bLRM<3VXB]2
-!s100 S=1X:1[TbWQHeMDiWnIBc3
+L700 1
+VCU1^zHfRIicQ_3hc2XYU73
+!s100 <eY:4>@BjRG>KKIT=XD<T0
 R9
 31
-Z21 !s110 1687557816
+Z20 !s110 1688052708
 !i10b 1
-Z22 !s108 1687557815.000000
-Z23 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd|
-Z24 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd|
+Z21 !s108 1688052707.000000
+Z22 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd|
+Z23 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/functions_pkg.vhd|
 !i113 1
 R14
 R15
@@ -84,43 +84,43 @@ R1
 R2
 R3
 R4
-DEx4 work 12 asynch_dpram 0 22 WI1bJFGUfi=bLRM<3VXB]2
-!i122 618
-l702
-L696 20
-VDhc4cjTEmzg_nSWaQSa3h0
-!s100 T9@j0WZWKHP_WzoXD]@=b0
+DEx4 work 12 asynch_dpram 0 22 CU1^zHfRIicQ_3hc2XYU73
+!i122 1973
+l717
+L711 20
+VAX?3aoZa_NNMXJ@T_]Z9e2
+!s100 JK<[@jZLUUnMiZKDHQ<071
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
 Easynch_ram
-R18
+R17
 R1
 R2
 R3
 R4
-!i122 618
+!i122 1973
 R0
+R18
 R19
-R20
 l0
-L726 1
-V1AGRXEfVY^n7@PI:@0Ch_0
-!s100 XjIP2DFe>9JfY39WC@DzC0
+L741 1
+VlR02T>O;imMhcZ]coQTH02
+!s100 gmz1he7KkmIY6ob^B=UD30
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
@@ -129,97 +129,97 @@ R1
 R2
 R3
 R4
-DEx4 work 10 asynch_ram 0 22 1AGRXEfVY^n7@PI:@0Ch_0
-!i122 618
-l742
-L736 20
-V=`FV@Cd^lmc?X;KJQ^]?o3
-!s100 jNYi:AV[Q9kX6^<A?l4_Z2
+DEx4 work 10 asynch_ram 0 22 lR02T>O;imMhcZ]coQTH02
+!i122 1973
+l757
+L751 20
+VoGoF>HhjNnA]eMfM_1O9F0
+!s100 WkXQ8c?]2TVICSZHXULf60
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
 Ebench
-Z25 w1687381964
-Z26 DPx4 work 9 gen_utils 0 22 F7]<5kgK<;@fFM;HVMBFe2
+Z24 w1687895030
+Z25 DPx4 work 9 gen_utils 0 22 F7]<5kgK<;@fFM;HVMBFe2
 R16
 R1
-Z27 DPx4 ieee 16 vital_primitives 0 22 G>kiXP8Q9dRClKfK1Zn7j1
-Z28 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
+Z26 DPx4 ieee 16 vital_primitives 0 22 G>kiXP8Q9dRClKfK1Zn7j1
+Z27 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
 R2
 R3
 R4
-!i122 634
+!i122 1989
 R0
-Z29 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bench.vhd
-Z30 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bench.vhd
+Z28 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bench.vhd
+Z29 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bench.vhd
 l0
-Z31 L43 1
+Z30 L43 1
 VY8GEFjEjTKCI6S59M]4[V3
 !s100 ?m:ncnOdb9UF:miS>6a781
 R9
 31
-Z32 !s110 1687557828
+Z31 !s110 1688052730
 !i10b 1
-Z33 !s108 1687557827.000000
-Z34 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bench.vhd|
-Z35 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bench.vhd|
+Z32 !s108 1688052729.000000
+Z33 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bench.vhd|
+Z34 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bench.vhd|
 !i113 1
 R14
 R15
 Atestbench
-R26
+R25
 R16
 R1
+R26
 R27
-R28
 R2
 R3
 R4
 DEx4 work 5 bench 0 22 Y8GEFjEjTKCI6S59M]4[V3
-!i122 634
+!i122 1989
 l271
-L46 684
-V0ENlIee85DPQ:5^da^OJ=3
-!s100 m;5F[o;=R]^A[GVi>04iD0
+L46 690
+VENAAe9N7IiL^e7RH0LMjf0
+!s100 ^E7L6W`ETgom6;?YR1O8j0
 R9
 31
-R32
+R31
 !i10b 1
+R32
 R33
 R34
-R35
 !i113 1
 R14
 R15
 Eboot_rom
-Z36 w1683996271
+Z35 w1683996271
 R1
 R16
 R2
 R3
 R4
-!i122 622
+!i122 1977
 R0
-Z37 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bootload_sim.vhd
-Z38 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bootload_sim.vhd
+Z36 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bootload_sim.vhd
+Z37 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bootload_sim.vhd
 l0
 L11 1
 VaAjfl7zflggnDAmkQ01A:2
 !s100 Aj=Ah6=>>E4KPO][51^7=2
 R9
 31
-Z39 !s110 1687557819
+Z38 !s110 1688052714
 !i10b 1
-Z40 !s108 1687557819.000000
-Z41 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bootload_sim.vhd|
-Z42 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bootload_sim.vhd|
+Z39 !s108 1688052713.000000
+Z40 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bootload_sim.vhd|
+Z41 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/bootload_sim.vhd|
 !i113 1
 R14
 R15
@@ -230,29 +230,29 @@ R2
 R3
 R4
 DEx4 work 8 boot_rom 0 22 aAjfl7zflggnDAmkQ01A:2
-!i122 622
+!i122 1977
 l31
 L16 20
 VaBX<UHNnAMHJS?`4IF=WO2
 !s100 AiiGo<k8B6UDn59J<jjlD2
 R9
 31
-R39
+R38
 !i10b 1
+R39
 R40
 R41
-R42
 !i113 1
 R14
 R15
 Pconversions
 R3
 R4
-!i122 631
-Z43 w1687288971
+!i122 1986
+Z42 w1687288971
 R0
-Z44 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/models/conversions.vhd
-Z45 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/models/conversions.vhd
+Z43 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/models/conversions.vhd
+Z44 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/models/conversions.vhd
 l0
 L64 1
 Vz2F8HMCNf^6?an1i?J:6E1
@@ -260,11 +260,11 @@ Vz2F8HMCNf^6?an1i?J:6E1
 R9
 31
 b1
-Z46 !s110 1687557825
+Z45 !s110 1688052726
 !i10b 1
-Z47 !s108 1687557825.000000
-Z48 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/models/conversions.vhd|
-Z49 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/models/conversions.vhd|
+Z46 !s108 1688052725.000000
+Z47 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/models/conversions.vhd|
+Z48 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/models/conversions.vhd|
 !i113 1
 R14
 R15
@@ -272,42 +272,42 @@ Bbody
 DPx4 work 11 conversions 0 22 z2F8HMCNf^6?an1i?J:6E1
 R3
 R4
-!i122 631
+!i122 1986
 l0
 L340 1
 VHomdZmCKOI`<z56N3AdKD0
 !s100 b5:m4UfXY7[ld4jmk=dM23
 R9
 31
-R46
+R45
 !i10b 1
+R46
 R47
 R48
-R49
 !i113 1
 R14
 R15
 Edebounce
-R18
+R17
 R1
 R2
 R3
 R4
-!i122 618
+!i122 1973
 R0
+R18
 R19
-R20
 l0
-R17
-VlCO6PW=Eojz:2>RnL7XAJ0
-!s100 fQ_=W7AJSg3YMAgd_h7z]3
+L520 1
+VzQGgz4BDgV1dfJ>nkgl?h2
+!s100 >nQ=Se>o[gB83^6@X2;gz2
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
@@ -316,43 +316,43 @@ R1
 R2
 R3
 R4
-DEx4 work 8 debounce 0 22 lCO6PW=Eojz:2>RnL7XAJ0
-!i122 618
-l518
-L514 29
-V1_BGMDAfhJdRR17E=SLfb3
-!s100 Nm10[]aoh4MlFHd:PzW?:0
+DEx4 work 8 debounce 0 22 zQGgz4BDgV1dfJ>nkgl?h2
+!i122 1973
+l533
+L529 29
+Vi`@>LomMSk7o8TEz2VjMe3
+!s100 4neXFYfiKEY7^Zo36R23b1
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
 Edebounce_n
-R18
+R17
 R1
 R2
 R3
 R4
-!i122 618
+!i122 1973
 R0
+R18
 R19
-R20
 l0
-L553 1
-VaJ<XL2@eOL7eJK?_SC5G<1
-!s100 a`;[h7h[HYjUCfBaQP@XZ0
+L568 1
+V;9QPVC[7Od[<bmMDIT3fU0
+!s100 k17LOIlE]55Sz1HcRYd=Y3
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
@@ -361,44 +361,44 @@ R1
 R2
 R3
 R4
-DEx4 work 10 debounce_n 0 22 aJ<XL2@eOL7eJK?_SC5G<1
-!i122 618
-l566
-L562 29
-VPh?`TU;H1[8TAn[]al0m22
-!s100 K=9bdHCAoVkCZMZ:WM:<V3
+DEx4 work 10 debounce_n 0 22 ;9QPVC[7Od[<bmMDIT3fU0
+!i122 1973
+l581
+L577 29
+VHLG^k=]f[^YiM1]W0Z^MJ1
+!s100 4]:CFOIl[mNY60Fjm1Acn1
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
 Edebugger
-Z50 w1687536992
+Z49 w1687639101
 R16
 R1
 R2
 R3
 R4
-!i122 626
+!i122 1981
 R0
-Z51 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd
-Z52 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd
+Z50 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd
+Z51 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd
 l0
-Z53 L36 1
+Z52 L36 1
 VdCYicXeZzVoR2d:DcW^@K0
 !s100 MOzTFb;S@cB[R=JBTkZZE0
 R9
 31
-Z54 !s110 1687557822
+Z53 !s110 1688052719
 !i10b 1
-Z55 !s108 1687557821.000000
-Z56 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd|
-Z57 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd|
+Z54 !s108 1688052718.000000
+Z55 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd|
+Z56 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/debugger.vhd|
 !i113 1
 R14
 R15
@@ -409,42 +409,42 @@ R2
 R3
 R4
 DEx4 work 8 debugger 0 22 dCYicXeZzVoR2d:DcW^@K0
-!i122 626
+!i122 1981
 l130
 L53 452
-VWgMJ9mBc6C^Y2N>HdIC;F3
-!s100 MX1EhaX;JFO34XPBf[WPT2
+Vf9SNIAJzT[0fYlMB>Dam03
+!s100 ;012CYzHUM0mAY_]]6ji10
 R9
 31
-R54
+R53
 !i10b 1
+R54
 R55
 R56
-R57
 !i113 1
 R14
 R15
 Edpfifo
-R18
+R17
 R1
 R2
 R3
 R4
-!i122 618
+!i122 1973
 R0
+R18
 R19
-R20
 l0
-L1426 1
-VV?[]CiTBZ9l5jM]=kID;]1
-!s100 lF>61ELgbg@>HV:4RNnfV3
+L1441 1
+Vi=7G00<d>V7B9mlTMYM:k2
+!s100 Y`5doiJMA`<5k1naVmmGQ1
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
@@ -453,43 +453,43 @@ R1
 R2
 R3
 R4
-DEx4 work 6 dpfifo 0 22 V?[]CiTBZ9l5jM]=kID;]1
-!i122 618
-l1453
-L1441 74
-VEYffkT6;R0]XV:o8e]AG32
-!s100 obCLbBlgaZekUSXJ;5GLT3
+DEx4 work 6 dpfifo 0 22 i=7G00<d>V7B9mlTMYM:k2
+!i122 1973
+l1468
+L1456 74
+V6XW4fE1i1jzk[fI`dno]o2
+!s100 LJ1Mj`][ZM;]Ln^PofcoO3
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
 Eedge
-R18
+R17
 R1
 R2
 R3
 R4
-!i122 618
+!i122 1973
 R0
+R18
 R19
-R20
 l0
-L601 1
-V@Fz_RWgO[?NAeDSJ1_heQ2
-!s100 ?UQ5WKNkRg`<]Q]`?KRiW2
+L616 1
+VBhFdcgKjj=MGahUodVRLG2
+!s100 [;J_e_7Cj=gjh`67QWXK83
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
@@ -498,43 +498,43 @@ R1
 R2
 R3
 R4
-DEx4 work 4 edge 0 22 @Fz_RWgO[?NAeDSJ1_heQ2
-!i122 618
-l613
-L608 25
-V8>O2[znQTf=zmJ_c`hagi2
-!s100 9V6KlDF0YhHYV5PG?=KiT0
+DEx4 work 4 edge 0 22 BhFdcgKjj=MGahUodVRLG2
+!i122 1973
+l628
+L623 25
+V8128cbDelO`M^1K;YQ1V?3
+!s100 5LF]Ba;6R0?M<TBTgSF3]2
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
 Eedge_n
-R18
+R17
 R1
 R2
 R3
 R4
-!i122 618
+!i122 1973
 R0
+R18
 R19
-R20
 l0
-L643 1
-V_iZ_lDJz3;^ZchmX?cQYJ0
-!s100 KIA4?oSI=V2J:kk25c9m@3
+L658 1
+Ve<RbdnGL@HhULXUFe;`Gh0
+!s100 8CoAm5eB@TJZE_^:?zak=3
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
@@ -543,43 +543,43 @@ R1
 R2
 R3
 R4
-DEx4 work 6 edge_n 0 22 _iZ_lDJz3;^ZchmX?cQYJ0
-!i122 618
-l655
-L650 25
-V_mZTiZH35Pn7[zMiDLWid0
-!s100 n]K0@1=bDbi::f_;STJZ?0
+DEx4 work 6 edge_n 0 22 e<RbdnGL@HhULXUFe;`Gh0
+!i122 1973
+l670
+L665 25
+VNXieFmZ@<HVMQ`VVb?5`X1
+!s100 _F1Q_Md?JXnaWI>=7Fg6l3
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
 Eexternal_ram
-R18
+R17
 R1
 R2
 R3
 R4
-!i122 618
+!i122 1973
 R0
+R18
 R19
-R20
 l0
-L1113 1
-V_BKbbj2AHTo@W@n9Z]GhF0
-!s100 ?DQ@SEKR;Z:JYX=;QE=nW0
+L1128 1
+VSec?0hLkQoamQn=[>giXo3
+!s100 2eHM]iUKDSk8mcITNZhQG2
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
@@ -588,90 +588,90 @@ R1
 R2
 R3
 R4
-DEx4 work 12 external_ram 0 22 _BKbbj2AHTo@W@n9Z]GhF0
-!i122 618
-l1135
-L1124 67
-V>?8XSGb<Z]dh;g5V04SK23
-!s100 =8R4z?LHLEZ_W]N2m1]:Z3
+DEx4 work 12 external_ram 0 22 Sec?0hLkQoamQn=[>giXo3
+!i122 1973
+l1150
+L1139 67
+VX:@bA>d6ao^0`1fdXQLWG2
+!s100 ;5EmBzT9:GELHShOgzQ:L1
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
 Eexternal_sdram
-Z58 w1687600276
-R1
-R16
+Z57 w1687684168
+Z58 DPx4 work 13 functions_pkg 0 22 FX0G5@:8=F;WR7^=R9lz@1
+Z59 DPx4 work 16 architecture_pkg 0 22 VCE`M<=a_;AS1eWJU5fgO0
 R2
 R3
 R4
-!i122 649
+!i122 929
 R0
-Z59 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/external_SDRAM.vhd
-Z60 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/external_SDRAM.vhd
+Z60 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/external_SDRAM.vhd
+Z61 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/external_SDRAM.vhd
 l0
 L33 1
-V5^NXV]9BVkfdD_2D`R6eZ0
-!s100 EE^<DOo7TAH<g0li^`4dZ3
+VzQ7YjSBl]Og8n3Ag;;j:A0
+!s100 E8U18LY4K5YDFnFSh;S4n2
 R9
 31
-Z61 !s110 1687600281
+Z62 !s110 1687684193
 !i10b 1
-Z62 !s108 1687600280.000000
-Z63 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/external_SDRAM.vhd|
-Z64 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/external_SDRAM.vhd|
+Z63 !s108 1687684192.000000
+Z64 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/external_SDRAM.vhd|
+Z65 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/external_SDRAM.vhd|
 !i113 1
 R14
 R15
 Artl
-R1
-R16
+R58
+R59
 R2
 R3
 R4
-Z65 DEx4 work 14 external_sdram 0 22 5^NXV]9BVkfdD_2D`R6eZ0
-!i122 649
-l115
-L41 272
-V92LA_776Ko]i3FEMBo64j1
-!s100 ]dZ_0WP5`7AYdhoP_9jSK1
+DEx4 work 14 external_sdram 0 22 zQ7YjSBl]Og8n3Ag;;j:A0
+!i122 929
+l117
+L41 279
+V_CJo0D8NdiKQNP]RChIo`1
+!s100 mNf4h:Hz6V18l6b5zjZ8>3
 R9
 31
-R61
-!i10b 1
 R62
+!i10b 1
 R63
 R64
+R65
 !i113 1
 R14
 R15
 Efifo
-R18
+R17
 R1
 R2
 R3
 R4
-!i122 618
+!i122 1973
 R0
+R18
 R19
-R20
 l0
-L1333 1
-VKRW5O]cEJPK_ok^LlIA4h1
-!s100 4iSM1:f<7HT63OCZN7MjX2
+L1348 1
+VbbSSX3ADBBjeU::[zZ8;W0
+!s100 g_CchjFzQE=Y=TnAF;JXz3
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
@@ -680,43 +680,43 @@ R1
 R2
 R3
 R4
-DEx4 work 4 fifo 0 22 KRW5O]cEJPK_ok^LlIA4h1
-!i122 618
-l1360
-L1348 67
-V`69Dlc6kz6=1@Rho9RhZ@1
-!s100 UH`gMMk`JdgE`OGnO5hki3
+DEx4 work 4 fifo 0 22 bbSSX3ADBBjeU::[zZ8;W0
+!i122 1973
+l1375
+L1363 67
+V8[P1a8NnoPKnA;Q1C>?WQ0
+!s100 8Y77:0l`^zUPhmcK84E^:3
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
 Efifo_dpram
-R18
+R17
 R1
 R2
 R3
 R4
-!i122 618
+!i122 1973
 R0
+R18
 R19
-R20
 l0
-L1201 1
-VeBk[eK:^gM6<k6]g9LlaT1
-!s100 VlL4z:?WMG:X5^_a0G:jL2
+L1216 1
+VI=7m8YdET5Y7e]QGz=[5H0
+!s100 5@gVBj]K]fhMJl@8@cP;62
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
@@ -725,30 +725,30 @@ R1
 R2
 R3
 R4
-DEx4 work 10 fifo_dpram 0 22 eBk[eK:^gM6<k6]g9LlaT1
-!i122 618
-l1226
-L1217 32
-VJ@?n@4eZjEkN?Kg06Ml2F1
-!s100 MoYe>UZ@3E6K[bIBMk;2<0
+DEx4 work 10 fifo_dpram 0 22 I=7m8YdET5Y7e]QGz=[5H0
+!i122 1973
+l1241
+L1232 32
+VLO6nNlj8^ROaNj8N?GA[^2
+!s100 08_[b@ZT`nz]QBF^4Bm_30
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
 Efpga
-Z66 w1687599841
+Z66 w1687970499
 R16
 R1
 R2
 R3
 R4
-!i122 645
+!i122 1985
 R0
 Z67 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd
 Z68 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd
@@ -758,9 +758,9 @@ VC8]2ET:c9=Kb=N@BV>TOe2
 !s100 0niSbI9]OC`zQ01=;M6oQ0
 R9
 31
-Z70 !s110 1687599972
+Z70 !s110 1688052725
 !i10b 1
-Z71 !s108 1687599972.000000
+Z71 !s108 1688052724.000000
 Z72 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd|
 Z73 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/fpga.vhd|
 !i113 1
@@ -773,11 +773,11 @@ R2
 R3
 R4
 DEx4 work 4 fpga 0 22 C8]2ET:c9=Kb=N@BV>TOe2
-!i122 645
+!i122 1985
 l146
-L75 337
-V6g0=;6[9@gOLfDNY5Q4<50
-!s100 j3`:ULj4@?1Xgd30effB:2
+L75 348
+V?E;DCl^zeljU5XbkBzfY33
+!s100 k38Q:z5Q6b>ja^NIkAM7S1
 R9
 31
 R70
@@ -792,23 +792,23 @@ Pfunctions_pkg
 R2
 R3
 R4
-!i122 618
-R18
+!i122 1973
+R17
 R0
+R18
 R19
-R20
 l0
 Z74 L34 1
-VB]kEP:dNKnKabjk1Ec:<d1
-!s100 1dm5<S[R4dF4P2@29HWb72
+VlE9?1B^ORWCkDGGSma4c33
+!s100 @I^dXBQg9CeD08LFS542Q1
 R9
 31
 b1
-!s110 1687557815
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
@@ -817,27 +817,27 @@ R1
 R2
 R3
 R4
-!i122 618
+!i122 1973
 l0
-L255 1
-V<^M=:`R_]kNQJcz>a[3ON0
-!s100 0FKXYD>BIWSFSbd?d6kN21
+L258 1
+V5@Tb=IU6nD[koV;J^z@:]0
+!s100 jj;eZhmbMTYeY=ag6N4YN1
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
 Pgen_utils
-R28
 R27
+R26
 R3
 R4
-!i122 632
+!i122 1987
 Z75 w1687288949
 R0
 Z76 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/models/gen_utils.vhd
@@ -849,21 +849,21 @@ VF7]<5kgK<;@fFM;HVMBFe2
 R9
 31
 b1
-Z78 !s110 1687557826
+Z78 !s110 1688052727
 !i10b 1
-Z79 !s108 1687557826.000000
+Z79 !s108 1688052726.000000
 Z80 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/models/gen_utils.vhd|
 Z81 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/models/gen_utils.vhd|
 !i113 1
 R14
 R15
 Bbody
-R26
-R28
+R25
 R27
+R26
 R3
 R4
-!i122 632
+!i122 1987
 l0
 L96 1
 V?RE5K7nL6lY3kRcQ9]b<>3
@@ -878,27 +878,70 @@ R81
 !i113 1
 R14
 R15
+Einternal_datamem_27
+Z82 w1688052438
+Z83 DPx9 altera_mf 20 altera_mf_components 0 22 BN6nPmY:UEbXa[^5b@FTW1
+R3
+R4
+!i122 1983
+R0
+Z84 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uDatacache.vhd
+Z85 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uDatacache.vhd
+l0
+L153 1
+VT9?_KY1:7BN^=cJ?^z0h70
+!s100 CG_Na8OZ7Ek1K`LKW9JXj1
+R9
+31
+Z86 !s110 1688052722
+!i10b 1
+Z87 !s108 1688052721.000000
+Z88 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uDatacache.vhd|
+Z89 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uDatacache.vhd|
+!i113 1
+R14
+R15
+Asyn
+R83
+R3
+R4
+DEx4 work 19 internal_datamem_27 0 22 T9?_KY1:7BN^=cJ?^z0h70
+!i122 1983
+l167
+L163 36
+VXAU:>l]:NZ91jmoLSM7J51
+!s100 =D6HzHI5;W[^IA4_=R7HO2
+R9
+31
+R86
+!i10b 1
+R87
+R88
+R89
+!i113 1
+R14
+R15
 Einternal_dpbram
-R18
+R17
 R1
 R2
 R3
 R4
-!i122 618
+!i122 1973
 R0
+R18
 R19
-R20
 l0
-L968 1
-V;lK63iGnK0967haFdoGoJ2
-!s100 MM9HPU7zV:P3jRBkROk1S2
+L983 1
+VJRDOD2Gd@]`f>H7:mWF0g1
+!s100 Kj:fA21^0@kEj<Z0LTL1Z3
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
@@ -907,43 +950,43 @@ R1
 R2
 R3
 R4
-DEx4 work 15 internal_dpbram 0 22 ;lK63iGnK0967haFdoGoJ2
-!i122 618
-l1005
-L990 109
-VS4iGYkM90io1B0D5`zOk?1
-!s100 6_Z6:YUc88zgH@m=SmlzS1
+DEx4 work 15 internal_dpbram 0 22 JRDOD2Gd@]`f>H7:mWF0g1
+!i122 1973
+l1020
+L1005 109
+V7oB1>nhcQF6BBal8ZY9832
+!s100 BRAJFVzDNC;?oBb6cc^:D2
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
 Einternal_dpram
-R18
+R17
 R1
 R2
 R3
 R4
-!i122 618
+!i122 1973
 R0
+R18
 R19
-R20
 l0
-L863 1
-VN?mO<BcKo7GBbYF>@fK6K0
-!s100 _5nC6FdG>Gg77ATnjY`lZ1
+L878 1
+Vk<]kY9DY33ID`Mj3[<Jo[0
+!s100 PAi`Y=VnCX^O:TAnO[n]b0
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
@@ -952,43 +995,43 @@ R1
 R2
 R3
 R4
-DEx4 work 14 internal_dpram 0 22 N?mO<BcKo7GBbYF>@fK6K0
-!i122 618
-l894
-L882 71
-V;<3>[0T3C;cFYfckY;ITL1
-!s100 I0`m_lnRU7WABT^1zJa4m3
+DEx4 work 14 internal_dpram 0 22 k<]kY9DY33ID`Mj3[<Jo[0
+!i122 1973
+l909
+L897 71
+VkgYA>ln5jo]YngF^l1`[k3
+!s100 HW25emzW]YmOT1lB1_?I[2
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
 Einternal_ram
-R18
+R17
 R1
 R2
 R3
 R4
-!i122 618
+!i122 1973
 R0
+R18
 R19
-R20
 l0
-L771 1
-V_YUd[=QLTeT>nOZa8LcZ91
-!s100 kCQU9?CQ]]k>3Y7MWJ`N90
+L786 1
+V:JozWkdXoUWSIM;O7z@l50
+!s100 >L><?Yf<lnkIZG^zgI<Z63
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
@@ -997,44 +1040,44 @@ R1
 R2
 R3
 R4
-DEx4 work 12 internal_ram 0 22 _YUd[=QLTeT>nOZa8LcZ91
-!i122 618
-l796
-L785 63
-Vo9RYUYQ6bLW<9ZfBOLHLG0
-!s100 F0]F^;ZZNKHg=noKof1?E2
+DEx4 work 12 internal_ram 0 22 :JozWkdXoUWSIM;O7z@l50
+!i122 1973
+l811
+L800 63
+VR`Sfj]0ndW@^f<PiPZQoL2
+!s100 ng?40N`_XPHjECKWzz3D22
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
 Emicrocontrol
-Z82 w1686607024
+Z90 w1688057524
 R16
 R1
 R2
 R3
 R4
-!i122 621
+!i122 1993
 R0
-Z83 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd
-Z84 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd
+Z91 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd
+Z92 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd
 l0
-R53
+R52
 VA?k2046NnYIEgfcA^?dLR3
 !s100 mkIh:MbTRnZiL@h3F]57a3
 R9
 31
-Z85 !s110 1687557818
+!s110 1688057667
 !i10b 1
-Z86 !s108 1687557818.000000
-Z87 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd|
-Z88 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd|
+Z93 !s108 1688057666.000000
+Z94 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd|
+Z95 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCntrl.vhd|
 !i113 1
 R14
 R15
@@ -1044,44 +1087,44 @@ R1
 R2
 R3
 R4
-DEx4 work 12 microcontrol 0 22 A?k2046NnYIEgfcA^?dLR3
-!i122 621
+Z96 DEx4 work 12 microcontrol 0 22 A?k2046NnYIEgfcA^?dLR3
+!i122 1993
 l156
-L48 1534
-VBSOe3EMQI`VSLdIaAn^_S1
-!s100 E9iRhVB;h4V8;KoJj04gf1
+L48 1614
+Vk[8KiGkOfVRW:`>Ug=4AB1
+!s100 EP@DQ;0ngQ<nGRX8^N3]Q2
 R9
 31
-R85
+!s110 1688057668
 !i10b 1
-R86
-R87
-R88
+R93
+R94
+R95
 !i113 1
 R14
 R15
 Emicrocore
-Z89 w1686259517
+Z97 w1687684962
 R16
 R1
 R2
 R3
 R4
-!i122 627
+!i122 1982
 R0
-Z90 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd
-Z91 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd
+Z98 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd
+Z99 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd
 l0
 R74
 V5lTW60<CAWboLmd>iijN`1
 !s100 `92ChR5N`DzjUfRc1JoUL1
 R9
 31
-R54
+!s110 1688052720
 !i10b 1
-Z92 !s108 1687557822.000000
-Z93 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd|
-Z94 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd|
+Z100 !s108 1688052719.000000
+Z101 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd|
+Z102 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uCore.vhd|
 !i113 1
 R14
 R15
@@ -1092,42 +1135,42 @@ R2
 R3
 R4
 DEx4 work 9 microcore 0 22 5lTW60<CAWboLmd>iijN`1
-!i122 627
+!i122 1982
 l128
 L44 205
 VP8E<3ITHQ`EoAdO98b92F1
 !s100 SeGaXS[_LNhIFO]XVR1VN2
 R9
 31
-R54
+!s110 1688052721
 !i10b 1
-R92
-R93
-R94
+R100
+R101
+R102
 !i113 1
 R14
 R15
 Emonoflop
-R18
+R17
 R1
 R2
 R3
 R4
-!i122 618
+!i122 1973
 R0
+R18
 R19
-R20
 l0
-L1265 1
-V7GWWSCnK8zkhhJo<WmU0G1
-!s100 C^4jcNgeJ[fZmT]_1BYk^0
+L1280 1
+VIF4VKf88Ok0O[=<a`2NPT3
+!s100 @W09k9^]ahac9^1kz=A3`2
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
@@ -1136,90 +1179,90 @@ R1
 R2
 R3
 R4
-DEx4 work 8 monoflop 0 22 7GWWSCnK8zkhhJo<WmU0G1
-!i122 618
-l1280
-L1273 49
-VMOZYb0fo9jaQEQ2a:09_<3
-!s100 Xo=MFVnj751SSNG=J<Gi<1
+DEx4 work 8 monoflop 0 22 IF4VKf88Ok0O[=<a`2NPT3
+!i122 1973
+l1295
+L1288 49
+VS^HK269H2A[Jn7Z5lnkP22
+!s100 6>UoV_]3B;9IQ3=hC4^OY0
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
 Emt48lc4m16
-Z95 w1686926389
-Z96 DPx3 fmf 11 conversions 0 22 z2F8HMCNf^6?an1i?J:6E1
-Z97 DPx3 fmf 9 gen_utils 0 22 F7]<5kgK<;@fFM;HVMBFe2
+Z103 w1687775051
+Z104 DPx3 fmf 11 conversions 0 22 z2F8HMCNf^6?an1i?J:6E1
+Z105 DPx3 fmf 9 gen_utils 0 22 F7]<5kgK<;@fFM;HVMBFe2
+R26
 R27
-R28
 R3
 R4
-!i122 633
+!i122 1988
 R0
-Z98 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/models/mt48lc4m16.vhd
-Z99 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/models/mt48lc4m16.vhd
+Z106 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/models/mt48lc4m16.vhd
+Z107 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/models/mt48lc4m16.vhd
 l0
-L39 1
-Vc?zJ1EPZiajUKPgggN0m72
-!s100 SbKK9A19BgIKZSYlic;WP2
+L45 1
+VoZ8[ASCXjNOzRLfQlIKzD2
+!s100 ziHceO5]I>[JeEOhMVndY2
 R9
 31
-Z100 !s110 1687557827
+Z108 !s110 1688052729
 !i10b 1
-R79
-Z101 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/models/mt48lc4m16.vhd|
-Z102 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/models/mt48lc4m16.vhd|
+Z109 !s108 1688052727.000000
+Z110 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/models/mt48lc4m16.vhd|
+Z111 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/models/mt48lc4m16.vhd|
 !i113 1
 R14
 R15
 Avhdl_behavioral
-R96
-R97
+R104
+R105
+R26
 R27
-R28
 R3
 R4
-DEx4 work 10 mt48lc4m16 0 22 c?zJ1EPZiajUKPgggN0m72
-!i122 633
-l269
-L168 1411
-Vi5Ok=4^nDd]GeEZ8JS4gV3
-!s100 A]@5BYJ63U4XXDSN=j:=B2
+DEx4 work 10 mt48lc4m16 0 22 oZ8[ASCXjNOzRLfQlIKzD2
+!i122 1988
+l275
+L174 1411
+Vz:PJN:Q4=zO0KleGz50M21
+!s100 H>a[4PKSf71PHm@E]3[P^1
 R9
 31
-R100
+R108
 !i10b 1
-R79
-R101
-R102
+R109
+R110
+R111
 !i113 1
 R14
 R15
 Epll
-Z103 w1687540427
+Z112 w1687540427
 R3
 R4
 !i122 386
 R0
-Z104 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/pll.vhd
-Z105 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/pll.vhd
+Z113 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/pll.vhd
+Z114 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/pll.vhd
 l0
-R31
+R30
 VTm`OIb2VaB<eZgNgCQcI41
 !s100 ?z5PLUSgMkKGOnV;I[UM60
 R9
 31
-Z106 !s110 1687540666
+Z115 !s110 1687540666
 !i10b 1
-Z107 !s108 1687540665.000000
-Z108 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/pll.vhd|
-Z109 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/pll.vhd|
+Z116 !s108 1687540665.000000
+Z117 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/pll.vhd|
+Z118 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/pll.vhd|
 !i113 1
 R14
 R15
@@ -1234,36 +1277,36 @@ V4BfFTEAKjD3`LF]Xiz=@80
 !s100 5BMl24@e>826?UAA=HT1D1
 R9
 31
-R106
+R115
 !i10b 1
-R107
-R108
-R109
+R116
+R117
+R118
 !i113 1
 R14
 R15
 Eprogram_rom
-Z110 w1667498306
+Z119 w1667498306
 R1
 R16
 R2
 R3
 R4
-!i122 623
+!i122 1978
 R0
-Z111 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/program.vhd
-Z112 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/program.vhd
+Z120 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/program.vhd
+Z121 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/program.vhd
 l0
 L10 1
 VGC4C@Xi=5OcWMS80mWWT]3
 !s100 N0i_Of_mK2?4kKQ:Z1@fh3
 R9
 31
-Z113 !s110 1687557820
+Z122 !s110 1688052715
 !i10b 1
-R40
-Z114 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/program.vhd|
-Z115 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/program.vhd|
+Z123 !s108 1688052714.000000
+Z124 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/program.vhd|
+Z125 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/program.vhd|
 !i113 1
 R14
 R15
@@ -1274,18 +1317,65 @@ R2
 R3
 R4
 DEx4 work 11 program_rom 0 22 GC4C@Xi=5OcWMS80mWWT]3
-!i122 623
+!i122 1978
 l37
 L15 27
 VV18J4hCgHm3B0H3FjgY0`2
 !s100 4VObCEA9G<[ZS23R3lZ[a1
 R9
 31
-R113
+R122
 !i10b 1
-R40
-R114
-R115
+R123
+R124
+R125
+!i113 1
+R14
+R15
+Esdram_4mbx16
+Z126 w1688053252
+R1
+R16
+R2
+R3
+R4
+!i122 1992
+R0
+Z127 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/SDRAM_4MBx16.vhd
+Z128 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/SDRAM_4MBx16.vhd
+l0
+L35 1
+VlNA_Zca3W<kg5]dW]3W=O2
+!s100 JHQLISE;0]XE;Qa5LHO?80
+R9
+31
+Z129 !s110 1688053257
+!i10b 1
+Z130 !s108 1688053256.000000
+Z131 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/SDRAM_4MBx16.vhd|
+Z132 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/SDRAM_4MBx16.vhd|
+!i113 1
+R14
+R15
+Artl
+R1
+R16
+R2
+R3
+R4
+DEx4 work 12 sdram_4mbx16 0 22 lNA_Zca3W<kg5]dW]3W=O2
+!i122 1992
+l109
+L43 271
+VK7`6VTz^@UG;P_PMRZhek1
+!s100 d1DHe8:Dhe@eCF47T7C:S0
+R9
+31
+R129
+!i10b 1
+R130
+R131
+R132
 !i113 1
 R14
 R15
@@ -1296,14 +1386,14 @@ R2
 R16
 R3
 R4
-!i122 619
+!i122 1974
 R0
 R6
 R7
 l0
-L554 1
-VT2X_dIdTV2gUhI9CGU4Hl1
-!s100 O;1Obch3c]cfSf<Gln>2g2
+L567 1
+V;0Q0UcYF_4Z?4W5^HbE[81
+!s100 PKQ_dZNcGRG6eJB`MDiZW0
 R9
 31
 R10
@@ -1320,12 +1410,12 @@ R2
 R16
 R3
 R4
-DEx4 work 8 semaphor 0 22 T2X_dIdTV2gUhI9CGU4Hl1
-!i122 619
-l563
-L561 24
-V7fM?h?XO7=A7lH=@mM<9F3
-!s100 E@>5J<nc1ajPlR?H3MeSe0
+DEx4 work 8 semaphor 0 22 ;0Q0UcYF_4Z?4W5^HbE[81
+!i122 1974
+l576
+L574 24
+V[9>_mEdIDNmK@cadD@mmE3
+!s100 W`gUbJe0j9CenRn0iil`82
 R9
 31
 R10
@@ -1337,25 +1427,25 @@ R13
 R14
 R15
 Esynchronize
-R18
+R17
 R2
 R3
 R4
-!i122 618
+!i122 1973
 R0
+R18
 R19
-R20
 l0
-L442 1
-VCjb>oolC4Kb_7jg1GjZ;z0
-!s100 SD?I@Y9_GZCMG><K[CW933
+L457 1
+VU:YO@i93==MEdegHOJRSD1
+!s100 7=DUdzY25MmQ9Tod@J9Nf0
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
@@ -1363,42 +1453,42 @@ Artl
 R2
 R3
 R4
-DEx4 work 11 synchronize 0 22 Cjb>oolC4Kb_7jg1GjZ;z0
-!i122 618
-l452
-L448 16
-VJY8<WE[ToY2H0d@kM0DOe0
-!s100 5a:Q@B5jhJU7PUCM8zlc?3
+DEx4 work 11 synchronize 0 22 U:YO@i93==MEdegHOJRSD1
+!i122 1973
+l467
+L463 16
+VkI[0[]j^S=`6o@:g>36<:2
+!s100 hZOOfdjVjH8Lz9odndFH23
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
 Esynchronize_n
-R18
+R17
 R2
 R3
 R4
-!i122 618
+!i122 1973
 R0
+R18
 R19
-R20
 l0
-L473 1
-VD[AWS]SB6Q10W`4hWDLbG2
-!s100 F6dzJ544eAzkn0:jz9@Uo0
+L488 1
+V6LX?EX:ITC7hnnLlAD>bh1
+!s100 Ie^iG`291TzGcQejzTia90
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
@@ -1406,44 +1496,44 @@ Artl
 R2
 R3
 R4
-DEx4 work 13 synchronize_n 0 22 D[AWS]SB6Q10W`4hWDLbG2
-!i122 618
-l483
-L479 16
-Ve:2KQTe?G>0aGzfZXN]2f0
-!s100 H:WVXjDUA5an`?H]]UEZY0
+DEx4 work 13 synchronize_n 0 22 6LX?EX:ITC7hnnLlAD>bh1
+!i122 1973
+l498
+L494 16
+VXWZffbRE_6@=QmP_YLIEA1
+!s100 EfB1;dLknX@jT6jGWV7G:3
 R9
 31
-R21
+R20
 !i10b 1
+R21
 R22
 R23
-R24
 !i113 1
 R14
 R15
 Euarithmetic
-Z116 w1617638874
+Z133 w1617638874
 R1
 R16
 R2
 R3
 R4
-!i122 620
+!i122 1975
 R0
-Z117 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uArithmetic.vhd
-Z118 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uArithmetic.vhd
+Z134 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uArithmetic.vhd
+Z135 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uArithmetic.vhd
 l0
 R8
 V_>kfYIH2IhNYcKQjZSMI21
 !s100 @3NdoiC2gM2UM3bzMIE0K2
 R9
 31
-R85
+Z136 !s110 1688052711
 !i10b 1
-Z119 !s108 1687557817.000000
-Z120 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uArithmetic.vhd|
-Z121 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uArithmetic.vhd|
+Z137 !s108 1688052710.000000
+Z138 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uArithmetic.vhd|
+Z139 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uArithmetic.vhd|
 !i113 1
 R14
 R15
@@ -1454,92 +1544,92 @@ R2
 R3
 R4
 DEx4 work 11 uarithmetic 0 22 _>kfYIH2IhNYcKQjZSMI21
-!i122 620
+!i122 1975
 l46
 L44 19
 V0PK<DGf4EBAG0gXDWIE;>1
 !s100 bkB^;F[7YKm1U^VKZ15`d1
 R9
 31
-R85
+R136
 !i10b 1
-R119
-R120
-R121
+R137
+R138
+R139
 !i113 1
 R14
 R15
 Euart
-Z122 w1686585784
+Z140 w1686585784
 R1
 R16
-Z123 DPx4 ieee 9 math_real 0 22 gNk<PdFJ<XNPcfef`f?Z81
+Z141 DPx4 ieee 9 math_real 0 22 gNk<PdFJ<XNPcfef`f?Z81
 R2
 R3
 R4
-!i122 625
+!i122 1980
 R0
-Z124 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uart.vhd
-Z125 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uart.vhd
+Z142 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uart.vhd
+Z143 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uart.vhd
 l0
 R8
 V<n3FWI4InI1_FNF@5ne`S2
 !s100 DkDlYXD];EFKh]fhi8>2i2
 R9
 31
-Z126 !s110 1687557821
+Z144 !s110 1688052718
 !i10b 1
-R55
-Z127 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uart.vhd|
-Z128 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uart.vhd|
+Z145 !s108 1688052717.000000
+Z146 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uart.vhd|
+Z147 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uart.vhd|
 !i113 1
 R14
 R15
 Artl
 R1
 R16
-R123
+R141
 R2
 R3
 R4
 DEx4 work 4 uart 0 22 <n3FWI4InI1_FNF@5ne`S2
-!i122 625
+!i122 1980
 l79
 L54 191
 VC24cb=k=Zez1R8N9zE9jn2
 !s100 1B?BSQHUf3zfn6i@Qm8en1
 R9
 31
-R126
+R144
 !i10b 1
-R55
-R127
-R128
+R145
+R146
+R147
 !i113 1
 R14
 R15
 Eudatacache
-Z129 w1686609447
+R82
 R16
 R1
 R2
 R3
 R4
-!i122 628
+!i122 1983
 R0
-Z130 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uDatacache.vhd
-Z131 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uDatacache.vhd
+R84
+R85
 l0
 R69
 VAR6:SN58QmVL@@U?a?3V[3
 !s100 MbOQF2^PjL>nYL23WGcCn1
 R9
 31
-Z132 !s110 1687557823
+R86
 !i10b 1
-Z133 !s108 1687557823.000000
-Z134 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uDatacache.vhd|
-Z135 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uDatacache.vhd|
+R87
+R88
+R89
 !i113 1
 R14
 R15
@@ -1550,43 +1640,43 @@ R2
 R3
 R4
 DEx4 work 10 udatacache 0 22 AR6:SN58QmVL@@U?a?3V[3
-!i122 628
-l63
-L38 71
-VJAZ8d_Xck6jUI_G8Fc>lL3
-!s100 Qjg4V]<HX8f_1C6fZC5Y93
+!i122 1983
+l74
+L38 77
+Vz@?c_T4c[JLJSWcnPDQGi3
+!s100 9VXFQU7cLHY8f;IX:b;MB0
 R9
 31
-R132
+R86
 !i10b 1
-R133
-R134
-R135
+R87
+R88
+R89
 !i113 1
 R14
 R15
 Euprogmem
-Z136 w1686259658
+Z148 w1686259658
 R16
 R2
 R1
 R3
 R4
-!i122 624
+!i122 1979
 R0
-Z137 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uProgmem.vhd
-Z138 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uProgmem.vhd
+Z149 8D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uProgmem.vhd
+Z150 FD:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uProgmem.vhd
 l0
 L30 1
 V5m]583YdY?IJkRC8?cC2X1
 !s100 Z^]g>`]JbPO1@M?9?9WaK3
 R9
 31
-R113
+Z151 !s110 1688052716
 !i10b 1
-Z139 !s108 1687557820.000000
-Z140 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uProgmem.vhd|
-Z141 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uProgmem.vhd|
+Z152 !s108 1688052715.000000
+Z153 !s90 -reportprogress|300|-work|work|-93|-explicit|-novitalcheck|-novital|-quiet|-source|-nowarn|1|-nowarn|3|-stats=none|D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uProgmem.vhd|
+Z154 !s107 D:/technik/microcore/hardware/EP4CE6_OMDAZZ/vhdl/uProgmem.vhd|
 !i113 1
 R14
 R15
@@ -1597,18 +1687,18 @@ R1
 R3
 R4
 DEx4 work 8 uprogmem 0 22 5m]583YdY?IJkRC8?cC2X1
-!i122 624
+!i122 1979
 l41
 L39 16
 Vli>[B1e9Mn6hodLi6b`?;1
 !s100 ^aUZUlGEN1ZC?[nXX<Fh90
 R9
 31
-R113
+R151
 !i10b 1
-R139
-R140
-R141
+R152
+R153
+R154
 !i113 1
 R14
 R15

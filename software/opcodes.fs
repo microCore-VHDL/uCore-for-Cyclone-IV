@@ -2,7 +2,7 @@
 \ @file : opcodes.fs
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 02.10.2022 16:31:47
+\ Last change: KS 29.06.2023 18:03:01
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -57,6 +57,8 @@ op_LOCAL       Op: local   ( rel -- addr )    don't
 op_LOAD        Op: ld      ( addr -- n addr ) don't
 op_STORE       Op: st      ( n addr -- addr ) don't
             Macro: !       ( n addr -- )      comp? dbg? or IF T st drop H EXIT THEN  d! ;
+op_PLUSST      Op: +st     ( n addr -- addr ) don't   \ indivisible read-modify-write instruction
+            Macro: +!      ( n addr -- )      comp? IF T +st drop H EXIT THEN  +! ;
 EXTENDED [IF]
    op_FETCH    Op: @       ( addr -- u )      d@
    op_RDROP    Op: rdrop   ( -- )             don't
@@ -171,8 +173,6 @@ op_STSET       Op: st-set      ( mask -- )    don't
 EXTENDED [IF]
  
    op_INDEX       Op: I       ( -- i )               don't
-   op_PLUSST      Op: +st     ( n addr -- addr )     don't   \ indivisible read-modify-write instruction
-               Macro: +!      ( n addr -- )          comp? IF T +st drop H EXIT THEN  +! ;
    op_FLAGQ       Op: flag?   ( mask -- f )          don't
    op_NZEXIT      Op: nz-exit ( f -- )               don't
    op_ADDSAT      Op: +sat    ( n1 n2 -- n3 )        don't

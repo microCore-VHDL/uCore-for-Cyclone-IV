@@ -1,10 +1,10 @@
-Analysis & Synthesis Status : Successful - Sun Jun 25 00:31:11 2023
+Analysis & Synthesis Status : Successful - Thu Jun 29 19:44:24 2023
 Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 Revision Name : fpga
 Top-level Entity Name : fpga
 Family : Cyclone IV E
-Total logic elements : 2,951
-    Total combinational functions : 2,833
+Total logic elements : 2,966
+    Total combinational functions : 2,850
     Dedicated logic registers : 551
 Total registers : 551
 Total pins : 82

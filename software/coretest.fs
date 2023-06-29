@@ -2,7 +2,7 @@
 \ @file : coretest.fs
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 24.06.2023 13:36:34
+\ Last change: KS 29.06.2023 18:48:33
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -227,7 +227,7 @@ $5A5 Constant ovfl-pattern
    Location wld 2 + w@
    Location wst 2 + w!  Location @ $22114433 -  IF  $38 throw THEN
 [THEN]
-WITH_EXTMEM [IF]                             
+WITH_EXTMEM [IF]
    #8001 #extern st @ #8001 -                   IF  $39 throw THEN
    -1 #extern +!   #extern @ #8000 -            IF  $3A throw THEN
     1 #extern +!   #extern @ #8001 -            IF  $3B throw THEN

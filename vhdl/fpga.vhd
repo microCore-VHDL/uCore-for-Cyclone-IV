@@ -2,7 +2,7 @@
 -- @file : fpga.vhd for the Intel EP4CE6_OMDAZZ prototyping board
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 24.06.2023 12:51:17
+-- Last change: KS 28.06.2023 17:43:24
 -- @project: EP4CE6_OMDAZZ
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -131,13 +131,13 @@ SIGNAL cache_addr   : data_addr;    -- for simulation only
 -- board specific IO
 -- ---------------------------------------------------------------------
 
-COMPONENT external_SDRAM PORT (
-   uBus        : IN  uBus_port;
-   delay       : OUT STD_LOGIC;
+COMPONENT SDRAM_4MBx16 PORT (
+   uBus        : IN    uBus_port;
+   delay       : OUT   STD_LOGIC;
 -- SDRAM
-   sd_ram      : OUT SDRAM_signals;
-   sd_dq       : IN  UNSIGNED(15 DOWNTO 0)
-); END COMPONENT external_SDRAM;
+   sd_ram      : OUT   SDRAM_signals;
+   sd_dq       : INOUT ram_data_bus
+); END COMPONENT SDRAM_4MBx16;
 
 SIGNAL sd_ram       : SDRAM_signals;
 SIGNAL ext_rdata    : data_bus;
@@ -161,7 +161,7 @@ END GENERATE sim_clock; syn_clock: IF  NOT SIMULATION  GENERATE
      c0      => clk,    -- 100 MHz
      locked  => locked
    );
-   
+
 END GENERATE syn_clock;
 
 enable_proc: PROCESS (clk)
@@ -338,7 +338,7 @@ END PROCESS memaddr_proc;
 -- external SDRAM data memory
 -- ---------------------------------------------------------------------
 
-SDRAM: external_SDRAM PORT MAP (
+SDRAM: SDRAM_4MBx16 PORT MAP (
    uBus        => uBus,
    delay       => SDRAM_delay,
 -- SDRAM
@@ -354,10 +354,22 @@ sd_cas_n  <= NOT sd_ram.cmd(1);
 sd_we_n   <= NOT sd_ram.cmd(0);
 sd_a      <= sd_ram.a;
 sd_ba     <= sd_ram.ba;
-sd_ldqm   <= sd_ram.dqm(0);
-sd_udqm   <= sd_ram.dqm(1);
-sd_dq     <= wdata WHEN  sd_ram.cmd(2 DOWNTO 0) = "011"  ELSE (OTHERS => 'Z');
+sd_ldqm   <= NOT sd_ram.ben(0);
+sd_udqm   <= NOT sd_ram.ben(1);
 ext_rdata <= sd_ram.rdata;
+
+-- sd_clk    <= '0';
+-- sd_cke    <= '0';
+-- sd_cs_n   <= '1';
+-- sd_ras_n  <= '1';
+-- sd_cas_n  <= '1';
+-- sd_we_n   <= '1';
+-- sd_a      <= (OTHERS => '0');
+-- sd_ba     <= (OTHERS => '0');
+-- sd_ldqm   <= '0';
+-- sd_udqm   <= '0';
+-- sd_dq     <= (OTHERS => 'Z');
+-- ext_rdata <= (OTHERS => '0');
 
 -- ---------------------------------------------------------------------
 -- OMDAZZ board specific IO

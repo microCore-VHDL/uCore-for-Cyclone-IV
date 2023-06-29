@@ -20,7 +20,7 @@
 ## PROGRAM "Quartus Prime"
 ## VERSION "Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition"
 
-## DATE    "Fri Jun 09 20:21:42 2023"
+## DATE    "Tue Jun 27 22:10:48 2023"
 
 ##
 ## DEVICE  "EP4CE6E22C8"
@@ -98,12 +98,13 @@ set_clock_uncertainty -fall_from [get_clocks {clock}] -fall_to [get_clocks {cloc
 # Set Maximum Delay
 #**************************************************************
 
-
+set_max_delay -from [get_ports sd_dq[*]] -to [get_registers SDRAM_4MBx16:SDRAM|sd_rdata[*]] 4.000
+set_max_delay -from [get_registers SDRAM_4MBx16:SDRAM|sd_rdata[*]] -to [get_registers microcore:uCore|microcontrol:uCntrl|r.nos[*]] 20.000
+set_max_delay -from [get_registers SDRAM_4MBx16:SDRAM|sd_rdata[*]] -to [get_registers microcore:uCore|microcontrol:uCntrl|r.data[*]] 20.000
 
 #**************************************************************
 # Set Minimum Delay
 #**************************************************************
-
 
 
 #**************************************************************

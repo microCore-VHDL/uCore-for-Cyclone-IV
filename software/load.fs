@@ -1,5 +1,5 @@
 \ 
-\ Last change: KS 08.05.2023 23:23:56
+\ Last change: KS 29.06.2023 19:07:15
 \
 \ Basic microCore load screen for execution on the target.
 \
@@ -24,24 +24,15 @@ include constants.fs            \ MicroCore Register addresses and bits
 include debugger.fs
 library forth_lib.fs
 
-WITH_BYTES [IF]
-    : cfill   here $20 FOR  r@ swap cst 1+  NEXT  drop ;
-    Host
-    : cfill   pad $20 1 DO  I over c! 1+ LOOP  drop ;
-    Target
-[ELSE]
-    : cfill   here $20 FOR  r@ swap st 1+  NEXT  drop ;
-    Host
-    : cfill   pad $20 1 DO  I over ! cell+ LOOP  drop ;
-    Target
-[THEN]
+: test ( addr -- )  0 swap 7 FOR  over 1+ -rot st 1+  NEXT  2drop ;
+
 \ ----------------------------------------------------------------------
 \ Booting and TRAPs
 \ ----------------------------------------------------------------------
 
 : interrupt ( -- ) Intflags @ drop ;
 
-init: init-leds ( -- )  [ #c-led0 #c-led1 or #c_led2 or #c-led3 or ] Literal -ctrl ! ;
+init: init-leds ( -- )  [ #c-led0 #c-led1 or #c-led2 or #c-led3 or ] Literal -ctrl ! ;
 
 : boot  ( -- )     0 #cache erase   CALL initialization   debug-service ;
 

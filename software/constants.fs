@@ -2,7 +2,7 @@
 \ @file : constants.fs for the EP4CE6_OMDAZZ prototyping board
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 14.06.2023 23:15:41
+\ Last change: KS 29.06.2023 16:22:00
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -34,7 +34,16 @@ Target
 \ Memory mapping
 \ ----------------------------------------------------------------------
 
-H cache_size T Constant #sdram
+                                       #extern Constant #sdram
+
+data_width data_addr_width = [IF] \ beware of the registers at top memory end
+
+H data_width 2** min_registers abs 2// 2** - T Constant #top
+
+[ELSE]                            \ memory fully available
+
+                       H data_addr_width 2** T Constant #top
+[THEN]
 
 \ ----------------------------------------------------------------------
 \ registers and bits

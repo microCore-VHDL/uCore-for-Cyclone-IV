@@ -51,7 +51,7 @@ add wave -noupdate /bench/myFPGA/uCore/uCntrl/pending
 add wave -noupdate /bench/myFPGA/uCore/uCntrl/interrupt
 add wave -noupdate /bench/myFPGA/uCore/uCntrl/s.iis
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {9500 ns} 0} {{Cursor 2} {121737 ns} 0}
+WaveRestoreCursors {{Cursor 1} {190084 ns} 0} {{Cursor 2} {121737 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 111
 configure wave -valuecolwidth 68
@@ -67,4 +67,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {0 ns} {136500 ns}
+WaveRestoreZoom {0 ns} {273 us}

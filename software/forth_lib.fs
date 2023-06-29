@@ -2,7 +2,7 @@
 \ @file : forth.fs
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 07.10.2022 12:03:50
+\ Last change: KS 29.06.2023 18:42:26
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -49,8 +49,10 @@ Target
 
 ~ : ctrl?      ( mask -- f )      Ctrl-reg @ and ;
 
-~ : u<      ( n1 n2 -- f )             - drop carry? 0= ;
-~ : u>      ( n1 n2 -- f )             swap u< ;
+~ : u<      ( n1 n2 -- f )        - drop carry? 0= ;
+  Host: u<                        comp? dbg? or IF T u< H EXIT THEN u< ;
+~ : u>      ( n1 n2 -- f )        swap u< ;
+  Host: u>                        comp? dbg? or IF T u> H EXIT THEN u> ;
 ~ : within  ( w [low [high -- flag )   over - -rot - swap u< ;
 ~ : case?   ( n1 n2 -- n1 ff | tf ) \ Selection Operator.
      over - IF  false  EXIT THEN  drop true
@@ -145,8 +147,6 @@ Target
    ~ : sqrt     ( u -- urem uroot )      uroot ;
 
 ~ [ELSE]
-
-   ~ : +! ( n addr -- )    Status @ -rot di   ld -rot + swap !   Status ! ;
 
    ~ : m/mod   ( d n -- rem quot )
         dup >r 0< IF  dnegate  r@ negate  ELSE  r@  THEN

@@ -1,5 +1,5 @@
 \ 
-\ Last change: KS 09.05.2023 23:58:32
+\ Last change: KS 29.06.2023 19:06:59
 \
 \ MicroCore load screen for the coretest program that is transferred
 \ into the program memory via the umbilical.
@@ -29,6 +29,10 @@ include debugger.fs
 library forth_lib.fs
 include coretest.fs
 
+: memtest  ( -- error-addr )
+   #extern #top over DO  dup I ! 1+  LOOP  drop
+   #top #extern DO  I dup @ - IF  I rdrop rdrop EXIT THEN  LOOP  0 .
+;
 \ ----------------------------------------------------------------------
 \ Booting and TRAPs
 \ ----------------------------------------------------------------------

@@ -2,7 +2,7 @@
 -- @file : functions_pkg.vhd
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 24.06.2023 22:39:09
+-- Last change: KS 25.06.2023 12:25:53
 -- @project: microCore
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -39,7 +39,7 @@ CONSTANT ASYNC_RESET : BOOLEAN := true; -- true = async reset, false = synchrono
   --               s   : IN NATURAL        ) RETURN STD_LOGIC_VECTOR;
 
 FUNCTION   slice(v : IN STD_LOGIC;
-                 s : IN NATURAL          ) RETURN UNSIGNED;
+                 s : IN INTEGER          ) RETURN UNSIGNED;
 
 FUNCTION    umax(v : IN NATURAL;
                  w : IN NATURAL          ) RETURN NATURAL;
@@ -278,9 +278,9 @@ PACKAGE BODY functions_pkg IS
    -- ------------------------------------------------------------------
 
    FUNCTION slice(v : IN STD_LOGIC;
-                  s : IN NATURAL
+                  s : IN INTEGER
                  )   RETURN UNSIGNED IS
-      VARIABLE temp : UNSIGNED (s-1 DOWNTO 0);
+      VARIABLE temp : UNSIGNED (s DOWNTO 1);
    BEGIN
       temp := (OTHERS => v);
       RETURN temp;

@@ -2,7 +2,7 @@
 -- @file : architecture_pkg_16.vhd for the EP4CE6_OMDAZZ Demoboard
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 25.06.2023 00:31:33
+-- Last change: KS 29.06.2023 19:12:40
 -- @project: EP4CE6_OMDAZZ
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -32,7 +32,7 @@ USE work.functions_pkg.ALL;
 PACKAGE architecture_pkg IS
 --~--  \ when loaded by the microForth cross-compiler, code between "--~" up to "--~--" will be skipped.
 
-CONSTANT version            : NATURAL := 1110; -- <major_release> <functionality_added> <HW_fix> <SW_fix> <pre-release#>
+CONSTANT version            : NATURAL := 1121; -- <major_release> <functionality_added> <HW_fix> <SW_fix> <pre-release#>
 
 -- ---------------------------------------------------------------------
 -- Configuration flags
@@ -69,6 +69,12 @@ CONSTANT DMEM_file          : string  := ""; -- ../software/data.mem";
 -- entity   size   composition   M9Ks
 -- stack   1kx16                  2   ds_addr_width := 7, tasks_addr_width := 3
 -- data    8kx16                 16   cache_addr_width := 13, addr_rstack := 16#1C00#
+-- prog    8kx8                   8   prog_addr_width := 13
+
+-- memory sizes for 27 bits::
+-- entity   size   composition   M9Ks
+-- stack   1kx27                  3   ds_addr_width := 7, tasks_addr_width := 3
+-- data    6kx27                 18   cache_addr_width := 13, addr_rstack := 16#1C00#
 -- prog    8kx8                   8   prog_addr_width := 13
 
 -- memory sizes for 32 bits::
@@ -191,6 +197,7 @@ SUBTYPE byte                IS UNSIGNED ( 7 DOWNTO 0);
 SUBTYPE word                IS UNSIGNED (15 DOWNTO 0);
 SUBTYPE data_bus            IS UNSIGNED (data_width-1 DOWNTO 0);
 SUBTYPE data_addr           IS UNSIGNED (data_addr_width-1 DOWNTO 0);
+SUBTYPE ram_data_bus        IS UNSIGNED (ram_data_width-1 DOWNTO 0);
 SUBTYPE byte_addr           IS UNSIGNED (bytes_per_cell-1 DOWNTO 0);
 SUBTYPE byte_type           IS NATURAL RANGE 0 TO bytes_per_cell-1;
 SUBTYPE cache_addr          IS UNSIGNED (cache_addr_width-1 DOWNTO 0);
@@ -261,7 +268,7 @@ TYPE  SDRAM_signals  IS RECORD
    cmd         : UNSIGNED( 3 DOWNTO 0); -- combines SDRAM inputs: | cs | ras | cas | we |
    a           : UNSIGNED(11 DOWNTO 0);
    ba          : UNSIGNED( 1 DOWNTO 0);
-   dqm         : UNSIGNED( 1 DOWNTO 0);
+   ben         : UNSIGNED( 1 DOWNTO 0); -- byte_en = NOT dqm
    rdata       : data_bus;
 END RECORD;
 

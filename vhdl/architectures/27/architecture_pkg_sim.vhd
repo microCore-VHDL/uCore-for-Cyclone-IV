@@ -1,8 +1,8 @@
 -- ---------------------------------------------------------------------
--- @file : architecture_pkg_16_sim.vhd for the EP4CE6_OMDAZZ Demoboard
+-- @file : architecture_pkg_27.vhd for the EP4CE6_OMDAZZ Demoboard
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 29.06.2023 19:14:06
+-- Last change: KS 29.06.2023 19:10:46
 -- @project: EP4CE6_OMDAZZ
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -42,9 +42,9 @@ CONSTANT version            : NATURAL := 1121; -- <major_release> <functionality
 
 CONSTANT SIMULATION         : BOOLEAN := true  ; -- will e.g. increase the frequency of timers to make them observable in simulation
 CONSTANT COLDBOOT           : BOOLEAN := false ; -- cold boot on reset when true, else warmboot
-CONSTANT EXTENDED           : BOOLEAN := true  ; -- false -> core instruction set, true -> extended instruction set
+CONSTANT EXTENDED           : BOOLEAN := false ; -- false -> core instruction set, true -> extended instruction set
 CONSTANT WITH_MULT          : BOOLEAN := true  ; -- true when FPGA has hardware multiply resources
-CONSTANT WITH_FLOAT         : BOOLEAN := false ; -- floating point instructions?
+CONSTANT WITH_FLOAT         : BOOLEAN := true  ; -- floating point instructions?
 CONSTANT WITH_UP_DOWNLOAD   : BOOLEAN := true  ; -- up/download via umbilical?
 
 -- ---------------------------------------------------------------------
@@ -87,12 +87,12 @@ CONSTANT DMEM_file          : string  := ""; -- ../software/data.mem";
 -- data, cache, register, and external data memory parameters:
 -- ---------------------------------------------------------------------
 
-CONSTANT data_width         : NATURAL := 16; -- data bus width
+CONSTANT data_width         : NATURAL := 27; -- data bus width
 CONSTANT exp_width          : NATURAL :=  8; -- floating point exponent width
 
-CONSTANT data_addr_width    : NATURAL := 16; -- data memory address width, cell sized, large enough for cache and external data memory
+CONSTANT data_addr_width    : NATURAL := 21; -- data memory address width, cell sized, large enough for cache and external data memory
 CONSTANT cache_addr_width   : NATURAL := 13; -- data cache memory address width, cell sized
-CONSTANT cache_size         : NATURAL := 16#2000#; -- number of cells.
+CONSTANT cache_size         : NATURAL := 16#1800#; -- number of cells.
 CONSTANT byte_addr_width    : NATURAL :=  0; -- least significant bits used for byte adressed data memory. 0 => no byte adressing.
 --~
 CONSTANT addr_extern        : NATURAL := 2 ** cache_addr_width; -- start address of external memory
@@ -122,7 +122,7 @@ CONSTANT trap_width         : NATURAL :=  3; -- each vector has room for 2**trap
 CONSTANT tasks_addr_width   : NATURAL :=  3; -- 2**tasks_addr_width copies of the stack areas will be provided
 CONSTANT ds_addr_width      : NATURAL :=  7; -- data stack pointer width, cell address
 CONSTANT rs_addr_width      : NATURAL :=  7; -- return stack pointer, cell address
-CONSTANT addr_rstack        : NATURAL := 16#1C00#; -- beginning of the return stack, cell size, must be a multiple of 2**rsp_width
+CONSTANT addr_rstack        : NATURAL := 16#1400#; -- beginning of the return stack, cell size, must be a multiple of 2**rsp_width
 --~
 CONSTANT addr_rstack_v      : UNSIGNED(data_width-1 DOWNTO 0) := to_unsigned(addr_rstack, data_width);
 CONSTANT dsp_width          : NATURAL := ds_addr_width + tasks_addr_width;

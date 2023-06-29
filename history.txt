@@ -1,5 +1,21 @@
 ************************************************************************
-*** EP4CE6_OMDAZZ 1.110 24-Jun-2023 ks
+*** EP4CE6_OMDAZZ 1.121 27-Jun-2023 ks
+************************************************************************
+
+Three architectures have been defined in ../vhdl/architectures/
+for word widths 16, 27, and 32.
+Copy the files in these directories into ../vhdl/ depending on which
+one you want to use.
+
+SDRAM_4MBx16.vhd: Can now be used for any word width up to 32.
+   Max_delay timing constraints have been added in fpga.out.sdc
+   for SDRAM memory fetches.
+
+opcodes.fs and forth_lib.fs: +! is no longer an "extended" instruction,
+   it is now part of the core wordset.
+
+************************************************************************
+*** EP4CE6_OMDAZZ 1.110 27-Jun-2023 ks
 ************************************************************************
 
 Bugfix in external_SDRAM.vhd row/col addressing.

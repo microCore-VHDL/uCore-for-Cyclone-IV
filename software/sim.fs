@@ -1,5 +1,5 @@
 \ 
-\ Last change: KS 24.06.2023 11:57:46
+\ Last change: KS 29.06.2023 18:53:32
 \
 \ microCore load screen for simulation.
 \ It produces program.mem for initialization of the program memory during simulation.
@@ -26,11 +26,25 @@ library forth_lib.fs
 \ Booting and TRAPs
 \ ----------------------------------------------------------------------
 
-: boot  ( -- )
-   #2400 FOR NEXT  $5555 #sdram st ld swap 1+ swap 1+ st @ drop
-   #360 FOR NEXT  #sdram @ drop
-   BEGIN REPEAT
-;
+data_width #16 = [IF]
+   #extern  2*             Constant sdaddr
+[ELSE]
+   data_addr_width 2 - 2** Constant sdaddr
+[THEN]
+
+16 data_width < [IF]
+   : boot  ( -- )
+      #174 FOR NEXT  $1112222 sdaddr st ld swap $10001 + swap 1+ st @ drop
+      -1 sdaddr +!
+      #232 FOR NEXT  $1234567 #extern st noop @ drop
+      BEGIN REPEAT ;
+[ELSE]
+   : boot  ( -- )
+      #174 FOR NEXT  $5555 sdaddr st ld swap 1+ swap 1+ st @ drop
+      -1 sdaddr +!
+      #234 FOR NEXT  $1234 #extern st noop @ drop
+      BEGIN REPEAT ;
+[THEN]
 
 #reset TRAP: rst    ( -- )            boot              ;  \ compile branch to boot at reset vector location
 #isr   TRAP: isr    ( -- )            di IRET           ;

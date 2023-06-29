@@ -5,3 +5,4 @@ Its RS232 UART is used as a umbilical link connecting to the host system that ru
 Its row of 4 LEDs is used for signalling.<BR>
 Input buttons can be read in the flag register.<BR>
 The SDRAM has been integrated in the design for a 64k x 16 memory size.
+architecture files have been added for 16, 27, and 32 bit cell addressed machines.
