@@ -2,7 +2,7 @@
 \ @file : forth.fs
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 29.06.2023 18:42:26
+\ Last change: KS 03.07.2023 11:38:29
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -40,11 +40,14 @@ Target
 
 ~ : bounds     ( start len -- limit start )   over swap + swap ;
 
-~ EXTENDED [NOTIF]
+~ with_INDEX [NOTIF] ~ : I       ( -- i )           r> r> r@ over >r swap - swap BRANCH ; ~ [THEN]
 
-   ~ : I       ( -- i )           r> r> r@ over >r swap - swap BRANCH ;
+~ with_FLAGQ [NOTIF]
    ~ : flag?   ( mask -- f )      Flags @ and ;
+~ [THEN]
 
+~ with_PLUSST [NOTIF]
+   ~ : +!      ( n addr -- )      [di ld -rot + swap ! di] ; \ interrupt save
 ~ [THEN]
 
 ~ : ctrl?      ( mask -- f )      Ctrl-reg @ and ;
@@ -63,7 +66,7 @@ Target
 ~ : umax    ( n1 n2 -- min )      2dup - drop carry? IF  drop  EXIT THEN  nip ;
 ~ : abs     ( n -- u )            dup 0< IF  negate  THEN ;
 
-~ EXTENDED [NOTIF]
+~ with_ADDSAT [NOTIF]
    ~ : +sat ( n1 n2 -- n3 )       + ovfl? IF  0< #signbit xor  THEN ;
 ~ [THEN]
 ~ : u+sat   ( u n -- u' )         swap #signbit tuck xor rot +sat xor ;
@@ -103,7 +106,7 @@ Target
      ;
    ~ : d2/     ( d1 -- d2 )          -1 dashift ;
 
-~ [ELSE]
+~ [ELSE] \ without_MULT
 
    ~ : d2*     ( ud -- ud' )   swap 2* swap c2* ;
    ~ : ud2/    ( ud -- ud' )   u2/ swap c2/ swap ;
@@ -121,17 +124,7 @@ Target
    ~ : *       ( n1 n2 -- prod )     um* multl ;
      Host: *   ( n1 n2 -- n3 )       comp? dbg? or IF T * H EXIT THEN  * ;
 
-   ~ WITH_FLOAT [IF]
-   
-      ~ : round   ( dm -- m' )
-          over 0< 0= IF  nip  EXIT THEN   \ < 0.5
-          swap 2*    IF  1+   EXIT THEN   \ > 0.5
-          dup 1 and +                     \ = 0.5, round to even
-        ;
-      ~ : *.      ( n1 x -- n2 )        over abs um* round swap 0< IF  negate  THEN ;
-   
-   ~ [THEN]
-~ [THEN]
+~ [THEN] \ WITH_MULT
 
 ~ : ud*     ( ud u  -- udprod )       tuck um* drop >r um* r> + ;
 ~ : um/mod  ( ud u  -- urem uquot )   udivide ;
@@ -141,13 +134,9 @@ Target
 ~ : umod    ( u1 u2 -- urem )         u/mod drop ;
 ~ : ud/mod  ( ud u  -- urem udquot )  tuck u/mod >r swap um/mod r> ;
 
-~ EXTENDED [IF]
-
+~ with_SDIV [IF]
    ~ : m/mod   ( d n -- rem quot )       sdivide ;
-   ~ : sqrt     ( u -- urem uroot )      uroot ;
-
 ~ [ELSE]
-
    ~ : m/mod   ( d n -- rem quot )
         dup >r 0< IF  dnegate  r@ negate  ELSE  r@  THEN
         over   0< IF  tuck + swap um/mod   ovfl? over 0< not
@@ -156,6 +145,11 @@ Target
         r> 0< IF  swap negate swap  THEN
         rot IF  #ovfl st-set  ExIT THEN  #ovfl st-reset
      ;
+~ [THEN]
+
+~ with_SQRT [IF]
+   ~ : sqrt     ( u -- urem uroot )      uroot ;
+~ [ELSE]
    ~ ODD_DATA_WIDTH [IF]  \ odd data width
 
       ~ : sqrt    ( u -- urem uroot )
@@ -182,6 +176,15 @@ Target
    ~ [THEN]
 ~ [THEN]
 
+with_FMULT WITH_FLOAT or WITH_MULT 0= and [IF]
+   ~ : round   ( dm -- m' )
+       over 0< 0= IF  nip  EXIT THEN   \ < 0.5
+       swap 2*    IF  1+   EXIT THEN   \ > 0.5
+       dup 1 and +                     \ = 0.5, round to even
+     ;
+   ~ : *.      ( n1 x -- n2 )        over abs um* round swap 0< IF  negate  THEN ;
+[THEN]
+
 ~ : +2!     ( n addr -- )          Status @ -rot di   tuck 2@ rot extend d+ rot 2!  Status ! ;
 
 ~ : /mod    ( n1 n2 -- rem quot )  swap extend rot m/mod ;
@@ -194,19 +197,16 @@ Target
 ~ : 2**     ( n -- 2**n )          1 swap shift ;
   Host: 2**   ( u1 -- u2 )         comp? dbg? or IF T 2** H EXIT THEN  2** ;
 
-~ WITH_MULT [IF]
-
-   : log2   ( u -- u' )            ulog ;
-
+~ with_LOGS WITH_FLOAT or WITH_MULT and [IF]
+   ~ : log2 ( u -- u' )            ulog ;
 ~ [ELSE]
-
-   : log2   ( frac -- log2 )   \ Bit-wise Logarithm (K.Schleisiek/U.Lange)
-      0   data_width
-      ?FOR  2* >r   dup um*
-         dup 0< IF  r> 1+ >r  ELSE  d2*  THEN     \ correction of 'B(i)' and 'A(i)'
-         round   r>                               \ A(i+1):=A(i)*2^(B(i)-1)
-      NEXT  nip
-   ;
+   ~ : log2   ( frac -- log2 )   \ Bit-wise Logarithm (K.Schleisiek/U.Lange)
+        0   data_width
+        ?FOR  2* >r   dup um*
+           dup 0< IF  r> 1+ >r  ELSE  d2*  THEN     \ correction of 'B(i)' and 'A(i)'
+           round   r>                               \ A(i+1):=A(i)*2^(B(i)-1)
+        NEXT  nip
+     ;
 ~ [THEN]
 
 ~ : inc      ( addr -- )         1 swap +! ;
@@ -260,7 +260,7 @@ Target
      *
   ; immediate
 \ ----------------------------------------------------------------------
-\ Catch and throw, no multitasking
+\ Catch and throw, when multitask.fs not loaded
 \ ----------------------------------------------------------------------
 
 ~ Variable Rcatch   0 Rcatch !

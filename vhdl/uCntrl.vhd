@@ -2,7 +2,7 @@
 -- @file : uCntrl.vhd
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 29.06.2023 18:52:04
+-- Last change: KS 03.07.2023 11:30:05
 -- @project: microCore
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -655,13 +655,8 @@ BEGIN
          push_stack;
          r_in.tos <= r.tor;
 
-      WHEN op_RDROP =>
-      IF  EXTENDED  THEN
-         pop_rstack;
-      END IF;
-
       WHEN op_SUM2TOS =>
-      IF  EXTENDED AND addr_rstack < addr_extern  THEN
+      IF  with_INDEX AND addr_rstack < addr_extern  THEN
       -- needed for op_INDEX
          add_x <= mem_rdata;
          add_y <= NOT r.tor;
@@ -670,7 +665,7 @@ BEGIN
       END IF;
 
       WHEN op_INDEX =>
-      IF  EXTENDED  THEN
+      IF  with_INDEX  THEN
       -- DO ... LOOP index computed from top two items on return stack
          push_stack;
          IF  addr_rstack < addr_extern  THEN
@@ -805,14 +800,14 @@ BEGIN
       END IF;
 
       WHEN op_MEM2TOS =>
-      IF  EXTENDED  THEN
+      IF  with_FETCH OR with_CFETCH  THEN
          mem_addr <= r.tos(mem_addr'range);
          bytes <= bytes_d;
          r_in.tos <= mem_rdata;
       END IF;
 
       WHEN op_FETCH =>
-      IF  EXTENDED  THEN
+      IF  with_FETCH  THEN
          mem_addr <= r.tos(mem_addr'range);
          IF  registers  THEN
             reg_en <= '1';
@@ -832,7 +827,7 @@ BEGIN
       END IF;
 
       WHEN op_CFETCH =>
-      IF  EXTENDED AND byte_addr_width /= 0  THEN
+      IF  with_CFETCH AND byte_addr_width /= 0  THEN
          mem_addr <= r.tos(mem_addr'range);
          bytes <= 1;
          IF  ext_RAM  THEN   -- external memory
@@ -844,12 +839,13 @@ BEGIN
       END IF;
 
       WHEN op_LOCAL =>
-      -- wraps around inside rstack area
+         -- wraps around inside rstack area
          add_x <= r.tos - bytes_per_cell;
          add_y <= resize(rsp_addr(rs_addr_width-1 DOWNTO 0), add_y'length);
          r_in.tos <= rstack_addr & sum(rs_addr_width-1 DOWNTO 0);
-
+       
       WHEN op_PLUSST =>
+      IF  with_PLUSST  THEN
       -- indivisible read-modify-write +! instruction
          mem_addr <= r.tos(mem_addr'range);
          IF  registers  THEN
@@ -868,8 +864,10 @@ BEGIN
             END IF;
             set_opcode(op_PLUSST2);
          END IF;
+      END IF;
 
       WHEN op_PLUSST2 =>
+      IF  with_PLUSST  THEN
          pop_stack;
          r_in.tos <= r.tos;
          add_x <= mem_rdata;
@@ -886,6 +884,7 @@ BEGIN
          END IF;
          r_in.status(s_c) <= add_carry;
          r_in.status(s_ovfl) <= add_ovfl;
+      END IF;
 
 -- ---------------------------------------------------------------------
 -- internal registers
@@ -907,6 +906,16 @@ BEGIN
             r_in.status(s_iis)  <= r.status(s_iis)  OR r.tos(s_iis);
          END IF;
 
+      WHEN op_DIPUSH =>
+         push_rstack;
+         r_in.tor <= resize(r.status, data_width);
+         r_in.status(s_iis) <= '1';
+
+      WHEN op_DIPOP =>
+         pop_rstack;
+         r_in.status(s_iis) <= r.tor(s_iis);
+
+         
 -- ---------------------------------------------------------------------
 -- program memory access
 -- ---------------------------------------------------------------------
@@ -984,7 +993,7 @@ BEGIN
       WHEN op_DATA  => call_trap;
 
       WHEN op_NZEXIT =>
-      IF  EXTENDED  THEN
+      IF  with_NZEXIT  THEN
          pop_stack;
          IF  tos_zero = '0'  THEN
             paddr <= r.tor(paddr'range);
@@ -1180,7 +1189,7 @@ BEGIN
          r_in.tos <= r.tos XOR r.nos;
 
       WHEN op_ADDSAT =>
-      IF  EXTENDED  THEN
+      IF  with_ADDSAT  THEN
          pop_stack;
          add_x <= r.tos;
          add_y <= r.nos;
@@ -1195,7 +1204,7 @@ BEGIN
       END IF;
 
       WHEN op_PADD =>
-      IF  EXTENDED  THEN
+      IF  with_PADD THEN
          push_stack;
          add_x <= r.tos;
          add_y <= r.nos;
@@ -1206,7 +1215,7 @@ BEGIN
       END IF;
 
       WHEN op_PADC =>
-      IF  EXTENDED  THEN
+      IF  with_PADC  THEN
          push_stack;
          add_x <= r.tos;
          add_y <= r.nos;
@@ -1217,7 +1226,7 @@ BEGIN
       END IF;
 
       WHEN op_PSUB =>
-      IF  EXTENDED  THEN
+      IF  with_PSUB  THEN
          push_stack;
          add_x <= NOT r.tos;
          add_y <= r.nos;
@@ -1228,7 +1237,7 @@ BEGIN
       END IF;
 
       WHEN op_PSSUB=>
-      IF  EXTENDED  THEN
+      IF  with_PSUB  THEN
          push_stack;
          add_x <= r.tos;
          add_y <= NOT r.nos;
@@ -1238,17 +1247,20 @@ BEGIN
          r_in.status(s_ovfl) <= (add_carry XOR add_sign) AND NOT(ladd_x(r.tos'high) XOR ladd_y(r.tos'high)) AND NOT tos_zero;
       END IF;
 
-      WHEN op_PAND => IF  EXTENDED  THEN
+      WHEN op_PAND =>
+      IF  with_PAND  THEN
          push_stack;
          r_in.tos <= r.tos AND r.nos;
       END IF;
 
-      WHEN op_POR  => IF  EXTENDED  THEN
+      WHEN op_POR  =>
+      IF  with_POR  THEN
          push_stack;
          r_in.tos <= r.tos OR  r.nos;
       END IF;
 
-      WHEN op_PXOR => IF  EXTENDED  THEN
+      WHEN op_PXOR =>
+      IF  with_PXOR  THEN
          push_stack;
          r_in.tos <= r.tos XOR r.nos;
       END IF;
@@ -1290,7 +1302,9 @@ BEGIN
             r_in.status(s_ovfl) <= '1';
          END IF;
 
-      WHEN op_SMULT => IF  WITH_MULT  THEN -- signed multiply when mult-hardware available
+      WHEN op_SMULT =>
+      IF  WITH_MULT  THEN
+      -- signed multiply when mult-hardware available
          multiplicand <= r.nos(r.nos'high) & r.nos;
          multiplier <= r.tos(r.tos'high) & r.tos;
          r_in.tos <= product(data_width*2-1 DOWNTO data_width);
@@ -1342,7 +1356,7 @@ BEGIN
          r_in.tos <= r.nos(r.nos'high-1 DOWNTO 0) & div_carry;
          r_in.status(s_ovfl) <= r.nos(r.nos'high) OR r.status(s_ovfl);
 
-      WHEN op_SDIVS => IF  EXTENDED  THEN
+      WHEN op_SDIVS => IF  with_SDIV  THEN
       -- first signed division step with signed divisor
       -- ( dividend.low dividend.high divisor -- divisor dividend.low dividend.high )
       -- dup >r   abs >r   dup 0< IF  r@ +  THEN  r> um/mod    \ 'r@ +' is wrong if the sum produces a div_sign bit
@@ -1365,7 +1379,7 @@ BEGIN
       END IF;
 
       WHEN op_SDIVL =>
-      IF  EXTENDED  THEN
+      IF  with_SDIV  THEN
       -- last signed division step with signed divisor
       -- dup >r   abs >r   dup 0< IF  r@ +  THEN  r> um/mod
       -- r@ 0< IF  negate over IF  swap r@ + swap 1-  THEN THEN  rdrop
@@ -1411,7 +1425,7 @@ BEGIN
 -- op_SQRTS       Op: sqrts   ( complex )        don't
 --             Macro: uroot   ( u -- rem root )   ?comp 0 lit, T tuck H data_width 2/ 0 DO T sqrts H LOOP T nip swap H ;
       WHEN op_SQRTS =>
-      IF  EXTENDED  THEN
+      IF  with_SQRT  THEN
       -- square root 2bits step
       -- root accumulated in ds_wdata
       -- square decimated in NOS
@@ -1431,7 +1445,7 @@ BEGIN
       END IF;
 
       WHEN op_SQRT0 =>
-      IF  EXTENDED AND to_unsigned(data_width, 8)(0) = '1' THEN
+      IF  with_SQRT AND to_unsigned(data_width, 8)(0) = '1' THEN
       -- square root step for the first step of odd data_width designs
       -- root accumulated in ds_wdata
       -- square decimated in NOS
@@ -1480,7 +1494,7 @@ BEGIN
          r_in.tos <= (OTHERS => (add_ovfl XOR sum(sum'high)));
 
       WHEN op_FLAGQ  =>
-      IF  EXTENDED  THEN
+      IF  with_FLAGQ  THEN
          IF  (flags AND r.tos(flag_width-1 DOWNTO 0)) = 0  THEN
             r_in.tos <= (OTHERS => '0');
          ELSE
@@ -1498,7 +1512,7 @@ BEGIN
 --    dup 1 and +                     \ = 0.5, round to even
 -- ;
       WHEN op_FMULT =>
-      IF  WITH_FLOAT AND WITH_MULT  THEN
+      IF  WITH_MULT AND (WITH_fmult OR WITH_FLOAT)  THEN
       -- fractional signed multiply with standard rounding towards even for .5
          pop_stack;
          multiplicand <= r.nos(r.nos'high) & r.nos;
@@ -1520,7 +1534,7 @@ BEGIN
 -- op_LOGS        Op: log2s   ( u  0  -- u' ld ) don't
 --             Macro: ulog    ( u -- ld )        ?comp 0 lit, data_width 0 DO T log2s H LOOP T nip H ;
       WHEN op_LOGS  =>
-      IF  WITH_FLOAT AND WITH_MULT  THEN
+      IF  WITH_MULT AND (with_LOGS OR WITH_FLOAT)  THEN
       -- log2 bit step
          multiplicand <= '0' & r.nos;
          multiplier   <= '0' & r.nos;              -- nos ** 2

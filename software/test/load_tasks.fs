@@ -1,5 +1,5 @@
 \
-\ Last change: KS 24.06.2023 13:54:44
+\ Last change: KS 02.07.2023 13:38:15
 \
 \ MicroCore load screen to test all aspects of the multitasker.
 \ Use  .tasks and .semas to observe the state of the system.
@@ -54,17 +54,17 @@ Semaphore Mailbox
 \ temporary difference of at most 1
 \ ----------------------------------------------------------------------
 
-\ Variable Signals
-\ Variable Waits
-\ 
-\ : waittask   ( -- )     Waits  BEGIN  Mailbox wait   dup inc  REPEAT ;
-\ 
-\ : itime-reset  ( -- )   #i-time not Flags ! ;
-\ 
-\ : gowait     ( -- )     mailbox-init   Blinker ['] waittask activate
-\                         itime-reset   0  dup Signals !  Waits !   ei
-\ ;
-\ : ??         ( -- )     Status @  di  Signals @  Waits @   rot Status !  over . dup . - . ;
+Variable Signals
+Variable Waits
+
+: waittask   ( -- )     Waits  BEGIN  Mailbox wait   dup inc  REPEAT ;
+
+: itime-reset  ( -- )   #i-time not Flags ! ;
+
+: gowait     ( -- )     mailbox-init   Blinker ['] waittask activate
+                        itime-reset   0  dup Signals !  Waits !   ei
+;
+: ??         ( -- )     Status @  di  Signals @  Waits @   rot Status !  over . dup . - . ;
 
 \ ----------------------------------------------------------------------
 \ The #i-time interrupt hits every 1/ticks_per_ms.
@@ -73,7 +73,7 @@ Semaphore Mailbox
 \ It serves a driving role during gowait.
 \ ----------------------------------------------------------------------
 
-: interrupt ( -- ) ; \  Mailbox signal   Signals inc   itime-reset ;
+: interrupt ( -- )   Mailbox signal   Signals inc   itime-reset ;
 
 \ ----------------------------------------------------------------------
 \ poll test
@@ -105,16 +105,13 @@ Variable Trigger
 
   : ?throw   ( -- )  Trigger @ throw ;
 
-  : catching ( -- )  ['] ?throw catch dup . IF  1 ELSE 0 THEN . ;
+  : catching ( -- )  ['] ?throw catch IF  1 ELSE 0 THEN . ;
 
 \ ----------------------------------------------------------------------
 \ Booting and TRAPs
 \ ----------------------------------------------------------------------
 
-init: init-tasks     ( -- )
-   Terminal Blinker schedule
-\   #i-time int-enable
-;
+init: init-tasks     ( -- )    Terminal Blinker schedule   #i-time int-enable ;
 init: init-leds ( -- )  [ #c-led0 #c-led1 or #c-led2 or #c-led3 or ] Literal -ctrl ! ;
 
 : boot  ( -- )   0 #cache erase   CALL initialization   debug-service ;

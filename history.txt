@@ -1,4 +1,36 @@
 ************************************************************************
+*** EP4CE6_OMDAZZ 1.132  3-Jul-2023 ks
+************************************************************************
+
+fpga.vhd: A simple interrupt generator (#i-time) has been added that
+   produces an interrupt according to ticks_per_ms in order to create
+   interrupt interference while testing the core.
+
+architecture_pkg: The EXTENDED compilation switch has been abandoned.
+   Instead, every single elective instruction can be handled
+   individually setting new_<opcode> to either true or false. These
+   constant definitions are located in architecture_pkg.vhd after the
+   table of instructions. This change had ramifications for uCtrl.vhd,
+   opcodes.fs, forth_lib.fs, and coretest.fs as well as microcross.fs
+   and library.fs.
+
+   Two new instructions have been added:
+   op_DIPUSH = [di and op_DIPOP = di], which will efficiently disable
+   interrupts for critical code sections. Please note that both ops
+   use the returnstack to save and restore the interrupt state before
+   executing [di. According changes have been made to uCntrl.vhd and
+   opcodes.fs. It has been used first to define a high level version for
+   +! in forth_lib.fs, which is needed when new_PLUSST has been set to
+   false in architecture_pkg.vhd.
+
+microcross.fs: #registers is a new constant that points at the beginning
+   of uCore's register area. See below.
+
+constants.fs: #top is a constant that points past the end of the usable
+   external SDRAM memory. In a 16 bit design, this may collide with the
+   uCore's registers, which are located at the top end of the address space.
+
+************************************************************************
 *** EP4CE6_OMDAZZ 1.121 27-Jun-2023 ks
 ************************************************************************
 

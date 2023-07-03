@@ -1,5 +1,5 @@
 \ 
-\ Last change: KS 29.06.2023 19:06:59
+\ Last change: KS 03.07.2023 12:08:37
 \
 \ MicroCore load screen for the coretest program that is transferred
 \ into the program memory via the umbilical.
@@ -34,10 +34,16 @@ include coretest.fs
    #top #extern DO  I dup @ - IF  I rdrop rdrop EXIT THEN  LOOP  0 .
 ;
 \ ----------------------------------------------------------------------
-\ Booting and TRAPs
+\ Booting, Interrupts and TRAPs
 \ ----------------------------------------------------------------------
 
+Variable Ticker  0 Ticker !
+
+: interrupt ( -- )  Intflags @
+   #i-time and IF  1 Ticker +!  #i-time not Flags !  THEN
+;
 init: init-leds ( -- )  [ #c-led0 #c-led1 or #c-led2 or #c-led3 or ] Literal -ctrl ! ;
+init: init-int  ( -- )  #i-time int-enable ei ;
 
 : boot  ( -- )   0 #cache erase   CALL initialization   debug-service ;
 

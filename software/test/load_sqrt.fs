@@ -1,5 +1,5 @@
 \
-\ Last change: KS 24.06.2023 13:47:22
+\ Last change: KS 02.07.2023 13:40:49
 \
 \ MicroCore load screen for the core test program that is transferred
 \ into the program memory via the debug umbilical
@@ -27,7 +27,7 @@ library forth_lib.fs
 
 : sqrt-test  ( -- )
    -1 FOR  r@ sqrt dup * + r@ - IF  r>  EXIT THEN
-\           r@ $3FFFF and 0= IF  blink  THEN
+           r@ $3FFFF and 0= IF  blink  THEN
    NEXT  0
 ;
 \ ----------------------------------------------------------------------

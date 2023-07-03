@@ -443,6 +443,7 @@ byte_addr_width [IF]
 : advance-breakpoint ( addr nextaddr -- )
    over opcode@                               ( oldaddr newaddr opcode )
    op_EXIT   case? IF  -nest 2drop  EXIT THEN
+   op_IRET   case? IF  -nest 2drop  EXIT THEN
    op_NZEXIT case? IF  t> dup >t    IF  -nest 2drop EXIT THEN  op_NZEXIT  THEN
    dup #literal and
    IF drop                                    ( oldaddr newaddr )

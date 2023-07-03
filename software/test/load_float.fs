@@ -1,5 +1,5 @@
 \
-\ Last change: KS 29.06.2023 00:50:36
+\ Last change: KS 02.07.2023 13:34:15
 \
 \ MicroCore load screen for execution on the target.
 \ Floating point library package.
@@ -14,7 +14,7 @@ include extensions.fs           \ Some System word (re)definitions for a more sy
 include ../vhdl/architecture_pkg.vhd
 include microcross.fs           \ the cross-compiler
 
-Verbose on
+\ Verbose on
 
 Target new initialized          \ go into target compilation mode and initialize target compiler
 
@@ -24,7 +24,7 @@ Target new initialized          \ go into target compilation mode and initialize
 include constants.fs            \ MicroCore Register addresses and bits
 include debugger.fs
 library forth_lib.fs
-include float_lib.fs
+library float_lib.fs
 
 : exp?   0 BEGIN  cr dup u. dup exp2 u. $200000 + ?dup 0= UNTIL  cr -1 dup u. exp2 u. ;
 Host

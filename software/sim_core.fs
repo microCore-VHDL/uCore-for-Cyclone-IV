@@ -1,11 +1,11 @@
 \ 
-\ Last change: KS 10.05.2023 22:00:26
+\ Last change: KS 02.07.2023 20:00:43
 \
 \ MicroCore load screen for coretest simulation.
 \ It produces program.mem for initialization of the program memory during simulation.
 \ Use wave signal script core.do in the simulator directory.
 \
-Only Forth also definitions 
+Only Forth also definitions hex
 
 [IFDEF] unpatch     unpatch    [ENDIF]
 [IFDEF] close-port  close-port [ENDIF]

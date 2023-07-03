@@ -1,5 +1,5 @@
 \ 
-\ Last change: KS 29.06.2023 19:07:15
+\ Last change: KS 03.07.2023 12:08:03
 \
 \ Basic microCore load screen for execution on the target.
 \
@@ -24,15 +24,19 @@ include constants.fs            \ MicroCore Register addresses and bits
 include debugger.fs
 library forth_lib.fs
 
-: test ( addr -- )  0 swap 7 FOR  over 1+ -rot st 1+  NEXT  2drop ;
+: test  0 100 !  1 100 +!  100 @ . ;
 
 \ ----------------------------------------------------------------------
-\ Booting and TRAPs
+\ Booting, Interrupts and TRAPs
 \ ----------------------------------------------------------------------
 
-: interrupt ( -- ) Intflags @ drop ;
+Variable Ticker  0 Ticker !
 
+: interrupt ( -- )  Intflags @
+   #i-time and IF  1 Ticker +!  #i-time not Flags !  THEN
+;
 init: init-leds ( -- )  [ #c-led0 #c-led1 or #c-led2 or #c-led3 or ] Literal -ctrl ! ;
+init: init-int  ( -- )  #i-time int-enable ei ;
 
 : boot  ( -- )     0 #cache erase   CALL initialization   debug-service ;
 

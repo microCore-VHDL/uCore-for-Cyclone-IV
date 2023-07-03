@@ -2,7 +2,7 @@
 -- @file : fpga.vhd for the Intel EP4CE6_OMDAZZ prototyping board
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 28.06.2023 17:43:24
+-- Last change: KS 02.07.2023 22:17:56
 -- @project: EP4CE6_OMDAZZ
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -143,6 +143,8 @@ SIGNAL sd_ram       : SDRAM_signals;
 SIGNAL ext_rdata    : data_bus;
 SIGNAL SDRAM_delay  : STD_LOGIC;
 
+SIGNAL int_time     : STD_LOGIC; -- a simple interrupt process for testing
+
 BEGIN
 
 -- ---------------------------------------------------------------------
@@ -190,12 +192,35 @@ synch_reset: synchronize PORT MAP(clk, reset_a, reset_s);
 reset <= reset_a OR reset_s; -- this is an instantaneous and metastable safe reset
 
 synch_dsu_rxd:   synchronize   PORT MAP(clk, dsu_rxd,   dsu_rxd_s);
-synch_interrupt: synchronize_n PORT MAP(clk, keys_n(0), flags(i_ext));
+
+i_time_sim: IF  SIMULATION  GENERATE
+-- interrupt that interoperates with the test bench.vhd
+
+   synch_interrupt: synchronize_n PORT MAP(clk, keys_n(0), int_time);
+
+END GENERATE i_time_sim; i_time_syn: IF  NOT SIMULATION  GENERATE
+-- very simple interrupt generator for testing potential interrupt
+-- interference with other processes
+
+   int_time_proc : PROCESS (clk)
+   BEGIN
+      IF  rising_edge(clk)  THEN
+         IF  uBus.tick = '1'  THEN
+            int_time <= '1';
+         END IF;
+         IF  uReg_write(uBus, FLAG_REG) AND uBus.wdata(signbit) = '1' AND uBus.wdata(i_time) = '0'  THEN
+            int_time <= '0';
+         END IF;
+      END IF;
+   END PROCESS int_time_proc;
+
+END GENERATE i_time_syn;
 
 -----------------------------------------------------------------------
 -- flags
 -----------------------------------------------------------------------
 
+flags(i_time)   <= int_time;
 flags(f_dsu)    <= NOT dsu_break; -- '1' if debug terminal present
 flags(f_sema)   <= flag_sema;
 
@@ -210,7 +235,6 @@ END GENERATE sim_keys; exe_keys: IF  NOT SIMULATION  GENERATE
 flags(f_key3 DOWNTO f_key0) <= NOT keys_n;
 
 END GENERATE exe_keys;
-
 
 ------------------------------------------------------------------------
 -- ctrl-register (bitwise)

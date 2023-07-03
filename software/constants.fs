@@ -2,7 +2,7 @@
 \ @file : constants.fs for the EP4CE6_OMDAZZ prototyping board
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 29.06.2023 16:22:00
+\ Last change: KS 03.07.2023 11:16:09
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -34,15 +34,12 @@ Target
 \ Memory mapping
 \ ----------------------------------------------------------------------
 
-                                       #extern Constant #sdram
+                       #extern Constant #sdram
 
-data_width data_addr_width = [IF] \ beware of the registers at top memory end
-
-H data_width 2** min_registers abs 2// 2** - T Constant #top
-
-[ELSE]                            \ memory fully available
-
-                       H data_addr_width 2** T Constant #top
+data_width data_addr_width = [IF]
+                    #registers Constant #top   \ beware of the registers at top memory end
+[ELSE]
+       H data_addr_width 2** T Constant #top   \ memory fully available
 [THEN]
 
 \ ----------------------------------------------------------------------
@@ -66,7 +63,8 @@ H DSP_REG         T Register Dsp
 H RSP_REG         T Register Rsp
 
 H INT_REG         T Register Intflags
-H i_ext        T Bit #i-ext
+H i_time       T Bit #i-time  \ while executing
+H i_time       T Bit #i-ext   \ while simulating
 H FLAG_REG        T Register Flags
 H f_dsu        T Bit #f-dsu        \ set when the dsu is connected to the umbilical (no break!)
 H f_sema       T Bit #f-sema

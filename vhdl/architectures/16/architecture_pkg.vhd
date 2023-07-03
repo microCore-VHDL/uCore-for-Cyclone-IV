@@ -2,7 +2,7 @@
 -- @file : architecture_pkg_16.vhd for the EP4CE6_OMDAZZ Demoboard
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 29.06.2023 19:12:53
+-- Last change: KS 03.07.2023 11:36:06
 -- @project: EP4CE6_OMDAZZ
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -32,7 +32,7 @@ USE work.functions_pkg.ALL;
 PACKAGE architecture_pkg IS
 --~--  \ when loaded by the microForth cross-compiler, code between "--~" up to "--~--" will be skipped.
 
-CONSTANT version            : NATURAL := 1121; -- <major_release> <functionality_added> <HW_fix> <SW_fix> <pre-release#>
+CONSTANT version            : NATURAL := 1132; -- <major_release> <functionality_added> <HW_fix> <SW_fix> <pre-release#>
 
 -- ---------------------------------------------------------------------
 -- Configuration flags
@@ -40,12 +40,11 @@ CONSTANT version            : NATURAL := 1121; -- <major_release> <functionality
 -- ASYNC_RESET is defined in functions_pkg.vhd, because that is the first file to load
 -- CONSTANT ASYNC_RESET     : BOOLEAN := false; -- true = async reset, false = synchronous reset
 
-CONSTANT SIMULATION         : BOOLEAN := false ; -- will e.g. increase the frequency of timers to make them observable in simulation
-CONSTANT COLDBOOT           : BOOLEAN := false ; -- cold boot on reset when true, else warmboot
-CONSTANT EXTENDED           : BOOLEAN := true  ; -- false -> core instruction set, true -> extended instruction set
-CONSTANT WITH_MULT          : BOOLEAN := true  ; -- true when FPGA has hardware multiply resources
-CONSTANT WITH_FLOAT         : BOOLEAN := false ; -- floating point instructions?
-CONSTANT WITH_UP_DOWNLOAD   : BOOLEAN := true  ; -- up/download via umbilical?
+CONSTANT SIMULATION         : BOOLEAN := false; -- will e.g. increase the frequency of timers to make them observable in simulation
+CONSTANT COLDBOOT           : BOOLEAN := false; -- cold boot on reset when true, else warmboot
+CONSTANT WITH_MULT          : BOOLEAN := true ; -- true when FPGA has hardware multiply resources
+CONSTANT WITH_FLOAT         : BOOLEAN := false; -- floating point instructions?
+CONSTANT WITH_UP_DOWNLOAD   : BOOLEAN := false; -- up/download via umbilical?
 
 -- ---------------------------------------------------------------------
 -- Hardware definitions
@@ -74,13 +73,13 @@ CONSTANT DMEM_file          : string  := ""; -- ../software/data.mem";
 -- memory sizes for 27 bits::
 -- entity   size   composition   M9Ks
 -- stack   1kx27                  3   ds_addr_width := 7, tasks_addr_width := 3
--- data    6kx27                 18   cache_addr_width := 13, addr_rstack := 16#1C00#
+-- data    6kx27                 18   cache_addr_width := 13, addr_rstack := 16#1400#
 -- prog    8kx8                   8   prog_addr_width := 13
 
 -- memory sizes for 32 bits::
 -- entity   size   composition   M9Ks
 -- stack   1kx32                  4   ds_addr_width := 7, tasks_addr_width := 3
--- data    4kx32                 16   cache_addr_width := 13, addr_rstack := 16#1C00#
+-- data    4kx32                 16   cache_addr_width := 12, addr_rstack := 16#0C00#
 -- prog    8kx8                   8   prog_addr_width := 13
 
 -- ---------------------------------------------------------------------
@@ -159,7 +158,7 @@ CONSTANT max_registers         : INTEGER :=  -1;
    CONSTANT RSP_REG            : INTEGER :=  -3;
 
    CONSTANT INT_REG            : INTEGER :=  -4; -- intflags@ and ie!
-      CONSTANT i_ext        : NATURAL :=  0;
+      CONSTANT i_time       : NATURAL :=  0;
    CONSTANT interrupts      : NATURAL :=  1; -- maskable interrupt sources
    CONSTANT FLAG_REG           : INTEGER :=  -5; -- flags@, pass
       CONSTANT f_dsu        : NATURAL :=  1; -- set when the dsu is connected to the umbilical (no break!)
@@ -361,8 +360,8 @@ COMPONENT semaphor PORT (
 --  1   00 MEM2TOR    -0 pST           +0 pLD
 --  2   00 MEM2TOS    -0 cST           +0 cLD           00 c@
 --  3   00 MEM2NOS    -0 float         +0 integ
---  4   00 LOCAL      -0 PLUSST2       +0 index         0- rdrop
---  5                 -0 wST           +0 wLD           0- exit
+--  4   00 LOCAL      -0 PLUSST2       +0 index         0- di]
+--  5   0+ [di        -0 wST           +0 wLD           0- exit
 --  6   -+ call                                         -- iret
 --  7   -+ >r                          +0 r@            +- r>
 -- ---------------------------------------------------------------------
@@ -377,6 +376,24 @@ COMPONENT semaphor PORT (
 --  7
 -- ---------------------------------------------------------------------
 --~--
+CONSTANT with_INDEX  : BOOLEAN := false; -- I
+CONSTANT with_FETCH  : BOOLEAN := true ; -- @
+CONSTANT with_CFETCH : BOOLEAN := false; -- c@       not yet tested
+CONSTANT with_PLUSST : BOOLEAN := false; -- +!
+CONSTANT with_NZEXIT : BOOLEAN := false; -- ?EXIT
+CONSTANT with_ADDSAT : BOOLEAN := false; -- +sat
+CONSTANT with_PADD   : BOOLEAN := false; -- 2dup +
+CONSTANT with_PADC   : BOOLEAN := false; -- 2dup +c
+CONSTANT with_PSUB   : BOOLEAN := false; -- 2dup -
+CONSTANT with_PAND   : BOOLEAN := false; -- 2dup and
+CONSTANT with_POR    : BOOLEAN := false; -- 2dup or
+CONSTANT with_PXOR   : BOOLEAN := false; -- 2dup xor
+CONSTANT with_SDIV   : BOOLEAN := false; -- m/mod    not yet tested in coretest
+CONSTANT with_SQRT   : BOOLEAN := false; -- sqrt
+CONSTANT with_FLAGQ  : BOOLEAN := false; -- flag?
+CONSTANT with_LOGS   : BOOLEAN := false; -- log2
+CONSTANT with_FMULT  : BOOLEAN := false; -- *.
+
 -- BRA NONE
 CONSTANT op_NOOP     : byte := "00000000";
 CONSTANT op_ROT      : byte := "00000001";
@@ -385,7 +402,7 @@ CONSTANT op_SWAP     : byte := "00000011";
 
 
 CONSTANT op_PRG2NOS  : byte := "00000110"; -- program memory load
-CONSTANT op_SUM2TOS  : byte := "00000111"; -- Extended instruction set
+CONSTANT op_SUM2TOS  : byte := "00000111";
 
 -- BRA POP
 CONSTANT op_DROP     : byte := "00001000";
@@ -394,7 +411,7 @@ CONSTANT op_QBRANCH  : byte := "00001010";
 
 CONSTANT op_LESS     : byte := "00001100";
 CONSTANT op_STSET    : byte := "00001101";
-CONSTANT op_NZEXIT   : byte := "00001110"; -- Extended instruction set
+CONSTANT op_NZEXIT   : byte := "00001110";
 CONSTANT op_NEXT     : byte := "00001111";
 
 -- BRA PUSH
@@ -412,7 +429,7 @@ CONSTANT op_NOT      : byte := "00011000";
 CONSTANT op_ZEQU     : byte := "00011001";
 CONSTANT op_ZLESS    : byte := "00011010";
 CONSTANT op_TIMEQ    : byte := "00011011";
-CONSTANT op_FLAGQ    : byte := "00011100"; -- Extended instruction set
+CONSTANT op_FLAGQ    : byte := "00011100";
 CONSTANT op_NORM     : byte := "00011101"; -- WITH_FLOAT
 
 
@@ -422,10 +439,10 @@ CONSTANT op_MSHIFT   : byte := "00100000";
 CONSTANT op_MASHIFT  : byte := "00100001";
 CONSTANT op_SRC      : byte := "00100010"; -- WITHOUT_MULT: shift right through carry
 CONSTANT op_SLC      : byte := "00100011"; -- WITHOUT_MULT: shift left through carry
-CONSTANT op_SDIVL    : byte := "00100100"; -- Extended instruction set
+CONSTANT op_SDIVL    : byte := "00100100";
 CONSTANT op_UDIVL    : byte := "00100101";
 CONSTANT op_MULTL    : byte := "00100110";
-CONSTANT op_FMULT    : byte := "00100111"; -- WITH_MULT and WITH_FLOAT
+CONSTANT op_FMULT    : byte := "00100111"; -- WITH_MULT and (WITH_FLOAT or with_FMULT)
 
 -- ALU POP
 CONSTANT op_ADD      : byte := "00101000";
@@ -435,35 +452,35 @@ CONSTANT op_SSUB     : byte := "00101011";
 CONSTANT op_AND      : byte := "00101100";
 CONSTANT op_OR       : byte := "00101101";
 CONSTANT op_XOR      : byte := "00101110";
-CONSTANT op_ADDSAT   : byte := "00101111"; -- Extended instruction set
+CONSTANT op_ADDSAT   : byte := "00101111";
 
 -- ALU PUSH
-CONSTANT op_PADD     : byte := "00110000"; -- Extended instruction set
-CONSTANT op_PADC     : byte := "00110001"; -- Extended instruction set
-CONSTANT op_PSUB     : byte := "00110010"; -- Extended instruction set
-CONSTANT op_PSSUB    : byte := "00110011"; -- Extended instruction set
-CONSTANT op_PAND     : byte := "00110100"; -- Extended instruction set
-CONSTANT op_POR      : byte := "00110101"; -- Extended instruction set
-CONSTANT op_PXOR     : byte := "00110110"; -- Extended instruction set
+CONSTANT op_PADD     : byte := "00110000";
+CONSTANT op_PADC     : byte := "00110001";
+CONSTANT op_PSUB     : byte := "00110010";
+CONSTANT op_PSSUB    : byte := "00110011";
+CONSTANT op_PAND     : byte := "00110100";
+CONSTANT op_POR      : byte := "00110101";
+CONSTANT op_PXOR     : byte := "00110110";
 
 
 -- ALU BOTH
 CONSTANT op_UMULT    : byte := "00111000";
 CONSTANT op_SMULT    : byte := "00111001"; -- WITH_MULT
 CONSTANT op_DIV      : byte := "00111010";
-CONSTANT op_SDIVS    : byte := "00111011"; -- Extended instruction set
+CONSTANT op_SDIVS    : byte := "00111011";
 CONSTANT op_UDIVS    : byte := "00111100";
-CONSTANT op_LOGS     : byte := "00111101"; -- WITH_FLOAT and WITH_MULT
-CONSTANT op_SQRTS    : byte := "00111110"; -- Extended instruction set
-CONSTANT op_SQRT0    : byte := "00111111"; -- Extended instruction set
+CONSTANT op_LOGS     : byte := "00111101"; -- WITH_MULT and (WITH_FLOAT or with_LOGS)
+CONSTANT op_SQRTS    : byte := "00111110";
+CONSTANT op_SQRT0    : byte := "00111111";
 
 -- MEM NONE
-CONSTANT op_PLUSST   : byte := "01000000"; -- Extended instruction set
+CONSTANT op_PLUSST   : byte := "01000000";
 CONSTANT op_MEM2TOR  : byte := "01000001";
-CONSTANT op_MEM2TOS  : byte := "01000010"; -- Extended instruction set
+CONSTANT op_MEM2TOS  : byte := "01000010";
 CONSTANT op_MEM2NOS  : byte := "01000011";
 CONSTANT op_LOCAL    : byte := "01000100";
-
+CONSTANT op_DIPUSH   : byte := "01000101";
 CONSTANT op_CALL     : byte := "01000110";
 CONSTANT op_RPUSH    : byte := "01000111";
 
@@ -472,7 +489,7 @@ CONSTANT op_STORE    : byte := "01001000";
 CONSTANT op_PSTORE   : byte := "01001001"; -- program memory store
 CONSTANT op_CSTORE   : byte := "01001010"; -- byte_addr_width /= 0
 CONSTANT op_FLOAT    : byte := "01001011"; -- WITH_FLOAT
-CONSTANT op_PLUSST2  : byte := "01001100"; -- Extended instruction set
+CONSTANT op_PLUSST2  : byte := "01001100";
 CONSTANT op_WSTORE   : byte := "01001101";
 
 
@@ -482,17 +499,17 @@ CONSTANT op_LOAD     : byte := "01010000";
 CONSTANT op_PLOAD    : byte := "01010001"; -- program memory load
 CONSTANT op_CLOAD    : byte := "01010010"; -- byte_addr_width /= 0
 CONSTANT op_INTEG    : byte := "01010011"; -- WITH_FLOAT
-CONSTANT op_INDEX    : byte := "01010100"; -- Extended instruction set
+CONSTANT op_INDEX    : byte := "01010100";
 CONSTANT op_WLOAD    : byte := "01010101";
 
 CONSTANT op_RTOR     : byte := "01010111";
 
 -- MEM BOTH
-CONSTANT op_FETCH    : byte := "01011000"; -- Extended instruction set
+CONSTANT op_FETCH    : byte := "01011000"; -- with_FETCH
 
-CONSTANT op_CFETCH   : byte := "01011010"; -- byte_addr_width /= 0
+CONSTANT op_CFETCH   : byte := "01011010"; -- with_CFETCH and byte_addr_width /= 0
 
-CONSTANT op_RDROP    : byte := "01011100"; -- Extended instruction set
+CONSTANT op_DIPOP    : byte := "01011100";
 CONSTANT op_EXIT     : byte := "01011101";
 CONSTANT op_IRET     : byte := "01011110";
 CONSTANT op_RPOP     : byte := "01011111";
