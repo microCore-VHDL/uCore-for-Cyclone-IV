@@ -1,8 +1,8 @@
 -- ---------------------------------------------------------------------
--- @file : architecture_pkg_16b.vhd for the EP4CE6_OMDAZZ Demoboard
+-- @file : architecture_pkg_32b.vhd for the EP4CE6_OMDAZZ Demoboard
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 06.07.2023 18:01:34
+-- Last change: KS 08.07.2023 16:48:25
 -- @project: EP4CE6_OMDAZZ
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -22,6 +22,7 @@
 --
 -- Version Author   Date       Changes
 --  1000     ks    8-May-2023  initial version
+--  1200     ks    8-Jul-2023  This 32 byte design uses 3385 "logic elements"
 -- ---------------------------------------------------------------------
 --VHDL --~  \ at this point the cross compiler activates vhdl context.
 LIBRARY IEEE;
@@ -32,7 +33,7 @@ USE work.functions_pkg.ALL;
 PACKAGE architecture_pkg IS
 --~--  \ when loaded by the microForth cross-compiler, code between "--~" up to "--~--" will be skipped.
 
-CONSTANT version            : NATURAL := 1132; -- <major_release> <functionality_added> <HW_fix> <SW_fix> <pre-release#>
+CONSTANT version            : NATURAL := 1200; -- <major_release> <functionality_added> <HW_fix> <SW_fix> <pre-release#>
 
 -- ---------------------------------------------------------------------
 -- Configuration flags
@@ -86,13 +87,13 @@ CONSTANT DMEM_file          : string  := ""; -- ../software/data.mem";
 -- data, cache, register, and external data memory parameters:
 -- ---------------------------------------------------------------------
 
-CONSTANT data_width         : NATURAL := 16; -- data bus width
+CONSTANT data_width         : NATURAL := 32; -- data bus width
 CONSTANT exp_width          : NATURAL :=  8; -- floating point exponent width
 
-CONSTANT data_addr_width    : NATURAL := 16; -- data memory byte address width, for cache and external data memory
+CONSTANT data_addr_width    : NATURAL := 23; -- data memory byte address width, for cache and external data memory
 CONSTANT cache_addr_width   : NATURAL := 14; -- data cache memory byte address width
 CONSTANT cache_size         : NATURAL := 16#4000#; -- number of bytes.
-CONSTANT byte_addr_width    : NATURAL :=  1; -- least significant bits used for byte adressed data memory. 0 => no byte adressing.
+CONSTANT byte_addr_width    : NATURAL :=  2; -- least significant bits used for byte adressed data memory. 0 => no byte adressing.
 --~
 CONSTANT addr_extern        : NATURAL := 2 ** cache_addr_width; -- start address of external memory
 CONSTANT WITH_EXTMEM        : BOOLEAN := data_addr_width /= cache_addr_width;
@@ -119,8 +120,8 @@ CONSTANT trap_width         : NATURAL :=  3; -- each vector has room for 2**trap
 
 CONSTANT tasks_addr_width   : NATURAL :=  3; -- 2**tasks_addr_width copies of the stack areas will be provided
 CONSTANT ds_addr_width      : NATURAL :=  7; -- data stack pointer width, cell address
-CONSTANT rs_addr_width      : NATURAL :=  8; -- return stack pointer byte address width
-CONSTANT addr_rstack        : NATURAL := 16#3800#; -- byte size beginning of the return stack, must be a multiple of 2**rsp_width
+CONSTANT rs_addr_width      : NATURAL :=  9; -- return stack pointer byte address width
+CONSTANT addr_rstack        : NATURAL := 16#3000#; -- byte size beginning of the return stack, must be a multiple of 2**rsp_width
 --~
 CONSTANT addr_rstack_v      : UNSIGNED(data_width-1 DOWNTO 0) := to_unsigned(addr_rstack, data_width);
 CONSTANT dsp_width          : NATURAL := ds_addr_width + tasks_addr_width;

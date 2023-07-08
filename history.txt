@@ -1,19 +1,16 @@
 ************************************************************************
-*** EP4CE6_OMDAZZ 1.132bis  8-Jul-2023 ks
+*** EP4CE6_OMDAZZ 1.200   8-Jul-2023 ks
 ************************************************************************
 
-Sorry, I forgot to increment the version number.
+A 16 and 32 bit byte addressed version has been added after
+massaging SDRAM_4MBx16.vhd sufficiently :)
 
-A 16 bit byte addressed version has been added and SDRAM_4MBx16.vhd
-has been updated accordingly. 
-
-Under ../vhdl/architecture/xx we now have designs for 16, 27, and 32 bit
-cell designs and the 16 bit byte design. In order to use any one of these
-versions, you have to copy the architecture_pkg and uDatacache files into
-the ../vhdl directory. And you have to load the fpga.sof file into the FPGA.
-
-The 32 byte addressed version needs more debugging. 
-Eventually this will become Version 1.200.
+Under ../vhdl/architecture we now have designs for 16, 27, and 32 bit
+cell as well as 16 and 32 bit byte addressed designs.
+In order to use any one of these versions, you have to copy the
+architecture_pkg and uDatacache files @ ../vhdl/architectures/XX into
+the ../vhdl directory. And you have to configure the FPGA using the
+uCore_XX.sof file @ ../vhdl/architecture.
 
 ************************************************************************
 *** EP4CE6_OMDAZZ 1.132  3-Jul-2023 ks

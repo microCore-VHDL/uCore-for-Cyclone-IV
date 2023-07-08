@@ -2,7 +2,7 @@
 \ @file : coretest.fs
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 02.07.2023 22:59:42
+\ Last change: KS 08.07.2023 01:06:11
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -251,9 +251,22 @@ $5A5 Constant ovfl-pattern
 ;
 : test-extmem  ( -- )
 WITH_EXTMEM [IF]
-   #8001 #extern st @ #8001 -                   IF  $39 throw THEN
-   -1 #extern +!   #extern @ #8000 -            IF  $3A throw THEN
-    1 #extern +!   #extern @ #8001 -            IF  $3B throw THEN
+      #8001 #extern st @ #8001 -                   IF  $39 throw THEN
+      -1 #extern +!   #extern @ #8000 -            IF  $3A throw THEN
+       1 #extern +!   #extern @ #8001 -            IF  $3B throw THEN
+   [ byte_addr_width 1 = ] [IF]
+      $1122 #extern st @ $1122 -                  IF  $3C throw THEN
+      #extern cld 1+ c@
+      #extern cst 1+ c! #extern @ $2211 -        IF  $3D throw THEN
+   [THEN]                                          
+   [ byte_addr_width 2 = ] [IF]                    
+      $11223344 #extern st @ $11223344 -          IF  $3E throw THEN
+      #extern cld 1+ cld 1+ cld 1+ c@
+      #extern cst 1+ cst 1+ cst 1+ c!
+      #extern @ $44332211 -                       IF  $3F throw THEN
+      #extern wld 2 + w@
+      #extern wst 2 + w!  #extern @ $22114433 -  IF  $140 throw THEN
+   [THEN]
 [THEN]
 ;
 : modify  ( n -- /n )  0= ;

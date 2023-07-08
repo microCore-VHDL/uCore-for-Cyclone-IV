@@ -2,7 +2,7 @@
 -- @file : architecture_pkg_sim_32b.vhd for the EP4CE6_OMDAZZ Demoboard
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 08.07.2023 16:48:36
+-- Last change: KS 08.07.2023 12:38:16
 -- @project: EP4CE6_OMDAZZ
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -32,7 +32,7 @@ USE work.functions_pkg.ALL;
 PACKAGE architecture_pkg IS
 --~--  \ when loaded by the microForth cross-compiler, code between "--~" up to "--~--" will be skipped.
 
-CONSTANT version            : NATURAL := 1200; -- <major_release> <functionality_added> <HW_fix> <SW_fix> <pre-release#>
+CONSTANT version            : NATURAL := 1132; -- <major_release> <functionality_added> <HW_fix> <SW_fix> <pre-release#>
 
 -- ---------------------------------------------------------------------
 -- Configuration flags
@@ -89,7 +89,7 @@ CONSTANT DMEM_file          : string  := ""; -- ../software/data.mem";
 CONSTANT data_width         : NATURAL := 32; -- data bus width
 CONSTANT exp_width          : NATURAL :=  8; -- floating point exponent width
 
-CONSTANT data_addr_width    : NATURAL := 23; -- data memory byte address width, for cache and external data memory
+CONSTANT data_addr_width    : NATURAL := 22; -- data memory byte address width, for cache and external data memory
 CONSTANT cache_addr_width   : NATURAL := 14; -- data cache memory byte address width
 CONSTANT cache_size         : NATURAL := 16#4000#; -- number of bytes.
 CONSTANT byte_addr_width    : NATURAL :=  2; -- least significant bits used for byte adressed data memory. 0 => no byte adressing.

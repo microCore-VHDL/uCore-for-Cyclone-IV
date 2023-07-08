@@ -2,7 +2,7 @@
 \ @file : forth.fs
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 03.07.2023 11:38:29
+\ Last change: KS 06.07.2023 23:16:49
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -47,7 +47,7 @@ Target
 ~ [THEN]
 
 ~ with_PLUSST [NOTIF]
-   ~ : +!      ( n addr -- )      [di ld -rot + swap ! di] ; \ interrupt save
+   ~ : +!      ( n addr -- )      swap over [di @ + swap ! di] ; \ interrupt save
 ~ [THEN]
 
 ~ : ctrl?      ( mask -- f )      Ctrl-reg @ and ;

@@ -1,5 +1,5 @@
 \ 
-\ Last change: KS 03.07.2023 12:08:03
+\ Last change: KS 08.07.2023 17:17:28
 \
 \ Basic microCore load screen for execution on the target.
 \
@@ -13,7 +13,7 @@ include extensions.fs           \ Some System word (re)definitions
 include ../vhdl/architecture_pkg.vhd
 include microcross.fs           \ the cross-compiler
 
-\ Verbose on                      \ Library loading messages
+Verbose on                      \ Library loading messages
 
 Target new initialized          \ go into target compilation mode and initialize target compiler
 
@@ -24,7 +24,11 @@ include constants.fs            \ MicroCore Register addresses and bits
 include debugger.fs
 library forth_lib.fs
 
-: test  0 100 !  1 100 +!  100 @ . ;
+Variable Item  Item 4 !
+
+: simple ( n -- )   Item st @ . ;
+
+: silly  ( n -- )   0 ?DO  I simple  LOOP ;
 
 \ ----------------------------------------------------------------------
 \ Booting, Interrupts and TRAPs

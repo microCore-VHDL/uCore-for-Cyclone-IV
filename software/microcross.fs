@@ -2,7 +2,7 @@
 \ @file : microcross.fs
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 02.07.2023 22:52:25
+\ Last change: KS 07.07.2023 17:48:26
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -1242,8 +1242,8 @@ H addr_rstack                       T Constant #rstack       \ first address use
   #rstack H cache_size umin         T Constant #cache        \ first address past internal data memory, starting at 0
   addr_rstack #rs-size +            T Constant #rstack-end
 H cache_addr_width              2** T Constant #extern       \ first address of external memory
-H data_width 2**
-  min_registers abs 2// 2** -       T Constant #registers    \ first address of register area
+H data_width 2**   min_registers
+  abs 2// 2** #cell * -             T Constant #registers    \ first address of register area
 
 \ trap vectors used, to be extended as needed.
 0                       T Constant #reset        \ reset vector

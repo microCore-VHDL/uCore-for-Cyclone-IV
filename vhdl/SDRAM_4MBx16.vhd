@@ -2,7 +2,7 @@
 -- @file : SDRAM_4MBx16.vhd
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 08.07.2023 12:57:51
+-- Last change: KS 08.07.2023 16:39:39
 -- @project: OMDAZZ board
 -- @language: VHDL-2008
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -164,16 +164,16 @@ double_access: IF  ram_chunks = 2  GENERATE -- data_width > 16
             row <= resize(addr(18 DOWNTO 7), 12);
          END IF;
       ELSIF  byte_addr_width = 2  THEN
-         col <= "0100" & addr(7 DOWNTO 2) & "00"; -- a(10) = 1 => precharge all banks, automatic refresh
+         col <= "0100" & addr(8 DOWNTO 2) & '0';  -- a(10) = 1 => precharge all banks, automatic refresh
          bank <= "00";
-         row <= resize(addr(data_addr_width-1 DOWNTO 8), 12);
-         IF  data_addr_width = 21  THEN
-            bank(0) <= addr(20);
-            row <= resize(addr(19 DOWNTO 8), 12);
+         row <= resize(addr(data_addr_width-1 DOWNTO 9), 12);
+         IF  data_addr_width = 22  THEN
+            bank(0) <= addr(21);
+            row <= resize(addr(20 DOWNTO 9), 12);
          END IF;
-         IF  data_addr_width > 21  THEN
-            bank <= addr(21 DOWNTO 20);
-            row <= resize(addr(19 DOWNTO 8), 12);
+         IF  data_addr_width > 22  THEN
+            bank <= addr(22 DOWNTO 21);
+            row <= resize(addr(20 DOWNTO 9), 12);
          END IF;
       END IF;
 
