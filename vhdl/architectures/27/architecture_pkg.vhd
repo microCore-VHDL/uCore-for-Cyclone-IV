@@ -101,7 +101,6 @@ CONSTANT ram_data_width     : NATURAL := 16; -- external memory word width
 --~
 CONSTANT ram_chunks         : NATURAL := ceiling(data_width, ram_data_width);
 CONSTANT ram_subbits        : NATURAL := log2(ram_chunks);
-CONSTANT ram_addr_width     : NATURAL := data_addr_width + ram_subbits; -- external memory, virtually data_width wide
 --~--
 -- ---------------------------------------------------------------------
 -- program memory parameters:
@@ -120,8 +119,8 @@ CONSTANT trap_width         : NATURAL :=  3; -- each vector has room for 2**trap
 
 CONSTANT tasks_addr_width   : NATURAL :=  3; -- 2**tasks_addr_width copies of the stack areas will be provided
 CONSTANT ds_addr_width      : NATURAL :=  7; -- data stack pointer width, cell address
-CONSTANT rs_addr_width      : NATURAL :=  7; -- return stack pointer, cell address
-CONSTANT addr_rstack        : NATURAL := 16#1400#; -- beginning of the return stack, cell size, must be a multiple of 2**rsp_width
+CONSTANT rs_addr_width      : NATURAL :=  7; -- return stack pointer cell address width
+CONSTANT addr_rstack        : NATURAL := 16#1400#; -- cell size beginning of the return stack, must be a multiple of 2**rsp_width
 --~
 CONSTANT addr_rstack_v      : UNSIGNED(data_width-1 DOWNTO 0) := to_unsigned(addr_rstack, data_width);
 CONSTANT dsp_width          : NATURAL := ds_addr_width + tasks_addr_width;

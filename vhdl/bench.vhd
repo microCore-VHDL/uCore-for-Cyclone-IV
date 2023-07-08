@@ -2,7 +2,7 @@
 -- @file : bench.vhd testbench for the EP4CE6 OMDAZZ Board
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 27.06.2023 21:43:50
+-- Last change: KS 05.07.2023 19:58:00
 -- @project: microCore
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -627,9 +627,9 @@ BEGIN
   WAIT FOR 500 ns;
   LOOP
     xtal <= '1';
-    WAIT FOR cycle/2;
+    WAIT FOR xtal_cycle/2;
     xtal <= '0';
-    WAIT FOR cycle/2;
+    WAIT FOR xtal_cycle/2;
   END LOOP;
 END PROCESS xtal_clock;
 
