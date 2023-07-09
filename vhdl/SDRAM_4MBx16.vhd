@@ -2,7 +2,7 @@
 -- @file : SDRAM_4MBx16.vhd
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 08.07.2023 16:39:39
+-- Last change: KS 09.07.2023 14:28:16
 -- @project: OMDAZZ board
 -- @language: VHDL-2008
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -24,6 +24,7 @@
 --  1000     ks   27-May-2023  initial version
 --  1110     ks   27-Jun-2023  General version for varying data_widths
 --                             up to 32 bits.
+--  1200     ks    8-Jul-2023  General version including byte addressing.
 -- ---------------------------------------------------------------------
 Library IEEE;
 USE IEEE.std_logic_1164.ALL;
@@ -55,9 +56,9 @@ ALIAS wdata    : data_bus  IS uBus.wdata;
 -- TYPE  SDRAM_signals  IS RECORD -- defined in architecture_pkg.vhd
 --   cke         : STD_LOGIC;             --                           3     2     1    0
 --   cmd         : UNSIGNED( 3 DOWNTO 0); -- combines SDRAM inputs: | cs | ras | cas | we |
---   a           : UNSIGNED(11 DOWNTO 0);
---   ba          : UNSIGNED( 1 DOWNTO 0);
---   dqm         : UNSIGNED( 1 DOWNTO 0);
+--   addr        : UNSIGNED(11 DOWNTO 0);
+--   bank        : UNSIGNED( 1 DOWNTO 0);
+--   byte_en     : UNSIGNED( 1 DOWNTO 0);
 --   rdata       : data_bus;
 -- END RECORD;
 
@@ -89,9 +90,9 @@ SIGNAL mode_reg        : UNSIGNED(11 DOWNTO 0);
 
 SIGNAL sd_cke          : STD_LOGIC;
 SIGNAL sd_cmd          : cmd_type;
-SIGNAL sd_a            : UNSIGNED(11 DOWNTO 0);
-SIGNAL sd_ba           : UNSIGNED( 1 DOWNTO 0);
-SIGNAL sd_ben          : UNSIGNED( 1 DOWNTO 0); -- "byte enable" is the inverted "dqmh/l" signals
+SIGNAL sd_addr         : UNSIGNED(11 DOWNTO 0);
+SIGNAL sd_bank         : UNSIGNED( 1 DOWNTO 0);
+SIGNAL sd_byte_en      : UNSIGNED( 1 DOWNTO 0); -- "byte enable" is the inverted "dqmh/l" signals
 
 SIGNAL sd_rdata_l      : UNSIGNED(ram_data_width-1 DOWNTO 0);
 SIGNAL sd_rdata_h      : UNSIGNED(ram_data_width-1 DOWNTO 0);
@@ -109,27 +110,32 @@ SIGNAL ref_ctr         : NATURAL RANGE 0 TO 8;
 
 BEGIN
 
-sd_ram.cke   <= sd_cke;
-sd_ram.cmd   <= sd_cmd;
-sd_ram.a     <= sd_a;
-sd_ram.ba    <= sd_ba;
-sd_ram.ben   <= sd_ben;
-sd_ram.rdata <= resize((sd_rdata_h & sd_rdata_l), data_width);
+delay <= '0' WHEN wait_ctr = 0 AND sd_state = finished  ELSE ext_en;
+
+sd_ram.cke     <= sd_cke;
+sd_ram.cmd     <= sd_cmd;
+sd_ram.addr    <= sd_addr;
+sd_ram.bank    <= sd_bank;
+sd_ram.byte_en <= sd_byte_en;
+sd_ram.rdata   <= resize((sd_rdata_h & sd_rdata_l), data_width);
 
 single_access: IF  ram_chunks = 1  GENERATE -- data_width <= 16
 -- 21  20  | 19 18 17 16 15 14 13 12 11 10 09 08 | 07 06 05 04 03 02 01 00 |
--- BA1 BA0 |       ROW (A11-A0)  4096 rows       |  COL (A7-A0)  256 cols  |
+--  BANK   |       ROW (A11-A0)  4096 rows       |  COL (A7-A0)  256 cols  |
 
    mode_reg <= "00" & "0" & "00" & "010" & "0" & "000";
 
    SDRAM_proc : PROCESS(wdata, addr, bytes, sd_state)
    BEGIN
-      bank <= "00";
-      row <= resize(addr(data_addr_width-1 DOWNTO 8), 12);
 
-      col <= "0100" & addr(7 DOWNTO 0);       -- a(10) = 1 => precharge all banks, automatic refresh
-      IF  byte_addr_width = 1  THEN
+      IF  byte_addr_width = 0  THEN
+         bank <= "00";
+         col <= "0100" & addr(7 DOWNTO 0);       -- a(10) = 1 => precharge all banks, automatic refresh
+         row <= resize(addr(data_addr_width-1 DOWNTO 8), 12);
+      ELSIF  byte_addr_width = 1  THEN
+         bank <= "00";
          col <= "0100" & addr(7 DOWNTO 1) & '0'; -- a(10) = 1 => precharge all banks, automatic refresh
+         row <= resize(addr(data_addr_width-1 DOWNTO 8), 12);
       END IF;
 
       sd_dq <= (OTHERS => 'Z');
@@ -145,15 +151,15 @@ END GENERATE single_access;
 
 double_access: IF  ram_chunks = 2  GENERATE -- data_width > 16
 --  21  20 | 19 18 17 16 15 14 13 12 11 10 09 08 | 07 06 05 04 03 02 01 00 |
--- BA1 BA0 |       ROW (A11-A0)  4096 rows       |  COL (A7-A0)  256 cols  |
+--   BANK  |       ROW (A11-A0)  4096 rows       |  COL (A7-A0)  256 cols  |
 
    mode_reg <= "00" & "0" & "00" & "010" & "0" & "001";
 
    SDRAM_proc : PROCESS(wdata, addr, bytes, sd_state)
    BEGIN
       IF  byte_addr_width = 0  THEN
-         col <= "0100" & addr(6 DOWNTO 0) & '0';  -- a(10) = 1 => precharge all banks, automatic refresh
          bank <= "00";
+         col <= "0100" & addr(6 DOWNTO 0) & '0';  -- a(10) = 1 => precharge all banks, automatic refresh
          row <= resize(addr(data_addr_width-1 DOWNTO 7), 12);
          IF  data_addr_width = 20  THEN
             bank(0) <= addr(19);
@@ -164,8 +170,8 @@ double_access: IF  ram_chunks = 2  GENERATE -- data_width > 16
             row <= resize(addr(18 DOWNTO 7), 12);
          END IF;
       ELSIF  byte_addr_width = 2  THEN
-         col <= "0100" & addr(8 DOWNTO 2) & '0';  -- a(10) = 1 => precharge all banks, automatic refresh
          bank <= "00";
+         col <= "0100" & addr(8 DOWNTO 2) & '0';  -- a(10) = 1 => precharge all banks, automatic refresh
          row <= resize(addr(data_addr_width-1 DOWNTO 9), 12);
          IF  data_addr_width = 22  THEN
             bank(0) <= addr(21);
@@ -196,8 +202,6 @@ double_access: IF  ram_chunks = 2  GENERATE -- data_width > 16
 
 END GENERATE double_access;
 
-delay <= '0' WHEN wait_ctr = 0 AND sd_state = finished  ELSE ext_en;
-
 SDRAM_proc : PROCESS(clk, reset)
 BEGIN
    IF  reset = '1' AND ASYNC_RESET  THEN
@@ -219,9 +223,9 @@ BEGIN
 
       ELSE
 
-         sd_a <= col;
-         sd_ba <= bank;
-         sd_ben <= "00";
+         sd_addr <= col;
+         sd_bank <= bank;
+         sd_byte_en <= "00";
 
          CASE  sd_state  IS
 
@@ -262,7 +266,7 @@ BEGIN
             wait_ctr <= 1;           -- Trsc = 2 cycles after issuing MODE command.
             ref_ctr <= 8;            -- Do 8 refresh cycles in the next state.
             sd_cmd <= cmd_mode;
-            sd_a <= mode_reg;
+            sd_addr <= mode_reg;
 
          WHEN init_refresh2 =>
             IF  ref_ctr = 0  THEN
@@ -283,7 +287,7 @@ BEGIN
             IF  ext_en = '1' THEN
                sd_state <= activate;
                sd_cmd <= cmd_activate;
-               sd_a <= row;             -- Set bank select and row on activate command.
+               sd_addr <= row;        -- Set bank select and row on activate command.
                wait_ctr <= 2;
             ELSIF  refresh_ctr = 0  THEN
                sd_state <= refresh;
@@ -296,7 +300,7 @@ BEGIN
             refresh_ctr <= refresh_cnt;
 
          WHEN activate =>
-            sd_ben <= "11";
+            sd_byte_en <= "11";
             IF  write = '0'  THEN  -- read
                sd_cmd <= cmd_read;
                sd_state <= rd_low;
@@ -310,18 +314,18 @@ BEGIN
                   sd_state <= write0;
                END IF;
                IF  byte_addr_width = 1 AND bytes = 1  THEN
-                  sd_ben <= addr(0) & (NOT addr(0));
+                  sd_byte_en <= addr(0) & (NOT addr(0));
                END IF;
                IF  byte_addr_width = 2  THEN
                   IF  bytes = 1  THEN
                      IF  addr(1) = '0'  THEN
-                        sd_ben <= addr(0) & (NOT addr(0));
+                        sd_byte_en <= addr(0) & (NOT addr(0));
                      ELSE
-                        sd_ben <= "00";
+                        sd_byte_en <= "00";
                      END IF;
                   ELSIF  bytes = 2  THEN
                      IF  addr(1) = '1'  THEN
-                        sd_ben <= "00";
+                        sd_byte_en <= "00";
                      END IF;
                   END IF;
                END IF;
@@ -383,15 +387,15 @@ BEGIN
 
    -- writing
          WHEN write0 =>
-            sd_ben <= "11";
+            sd_byte_en <= "11";
             IF  bytes = 1  THEN
                IF  addr(1) = '1'  THEN
-                  sd_ben <= addr(0) & (NOT addr(0));
+                  sd_byte_en <= addr(0) & (NOT addr(0));
                ELSE
-                  sd_ben <= "00";
+                  sd_byte_en <= "00";
                END IF;
             ELSIF  bytes = 2 AND addr(1) = '0'  THEN
-               sd_ben <= "00";
+               sd_byte_en <= "00";
             END IF;
             sd_state <= write1;
             wait_ctr <= 1;

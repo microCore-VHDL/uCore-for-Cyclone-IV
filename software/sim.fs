@@ -1,5 +1,5 @@
 \ 
-\ Last change: KS 08.07.2023 17:22:20
+\ Last change: KS 09.07.2023 14:39:17
 \
 \ microCore load screen for simulation.
 \ It produces program.mem for initialization of the program memory during simulation.
@@ -44,7 +44,7 @@ cr .( debugging SDRAM_4MBx16)
          #179 FOR NEXT  $1234567 #extern st noop @ drop
       [ELSE]
          -1 sdaddr +!  sdaddr @ drop
-         #232 FOR NEXT  $1234567 #extern st noop @ drop
+         #215 FOR NEXT  $1234567 #extern st noop @ drop
       [THEN]
       BEGIN REPEAT ;
 [ELSE]

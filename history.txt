@@ -2,7 +2,7 @@
 *** EP4CE6_OMDAZZ 1.200   8-Jul-2023 ks
 ************************************************************************
 
-A 16 and 32 bit byte addressed version has been added after
+A 16b and 32b bits byte addressed version has been added after
 massaging SDRAM_4MBx16.vhd sufficiently :)
 
 Under ../vhdl/architecture we now have designs for 16, 27, and 32 bit

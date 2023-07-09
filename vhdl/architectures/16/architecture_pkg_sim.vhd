@@ -2,7 +2,7 @@
 -- @file : architecture_pkg_sim_16.vhd for the EP4CE6_OMDAZZ Demoboard
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 03.07.2023 11:37:29
+-- Last change: KS 09.07.2023 14:28:51
 -- @project: EP4CE6_OMDAZZ
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -32,7 +32,7 @@ USE work.functions_pkg.ALL;
 PACKAGE architecture_pkg IS
 --~--  \ when loaded by the microForth cross-compiler, code between "--~" up to "--~--" will be skipped.
 
-CONSTANT version            : NATURAL := 1132; -- <major_release> <functionality_added> <HW_fix> <SW_fix> <pre-release#>
+CONSTANT version            : NATURAL := 1200; -- <major_release> <functionality_added> <HW_fix> <SW_fix> <pre-release#>
 
 -- ---------------------------------------------------------------------
 -- Configuration flags
@@ -264,9 +264,9 @@ END RECORD;
 TYPE  SDRAM_signals  IS RECORD
    cke         : STD_LOGIC;             --                           3     2     1    0
    cmd         : UNSIGNED( 3 DOWNTO 0); -- combines SDRAM inputs: | cs | ras | cas | we |
-   a           : UNSIGNED(11 DOWNTO 0);
-   ba          : UNSIGNED( 1 DOWNTO 0);
-   ben         : UNSIGNED( 1 DOWNTO 0); -- byte_en = NOT dqm
+   addr        : UNSIGNED(11 DOWNTO 0);
+   bank        : UNSIGNED( 1 DOWNTO 0);
+   byte_en     : UNSIGNED( 1 DOWNTO 0); -- byte_en = NOT dqm
    rdata       : data_bus;
 END RECORD;
 

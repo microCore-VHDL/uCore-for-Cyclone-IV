@@ -2,7 +2,7 @@
 \ @file : bootload.fs for the EP4CE6_OMDAZZ board.
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 24.06.2023 13:50:49
+\ Last change: KS 05.07.2023 18:17:44
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation

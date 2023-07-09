@@ -2,7 +2,7 @@
 -- @file : architecture_pkg_32b.vhd for the EP4CE6_OMDAZZ Demoboard
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 08.07.2023 16:48:25
+-- Last change: KS 09.07.2023 14:40:09
 -- @project: EP4CE6_OMDAZZ
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -90,7 +90,7 @@ CONSTANT DMEM_file          : string  := ""; -- ../software/data.mem";
 CONSTANT data_width         : NATURAL := 32; -- data bus width
 CONSTANT exp_width          : NATURAL :=  8; -- floating point exponent width
 
-CONSTANT data_addr_width    : NATURAL := 23; -- data memory byte address width, for cache and external data memory
+CONSTANT data_addr_width    : NATURAL := 22; -- data memory byte address width, for cache and external data memory
 CONSTANT cache_addr_width   : NATURAL := 14; -- data cache memory byte address width
 CONSTANT cache_size         : NATURAL := 16#4000#; -- number of bytes.
 CONSTANT byte_addr_width    : NATURAL :=  2; -- least significant bits used for byte adressed data memory. 0 => no byte adressing.
@@ -265,9 +265,9 @@ END RECORD;
 TYPE  SDRAM_signals  IS RECORD
    cke         : STD_LOGIC;             --                           3     2     1    0
    cmd         : UNSIGNED( 3 DOWNTO 0); -- combines SDRAM inputs: | cs | ras | cas | we |
-   a           : UNSIGNED(11 DOWNTO 0);
-   ba          : UNSIGNED( 1 DOWNTO 0);
-   ben         : UNSIGNED( 1 DOWNTO 0); -- byte_en = NOT dqm
+   addr        : UNSIGNED(11 DOWNTO 0);
+   bank        : UNSIGNED( 1 DOWNTO 0);
+   byte_en     : UNSIGNED( 1 DOWNTO 0); -- byte_en = NOT dqm
    rdata       : data_bus;
 END RECORD;
 

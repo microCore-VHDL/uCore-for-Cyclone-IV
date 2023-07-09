@@ -2,7 +2,7 @@
 -- @file : fpga.vhd for the Intel EP4CE6_OMDAZZ prototyping board
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 02.07.2023 22:17:56
+-- Last change: KS 09.07.2023 14:14:36
 -- @project: EP4CE6_OMDAZZ
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -376,10 +376,10 @@ sd_cs_n   <= NOT sd_ram.cmd(3);
 sd_ras_n  <= NOT sd_ram.cmd(2);
 sd_cas_n  <= NOT sd_ram.cmd(1);
 sd_we_n   <= NOT sd_ram.cmd(0);
-sd_a      <= sd_ram.a;
-sd_ba     <= sd_ram.ba;
-sd_ldqm   <= NOT sd_ram.ben(0);
-sd_udqm   <= NOT sd_ram.ben(1);
+sd_a      <= sd_ram.addr;
+sd_ba     <= sd_ram.bank;
+sd_ldqm   <= NOT sd_ram.byte_en(0);
+sd_udqm   <= NOT sd_ram.byte_en(1);
 ext_rdata <= sd_ram.rdata;
 
 -- sd_clk    <= '0';

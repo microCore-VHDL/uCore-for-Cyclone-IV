@@ -29,7 +29,7 @@ add wave -noupdate /bench/myFPGA/sd_cs_n
 add wave -noupdate /bench/myFPGA/sd_we_n
 add wave -noupdate /bench/myFPGA/sd_ras_n
 add wave -noupdate /bench/myFPGA/sd_cas_n
-add wave -noupdate /bench/myFPGA/SDRAM/sd_ben
+add wave -noupdate /bench/myFPGA/SDRAM/sd_byte_en
 add wave -noupdate /bench/myFPGA/sd_ldqm
 add wave -noupdate /bench/myFPGA/sd_udqm
 add wave -noupdate /bench/myFPGA/sd_a
