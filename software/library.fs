@@ -2,7 +2,7 @@
 \ @file : library.fs
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 02.07.2023 19:58:18
+\ Last change: KS 12.07.2023 20:25:52
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -198,6 +198,7 @@ Predefined definitions Forth
 ' WITH_FLOAT         Alias WITH_FLOAT
 ' WITH_UP_DOWNLOAD   Alias WITH_UP_DOWNLOAD
 ' with_INDEX         Alias with_INDEX
+' with_PLOOP         Alias with_PLOOP
 ' with_FETCH         Alias with_FETCH
 ' with_CFETCH        Alias with_CFETCH
 ' with_PLUSST        Alias with_PLUSST

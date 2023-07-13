@@ -2,7 +2,7 @@
 \ @file : opcodes.fs
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 03.07.2023 11:36:27
+\ Last change: KS 12.07.2023 20:27:35
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -101,6 +101,9 @@ op_PSTORE      Op: pST    ( b addr -- addr )  don't
 op_BRANCH     Brn: branch     ( addr -- )     don't  \ ELSE, REPEAT
 op_QBRANCH    Brn: 0=branch   ( addr f -- )   don't  \           IF
 op_NEXT       Brn: tor-branch ( addr -- )     don't  \ NEXT
+with_PLOOP [IF]
+   op_PLOOP    Op: (+loop  ( n -- )           don't
+[THEN]
 op_CALL        Op: JSR     ( -- )             don't
             Macro: execute ( addr -- )        ?comp ?noop, T JSR H ;
 op_EXIT        Ex: exit    ( -- )             don't

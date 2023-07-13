@@ -2,7 +2,7 @@
 \ @file : constants.fs for the EP4CE6_OMDAZZ prototyping board
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 09.07.2023 16:39:16
+\ Last change: KS 13.07.2023 20:23:01
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -82,4 +82,6 @@ H c_led0       T Bit #c-led0   H c_bitout T Bit #c-bitout \ Alias name for coret
 H c_led1       T Bit #c-led1
 H c_led2       T Bit #c-led2
 H c_led3       T Bit #c-led3
+
+#c-led0 #c-led1 or #c-led2 or #c-led3 or Constant #c-leds
 

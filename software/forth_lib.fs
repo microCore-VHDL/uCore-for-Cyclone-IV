@@ -2,7 +2,7 @@
 \ @file : forth.fs
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 06.07.2023 23:16:49
+\ Last change: KS 12.07.2023 22:14:40
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -29,14 +29,24 @@
 \ ----------------------------------------------------------------------
 Target
 
-~ : do         ( limit start -- count end )  under - 1- swap 1- ;
-  Host: DO     ( n1 n2 -- )  ( R: -- n3 n4 ) ?comp T  do >r FOR H ;
+~ : do         ( limit start -- count end )  under - 1- swap 1-  r> swap >r BRANCH ;
+  Host: DO     ( n1 n2 -- )  ( R: -- n3 n4 ) ?comp T  do  FOR H ;
 
-~ : ?do        ( limit start -- count end )  under -    swap 1- ;
-  Host: ?DO    ( n1 n2 -- )  ( R: -- n3 n4 ) ?comp T ?do >r ?FOR H ;
+~ : ?do        ( limit start -- count end )  under -    swap 1-  r> swap >r BRANCH ;
+  Host: ?DO    ( n1 n2 -- )  ( R: -- n3 n4 ) ?comp T ?do ?FOR H ;
 
 ~ : loop       ( -- ) ; noexit \ dummy definition
   Host: LOOP   ( -- )  ( R: n1 n2 -- n1 n2 )  ( R: n1 0 -- ) ?comp T NEXT rdrop H ;
+
+~ with_PLOOP [IF]
+   ~ : +loop ; noexit Host: +LOOP ( n -- ) ( R: n1 n2 -- n1 n2 )  ( R: n1 0 -- )
+        ?comp T (+loop NEXT rdrop H ;
+~ [ELSE]
+   ~ : (+loop  ( n -- ) ( R: i -- i' )
+        1- dup 0< swap  r> r> rot - rot carry? xor and >r BRANCH ; noexit
+     : +loop ; noexit Host: +LOOP ( n -- ) ( R: n1 n2 -- n1 n2 )  ( R: n1 0 -- )
+        ?comp T (+loop NEXT rdrop H ;
+~ [THEN]
 
 ~ : bounds     ( start len -- limit start )   over swap + swap ;
 
@@ -250,13 +260,13 @@ with_FMULT WITH_FLOAT or WITH_MULT 0= and [IF]
 ~ : ms ; noexit   Host: ms ( msec -- ticks )
      ticks_per_ms
      comp? IF  lit, T * H EXIT THEN
-     dbg? IF  t> * >t  EXIT THEN
+     dbg?  IF  t> * >t    EXIT THEN
      *
   ; immediate
 ~ : sec ; noexit   Host: sec  ( sec -- ticks )
      [ ticks_per_ms &1000 * ] Literal
      comp? IF  lit, T * H EXIT THEN
-     dbg? IF  t> * >t  EXIT THEN
+     dbg?  IF  t> * >t    EXIT THEN
      *
   ; immediate
 \ ----------------------------------------------------------------------

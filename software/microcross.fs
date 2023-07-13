@@ -2,7 +2,7 @@
 \ @file : microcross.fs
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 07.07.2023 17:48:26
+\ Last change: KS 12.07.2023 20:26:17
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -1183,6 +1183,7 @@ H data_addr_width
 H byte_addr_width 0<>   T Version WITH_BYTES
 H data_width 1 and 0<>  T Version ODD_DATA_WIDTH
 H with_INDEX            T Version with_INDEX
+H with_PLOOP            T Version with_PLOOP
 H with_FETCH            T Version with_FETCH 
 H with_CFETCH           T Version with_CFETCH
 H with_PLUSST           T Version with_PLUSST

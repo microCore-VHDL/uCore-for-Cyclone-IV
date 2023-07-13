@@ -2,7 +2,7 @@
 \ @file : bootload.fs for the EP4CE6_OMDAZZ board.
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 05.07.2023 18:17:44
+\ Last change: KS 13.07.2023 19:24:05
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -45,15 +45,14 @@ Target new                      \ go into target compilation mode and initialize
 
 include constants.fs            \ microCore Register addresses and bits
 
-: delay ( -- )  &1000 time + BEGIN  dup time? UNTIL drop ;
-
 : shiftleds  ( n -- n' )
-   dup -ctrl !   dup +
+   dup -Ctrl !   dup +
    dup #c-led3 > IF  drop #c-led0  THEN
-   dup ctrl !
+   dup Ctrl !
 ;
-: blinking  ( -- )  #c-led0 BEGIN  shiftleds delay  REPEAT ;
-
+: blinking  ( -- )   #c-led0
+   BEGIN  shiftleds   #1200 time + BEGIN  dup time? UNTIL drop  REPEAT
+;
 #reset TRAP: rst ( -- )    blinking ;
 
 end
