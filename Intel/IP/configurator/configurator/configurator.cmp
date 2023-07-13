@@ -1,0 +1,12 @@
+	component configurator is
+		port (
+			noe_in              : in  std_logic := 'X'; -- noe
+			dclk_in             : in  std_logic := 'X'; -- dclkin
+			ncso_in             : in  std_logic := 'X'; -- scein
+			asdo_in             : in  std_logic := 'X'; -- sdoin
+			asmi_access_granted : in  std_logic := 'X'; -- asmi_access_granted
+			data0_out           : out std_logic;        -- data0out
+			asmi_access_request : out std_logic         -- asmi_access_request
+		);
+	end component configurator;
+

@@ -99,7 +99,8 @@ set_clock_uncertainty -fall_from [get_clocks {clock}] -fall_to [get_clocks {cloc
 #**************************************************************
 
 set_max_delay -from [get_ports sd_dq[*]]                            4.000
-set_max_delay -from [get_registers SDRAM_4MBx16:SDRAM|sd_rdata[*]] 20.000
+set_max_delay -from [get_registers SDRAM_4MBx16:SDRAM|sd_rdata_l[*]] 20.000
+set_max_delay -from [get_registers SDRAM_4MBx16:SDRAM|sd_rdata_h[*]] 20.000
 
 #**************************************************************
 # Set Minimum Delay

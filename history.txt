@@ -1,4 +1,18 @@
 ************************************************************************
+*** EP4CE6_OMDAZZ 1.300  13-Jul-2023 ks
+************************************************************************
+
+The "Serial Flash Loader" (SFL) has been added to the design. If you
+turn DIPswitch 4 on, the serial configuration flash will be connected
+to JTAG and can be programmed using the quartus programmer and USB-Blaster
+after conversion of the .sof configuration file to the .jic format.
+Erase/programming activity will be visible on LED4.
+
++LOOP has been added to forth_lib.fs. It either uses the new (+loop
+instruction (with_PLOOP = true) or a high level version together
+with the tor_branch instruction for a 3 cycle +LOOP for short loops.
+
+************************************************************************
 *** EP4CE6_OMDAZZ 1.200   8-Jul-2023 ks
 ************************************************************************
 

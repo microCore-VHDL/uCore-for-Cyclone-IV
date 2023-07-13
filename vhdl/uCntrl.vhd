@@ -2,7 +2,7 @@
 -- @file : uCntrl.vhd
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 08.07.2023 01:01:59
+-- Last change: KS 12.07.2023 20:17:24
 -- @project: microCore
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -961,6 +961,21 @@ BEGIN
          ELSE
             r_in.tor <= r.tor - 1;
             branch;
+         END IF;
+
+--   : (+loop  ( n -- ) ( R: i -- i' )
+--      1- dup 0< swap  r> r> rot - rot carry? xor and >r BRANCH ;
+      WHEN op_PLOOP =>
+         IF  with_PLOOP  THEN
+            pop_stack;
+            temp := r.tos - 1;
+            add_x <= r.tor;
+            add_y <= NOT temp;
+            cin <= '1';
+            r_in.tor <= sum;
+            IF  (temp(signbit) XOR add_carry) = '0'  THEN
+               r_in.tor <= (OTHERS => '0');
+            END IF;
          END IF;
 
       WHEN op_CALL   =>

@@ -74,21 +74,21 @@ lcd_data[4]                  : 2         : output : 3.3-V LVTTL       :         
 lcd_data[3]                  : 3         : output : 3.3-V LVTTL       :         : 1         : Y              
 GND                          : 4         : gnd    :                   :         :           :                
 VCCINT                       : 5         : power  :                   : 1.2V    :           :                
-~ALTERA_ASDO_DATA1~ / RESERVED_INPUT_WITH_WEAK_PULLUP : 6         : input  : 3.3-V LVTTL       :         : 1         : N              
+configurator:config_flash|altera_serial_flash_loader:serial_flash_loader_0|altserial_flash_loader:altserial_flash_loader_component|\GEN_ASMI_TYPE_1:asmi_inst~ALTERA_SDO : 6         : output : 3.3-V LVTTL       :         : 1         : N              
 lcd_data[6]                  : 7         : output : 3.3-V LVTTL       :         : 1         : Y              
-~ALTERA_FLASH_nCE_nCSO~ / RESERVED_INPUT_WITH_WEAK_PULLUP : 8         : input  : 3.3-V LVTTL       :         : 1         : N              
+configurator:config_flash|altera_serial_flash_loader:serial_flash_loader_0|altserial_flash_loader:altserial_flash_loader_component|\GEN_ASMI_TYPE_1:asmi_inst~ALTERA_SCE : 8         : output : 3.3-V LVTTL       :         : 1         : N              
 nSTATUS                      : 9         :        :                   :         : 1         :                
 lcd_data[5]                  : 10        : output : 3.3-V LVTTL       :         : 1         : Y              
-lcd_data[7]                  : 11        : output : 3.3-V LVTTL       :         : 1         : Y              
-~ALTERA_DCLK~                : 12        : output : 3.3-V LVTTL       :         : 1         : N              
-~ALTERA_DATA0~ / RESERVED_INPUT_WITH_WEAK_PULLUP : 13        : input  : 3.3-V LVTTL       :         : 1         : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 11        :        :                   :         : 1         :                
+configurator:config_flash|altera_serial_flash_loader:serial_flash_loader_0|altserial_flash_loader:altserial_flash_loader_component|\GEN_ASMI_TYPE_1:asmi_inst~ALTERA_DCLK : 12        : output : 3.3-V LVTTL       :         : 1         : N              
+configurator:config_flash|altera_serial_flash_loader:serial_flash_loader_0|altserial_flash_loader:altserial_flash_loader_component|\GEN_ASMI_TYPE_1:asmi_inst~ALTERA_DATA0 : 13        : input  : 3.3-V LVTTL       :         : 1         : N              
 nCONFIG                      : 14        :        :                   :         : 1         :                
-TDI                          : 15        : input  :                   :         : 1         :                
-TCK                          : 16        : input  :                   :         : 1         :                
+altera_reserved_tdi          : 15        : input  : 3.3-V LVTTL       :         : 1         : N              
+altera_reserved_tck          : 16        : input  : 3.3-V LVTTL       :         : 1         : N              
 VCCIO1                       : 17        : power  :                   : 3.3V    : 1         :                
-TMS                          : 18        : input  :                   :         : 1         :                
+altera_reserved_tms          : 18        : input  : 3.3-V LVTTL       :         : 1         : N              
 GND                          : 19        : gnd    :                   :         :           :                
-TDO                          : 20        : output :                   :         : 1         :                
+altera_reserved_tdo          : 20        : output : 3.3-V LVTTL       :         : 1         : N              
 nCE                          : 21        :        :                   :         : 1         :                
 GND                          : 22        : gnd    :                   :         :           :                
 clock                        : 23        : input  : 3.3-V LVTTL       :         : 1         : Y              
@@ -188,7 +188,7 @@ VCCINT                       : 116       : power  :                   : 1.2V    
 VCCIO7                       : 117       : power  :                   : 3.3V    : 7         :                
 GND                          : 118       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 119       :        :                   :         : 7         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 120       :        :                   :         : 7         :                
+lcd_data[7]                  : 120       : output : 3.3-V LVTTL       :         : 7         : N              
 seg[1]                       : 121       : output : 3.3-V LVTTL       :         : 7         : Y              
 VCCIO7                       : 122       : power  :                   : 3.3V    : 7         :                
 GND                          : 123       : gnd    :                   :         :           :                

@@ -1,0 +1,16 @@
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate D:\technik\microcore\hardware\EP4CE6_OMDAZZ\Intel\IP\configurator\configurator.qsys --synthesis=VHDL --output-directory=D:\technik\microcore\hardware\EP4CE6_OMDAZZ\Intel\IP\configurator\synthesis --family="Cyclone IV E" --part=EP4CE6E22C8
+Progress: Loading configurator/configurator.qsys
+Progress: Reading input file
+Progress: Adding serial_flash_loader_0 [altera_serial_flash_loader 20.1]
+Progress: Parameterizing module serial_flash_loader_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: configurator: Generating configurator "configurator" for QUARTUS_SYNTH
+Info: serial_flash_loader_0: generating top-level entity altera_serial_flash_loader
+Info: serial_flash_loader_0: "configurator" instantiated altera_serial_flash_loader "serial_flash_loader_0"
+Info: configurator: Done "configurator" with 2 modules, 2 files
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

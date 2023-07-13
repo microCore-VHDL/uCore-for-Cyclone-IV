@@ -2,7 +2,7 @@
 -- @file : fpga.vhd for the Intel EP4CE6_OMDAZZ prototyping board
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 09.07.2023 14:14:36
+-- Last change: KS 13.07.2023 00:46:28
 -- @project: EP4CE6_OMDAZZ
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -145,7 +145,44 @@ SIGNAL SDRAM_delay  : STD_LOGIC;
 
 SIGNAL int_time     : STD_LOGIC; -- a simple interrupt process for testing
 
+-- ---------------------------------------------------------------------
+-- serial flash configurator access thru JTAG
+-- ---------------------------------------------------------------------
+
+COMPONENT Configurator PORT (
+   dclk_in             : IN  STD_LOGIC := '0';
+   noe_in              : IN  STD_LOGIC := '0';
+   asdo_in             : IN  STD_LOGIC := '0';
+   ncso_in             : IN  STD_LOGIC := '0';
+   asmi_access_request : OUT STD_LOGIC;
+   asmi_access_granted : IN  STD_LOGIC := '0';
+   data0_out           : OUT STD_LOGIC
+); END COMPONENT Configurator;
+
+SIGNAL ncso_in       : STD_LOGIC;
+SIGNAL noe_in        : STD_LOGIC;
+SIGNAL asmi_access   : STD_LOGIC;
+SIGNAL asmi_access_d : STD_LOGIC;
+
 BEGIN
+
+-- ---------------------------------------------------------------------
+-- serial flash configurator access thru JTAG
+-- ---------------------------------------------------------------------
+
+noe_in  <= NOT flags(f_key3);
+ncso_in <= NOT asmi_access;
+
+config_flash: Configurator PORT MAP (
+   dclk_in              => clock,
+   noe_in               => noe_in,
+   asdo_in              => asmi_access,
+   ncso_in              => ncso_in,
+   asmi_access_request  => asmi_access,
+   asmi_access_granted  => asmi_access,
+   data0_out            => OPEN
+);
+
 
 -- ---------------------------------------------------------------------
 -- clk generation (perhaps a PLL will be used)
@@ -250,6 +287,9 @@ BEGIN
                ctrl <= ctrl OR  uBus.wdata(ctrl'range);
          ELSE  ctrl <= ctrl AND uBus.wdata(ctrl'range);
          END IF;
+      END IF;
+      IF  flags(f_key3) = '1'  THEN
+         ctrl(c_led3) <= asmi_access;
       END IF;
       IF  reset = '1' AND NOT ASYNC_RESET  THEN
          ctrl <= (OTHERS => '0');

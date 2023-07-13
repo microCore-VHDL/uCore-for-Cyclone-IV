@@ -2,7 +2,7 @@
 -- @file : architecture_pkg_32b.vhd for the EP4CE6_OMDAZZ Demoboard
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 09.07.2023 14:40:09
+-- Last change: KS 13.07.2023 00:45:48
 -- @project: EP4CE6_OMDAZZ
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -22,6 +22,9 @@
 --
 -- Version Author   Date       Changes
 --  1000     ks    8-May-2023  initial version
+--  1200     ks    8-Jul-2023  32 bit byte design uses 3385 "logic elements"
+--  1300     ks   13-Jul-2023  Serial Flash Loader and +LOOP instruction added
+--                             using 3848 "logic elements".
 -- ---------------------------------------------------------------------
 --VHDL --~  \ at this point the cross compiler activates vhdl context.
 LIBRARY IEEE;
@@ -32,7 +35,7 @@ USE work.functions_pkg.ALL;
 PACKAGE architecture_pkg IS
 --~--  \ when loaded by the microForth cross-compiler, code between "--~" up to "--~--" will be skipped.
 
-CONSTANT version            : NATURAL := 1200; -- <major_release> <functionality_added> <HW_fix> <SW_fix> <pre-release#>
+CONSTANT version            : NATURAL := 1300; -- <major_release> <functionality_added> <HW_fix> <SW_fix> <pre-release#>
 
 -- ---------------------------------------------------------------------
 -- Configuration flags
@@ -338,7 +341,7 @@ COMPONENT semaphor PORT (
 --  0   00 noop       -0 drop          +0 dup           00 not
 --  1   00 rot        -0 branch                         00 0=
 --  2                 -0 z-branch                       00 0<
---  3   00 swap                        +0 over          00 time?
+--  3   00 swap       -0 +loop         +0 over          00 time?
 --  4                 -0 less          +0 ovfl?         00 flag?
 --  5                 -0 st-set        +0 carry?        00 norm
 --  6   00 PRG2NOS    -? nz-exit
@@ -375,7 +378,8 @@ COMPONENT semaphor PORT (
 --  7
 -- ---------------------------------------------------------------------
 --~--
-CONSTANT with_INDEX  : BOOLEAN := false; -- I
+CONSTANT with_INDEX  : BOOLEAN := true ; -- I
+CONSTANT with_PLOOP  : BOOLEAN := true ; -- +loop
 CONSTANT with_FETCH  : BOOLEAN := true ; -- @
 CONSTANT with_CFETCH : BOOLEAN := false; -- c@       not yet tested
 CONSTANT with_PLUSST : BOOLEAN := false; -- +!
@@ -407,7 +411,7 @@ CONSTANT op_SUM2TOS  : byte := "00000111";
 CONSTANT op_DROP     : byte := "00001000";
 CONSTANT op_BRANCH   : byte := "00001001";
 CONSTANT op_QBRANCH  : byte := "00001010";
-
+CONSTANT op_PLOOP    : byte := "00001011";
 CONSTANT op_LESS     : byte := "00001100";
 CONSTANT op_STSET    : byte := "00001101";
 CONSTANT op_NZEXIT   : byte := "00001110";
