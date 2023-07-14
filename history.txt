@@ -1,4 +1,16 @@
 ************************************************************************
+*** EP4CE6_OMDAZZ 1.310  14-Jul-2023 ks
+************************************************************************
+
+The Serial Flash Loader is permanently activated without DIPswitch.
+LED4 is no longer reserved and can be freely used again.
+
+Architecture subdir 10 has been added with software load_division.fs,
+which performs a complete brute force division/multiplication test.
+Set compiler switch UN-SIGNED to either true or false. One sweep takes
+3-4 hours.
+
+************************************************************************
 *** EP4CE6_OMDAZZ 1.300  13-Jul-2023 ks
 ************************************************************************
 

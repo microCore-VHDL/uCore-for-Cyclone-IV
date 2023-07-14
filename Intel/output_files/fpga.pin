@@ -179,7 +179,7 @@ VCCA2                        : 107       : power  :                   : 2.5V    
 GNDA2                        : 108       : gnd    :                   :         :           :                
 VCCD_PLL2                    : 109       : power  :                   : 1.2V    :           :                
 beep                         : 110       : output : 3.3-V LVTTL       :         : 7         : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : 111       :        :                   :         : 7         :                
+lcd_data[7]                  : 111       : output : 3.3-V LVTTL       :         : 7         : N              
 scl                          : 112       : output : 3.3-V LVTTL       :         : 7         : Y              
 sda                          : 113       : bidir  : 3.3-V LVTTL       :         : 7         : Y              
 dsu_txd                      : 114       : output : 3.3-V LVTTL       :         : 7         : Y              
@@ -188,7 +188,7 @@ VCCINT                       : 116       : power  :                   : 1.2V    
 VCCIO7                       : 117       : power  :                   : 3.3V    : 7         :                
 GND                          : 118       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 119       :        :                   :         : 7         :                
-lcd_data[7]                  : 120       : output : 3.3-V LVTTL       :         : 7         : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 120       :        :                   :         : 7         :                
 seg[1]                       : 121       : output : 3.3-V LVTTL       :         : 7         : Y              
 VCCIO7                       : 122       : power  :                   : 3.3V    : 7         :                
 GND                          : 123       : gnd    :                   :         :           :                

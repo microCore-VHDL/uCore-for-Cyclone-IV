@@ -1,11 +1,18 @@
-\ 
-\ Last change: KS 13.07.2023 20:41:42
+\ ----------------------------------------------------------------------
+\ @file : load_division.fs for the EP4CE6_OMDAZZ prototyping board
+\ ----------------------------------------------------------------------
 \
-\ MicroCore load screen for complete division tests.
+\ Last change: KS 14.07.2023 17:23:13
+\
+\ MicroCore load screen for brute force division tests.
 \ This has been prepared for a 10 bit data_width so the test
-\ is about 20 bits / 10 bits, which takes about 10 hours to finish.
+\ is about 20 bits / 10 bits, which takes about 4 hours to finish.
 \ UN-SIGNED = true  : um/mod and um* tests
 \ UN-SIGNED = false :  m/mod and m* tests
+\
+\ On success, $5 is displayed on the LEDs.
+\ On Errors,  $F is displayed on the LEDs.
+\ During operation LED4 is blinking.
 \
 Only Forth also definitions hex
 
@@ -24,7 +31,7 @@ Target new initialized          \ go into target compilation mode and initialize
 6 trap-addr code-origin
           0 data-origin
 
-true  Version UN-SIGNED
+false Version UN-SIGNED
 
 include constants.fs            \ MicroCore Register addresses and bits
 include debugger.fs
@@ -54,7 +61,7 @@ initialized
 ;
 UN-SIGNED [IF]
 
-   : check ( -- f )
+   : check ( -- )
       Dividend 2@ Divisor @ um/mod   ovfl? >r
       Divisor @ 0=
       IF  or 0= r> xor ?EXIT  1 Errors +!            \ 0 is always wrong with the exception of 0 / 0
@@ -67,14 +74,6 @@ UN-SIGNED [IF]
 
 [ELSE] \ signed divide
 
-   : fm/mod   ( d n -- rem quot )
-      dup >r 0< IF  dnegate  r@ negate  ELSE  r@  THEN
-      over   0< IF  tuck + swap um/mod   ovfl? over 0< not
-                ELSE            um/mod   ovfl? over 0<
-                THEN  or -rot  \ the ovfl-bit
-      r> 0< IF  swap negate swap  THEN
-      rot IF  #ovfl st-set  ExIT THEN  #ovfl st-reset
-   ;
    : check ( -- )
       Dividend 2@ Divisor @ m/mod   ovfl? >r
       2dup + #signbit = Irregular !   Divisor @ 0=
@@ -86,19 +85,16 @@ UN-SIGNED [IF]
    ;
    : ??    ( -- )   divisor @  dividend 2@ d. . Errors @ u. Ambiguous @ u. Ptr @ u. ;
 
-   : fdiv   fm/mod ovfl? ;
-   : mdiv    m/mod ovfl? ;
-
 [THEN]
 
 : advance  ( -- )   1 Divisor +!  Divisor @ ?EXIT
    1 Dividend +2!  Dividend 2@ or ?EXIT  $55 Leds! halt
 ;
-: blink    ( -- )      Ctrl @ $8 xor Leds! ;
+: blink    ( -- )   #c-led3   Ctrl @ over and IF  not  THEN Ctrl ! ;
 
-: divtest  ( -- )   0 Leds!    8
+: divtest  ( -- )   0 Leds!    $20
    BEGIN   pause check  advance   Divisor @
-           0= IF  1- ?dup 0= IF  8  blink  THEN THEN
+           0= IF  1- ?dup 0= IF  $20  blink  THEN THEN
    REPEAT
 ;
 : start  ( -- )  Tester ['] divtest activate ;
@@ -106,11 +102,31 @@ UN-SIGNED [IF]
 : delay   2 FOR $1FF sleep NEXT ;
 
 \ ----------------------------------------------------------------------
+\ Error analysis tools for the error queue managed by Ptr
+\ Beware normal loading: It may not fit into the 1k address space!
+\ ----------------------------------------------------------------------
+\
+\    : fm/mod   ( d n -- rem quot )
+\       dup >r 0< IF  dnegate  r@ negate  ELSE  r@  THEN
+\       over   0< IF  tuck + swap um/mod   ovfl? over 0< not
+\                 ELSE            um/mod   ovfl? over 0<
+\                 THEN  or -rot  \ the ovfl-bit
+\       r> 0< IF  swap negate swap  THEN
+\       rot IF  #ovfl st-set  ExIT THEN  #ovfl st-reset
+\    ;
+\    : fdiv   fm/mod ovfl? ;
+\    : mdiv    m/mod ovfl? ;
+\
+\ ----------------------------------------------------------------------
 \ Booting and TRAPs
+\ When the program is started for the first time, use "cold boot" version
+\ When the test is running, reconnect to the board using "warm boot".
+\ This will only set the first memory locations up to Dividend to zero,
+\ preserving the test state. It may be continued with "start".
 \ ----------------------------------------------------------------------
 
-: boot  ( -- )   0 Dividend erase   CALL initialization   debug-service ; \ for warm boot
-\ : boot  ( -- )   0 #cache erase   CALL initialization   debug-service ; \ for cold boot
+\ : boot  ( -- )   0 Dividend erase   CALL initialization   debug-service ; \ for warm boot
+: boot  ( -- )   0 #cache erase   CALL initialization   debug-service ; \ for cold boot
 
 #reset TRAP: rst    ( -- )            boot                 ;  \ compile branch to boot at reset vector location
 #isr   TRAP: isr    ( -- )            di              IRET ;

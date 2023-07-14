@@ -2,7 +2,7 @@
 -- @file : architecture_pkg_27.vhd for the EP4CE6_OMDAZZ Demoboard
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 13.07.2023 00:45:48
+-- Last change: KS 14.07.2023 17:45:08
 -- @project: EP4CE6_OMDAZZ
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -23,7 +23,7 @@
 -- Version Author   Date       Changes
 --  1000     ks    8-May-2023  initial version
 --  1300     ks   13-Jul-2023  Serial Flash Loader and +LOOP instruction added
---                             using 3464 "logical elements".
+--                             using 3446 "logical elements".
 -- ---------------------------------------------------------------------
 --VHDL --~  \ at this point the cross compiler activates vhdl context.
 LIBRARY IEEE;
@@ -34,7 +34,7 @@ USE work.functions_pkg.ALL;
 PACKAGE architecture_pkg IS
 --~--  \ when loaded by the microForth cross-compiler, code between "--~" up to "--~--" will be skipped.
 
-CONSTANT version            : NATURAL := 1300; -- <major_release> <functionality_added> <HW_fix> <SW_fix> <pre-release#>
+CONSTANT version            : NATURAL := 1310; -- <major_release> <functionality_added> <HW_fix> <SW_fix> <pre-release#>
 
 -- ---------------------------------------------------------------------
 -- Configuration flags

@@ -2,7 +2,7 @@
 -- @file : architecture_pkg_10.vhd for the EP4CE6_OMDAZZ Demoboard
 -- ---------------------------------------------------------------------
 --
--- Last change: KS 13.07.2023 20:27:48
+-- Last change: KS 14.07.2023 17:29:54
 -- @project: EP4CE6_OMDAZZ
 -- @language: VHDL-93
 -- @copyright (c): Klaus Schleisiek, All Rights Reserved.
@@ -34,7 +34,7 @@ USE work.functions_pkg.ALL;
 PACKAGE architecture_pkg IS
 --~--  \ when loaded by the microForth cross-compiler, code between "--~" up to "--~--" will be skipped.
 
-CONSTANT version            : NATURAL := 1300; -- <major_release> <functionality_added> <HW_fix> <SW_fix> <pre-release#>
+CONSTANT version            : NATURAL := 1310; -- <major_release> <functionality_added> <HW_fix> <SW_fix> <pre-release#>
 
 -- ---------------------------------------------------------------------
 -- Configuration flags

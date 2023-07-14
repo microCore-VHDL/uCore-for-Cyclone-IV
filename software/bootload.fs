@@ -2,7 +2,7 @@
 \ @file : bootload.fs for the EP4CE6_OMDAZZ board.
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 13.07.2023 19:24:05
+\ Last change: KS 14.07.2023 16:51:12
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -50,9 +50,14 @@ include constants.fs            \ microCore Register addresses and bits
    dup #c-led3 > IF  drop #c-led0  THEN
    dup Ctrl !
 ;
-: blinking  ( -- )   #c-led0
-   BEGIN  shiftleds   #1200 time + BEGIN  dup time? UNTIL drop  REPEAT
-;
+data_width #10 = [IF]
+   : blinking  ( -- )   #c-led0
+      BEGIN  shiftleds    $1FF time + BEGIN  dup time? UNTIL drop  REPEAT
+; [ELSE]
+   : blinking  ( -- )   #c-led0
+      BEGIN  shiftleds   #1200 time + BEGIN  dup time? UNTIL drop  REPEAT
+; [THEN]
+
 #reset TRAP: rst ( -- )    blinking ;
 
 end
