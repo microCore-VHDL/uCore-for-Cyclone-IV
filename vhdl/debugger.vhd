@@ -482,8 +482,7 @@ END PROCESS umbilical_proc;
 rx_read <= rx_full AND clk_en;
 
 debug_uart: uart
-GENERIC MAP (umbilical_rate, 4, "logic")
-PORT MAP (
+GENERIC MAP (umbilical_rate, 4, "logic") PORT MAP (
    uBus       => uBus,
    pause      => OPEN,
    rx_full    => rx_full,    -- rx data buffer full

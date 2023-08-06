@@ -42,7 +42,7 @@ set_global_assignment -name DEVICE EP4CE6E22C8
 set_global_assignment -name TOP_LEVEL_ENTITY fpga
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "17:59:16  JUNE 09, 2023"
-set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "22.1std.1 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
@@ -53,7 +53,7 @@ set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V
 set_global_assignment -name EDA_DESIGN_ENTRY_SYNTHESIS_TOOL "Synplify Pro"
 set_global_assignment -name EDA_LMF_FILE synplcty.lmf -section_id eda_design_synthesis
 set_global_assignment -name EDA_INPUT_DATA_FORMAT VQM -section_id eda_design_synthesis
-set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim (VHDL)"
 set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_timing
@@ -246,22 +246,6 @@ set_global_assignment -name EDA_WRITER_DONT_WRITE_TOP_ENTITY ON -section_id eda_
 set_global_assignment -name AUTO_RESOURCE_SHARING OFF
 set_global_assignment -name ALLOW_ANY_ROM_SIZE_FOR_RECOGNITION ON
 set_global_assignment -name ALLOW_POWER_UP_DONT_CARE OFF
-set_global_assignment -name VHDL_FILE ../vhdl/functions_pkg.vhd
-set_global_assignment -name VHDL_FILE ../vhdl/architecture_pkg.vhd
-set_global_assignment -name VHDL_FILE ../vhdl/uArithmetic.vhd
-set_global_assignment -name VHDL_FILE ../vhdl/uCntrl.vhd
-set_global_assignment -name VHDL_FILE ../vhdl/bootload.vhd
-set_global_assignment -name VHDL_FILE ../vhdl/uProgmem.vhd
-set_global_assignment -name VHDL_FILE ../vhdl/uart.vhd
-set_global_assignment -name VHDL_FILE ../vhdl/debugger.vhd
-set_global_assignment -name VHDL_FILE ../vhdl/uCore.vhd
-set_global_assignment -name VHDL_FILE ../vhdl/uDatacache.vhd
-set_global_assignment -name VHDL_FILE ../vhdl/pll.vhd
-set_global_assignment -name VHDL_FILE ../vhdl/SDRAM_4MBx16.vhd
-set_global_assignment -name QIP_FILE IP/configurator/synthesis/configurator.qip
-set_global_assignment -name VHDL_FILE ../vhdl/fpga.vhd
-set_global_assignment -name SOURCE_FILE fpga.qsf
-set_global_assignment -name SDC_FILE fpga.out.sdc
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to altera_reserved_tck
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to altera_reserved_tdi
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to altera_reserved_tdo
@@ -282,4 +266,22 @@ set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
 set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -rise
 set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
 set_global_assignment -name FLOW_ENABLE_IO_ASSIGNMENT_ANALYSIS ON
+set_global_assignment -name PHYSICAL_SYNTHESIS_COMBO_LOGIC ON
+set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_DUPLICATION ON
+set_global_assignment -name VHDL_FILE ../vhdl/functions_pkg.vhd
+set_global_assignment -name VHDL_FILE ../vhdl/architecture_pkg.vhd
+set_global_assignment -name VHDL_FILE ../vhdl/uArithmetic.vhd
+set_global_assignment -name VHDL_FILE ../vhdl/uCntrl.vhd
+set_global_assignment -name VHDL_FILE ../vhdl/bootload.vhd
+set_global_assignment -name VHDL_FILE ../vhdl/uProgmem.vhd
+set_global_assignment -name VHDL_FILE ../vhdl/uart.vhd
+set_global_assignment -name VHDL_FILE ../vhdl/debugger.vhd
+set_global_assignment -name VHDL_FILE ../vhdl/uCore.vhd
+set_global_assignment -name VHDL_FILE ../vhdl/uDatacache.vhd
+set_global_assignment -name QIP_FILE IP/PLL/PLL.qip
+set_global_assignment -name VHDL_FILE ../vhdl/SDRAM_4MBx16.vhd
+set_global_assignment -name QIP_FILE IP/configurator/configurator/synthesis/configurator.qip
+set_global_assignment -name VHDL_FILE ../vhdl/fpga.vhd
+set_global_assignment -name SOURCE_FILE fpga.qsf
+set_global_assignment -name SDC_FILE fpga.out.sdc
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

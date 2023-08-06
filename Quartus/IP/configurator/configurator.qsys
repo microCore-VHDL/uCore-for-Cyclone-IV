@@ -6,7 +6,7 @@
    version="1.0"
    description=""
    tags="INTERNAL_COMPONENT=true"
-   categories="" />
+   categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
    element serial_flash_loader_0
@@ -90,7 +90,7 @@
  <module
    name="serial_flash_loader_0"
    kind="altera_serial_flash_loader"
-   version="20.1"
+   version="22.1"
    enabled="1"
    autoexport="1">
   <parameter name="ENHANCED_MODE" value="false" />

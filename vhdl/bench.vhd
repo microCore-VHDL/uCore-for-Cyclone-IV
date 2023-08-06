@@ -351,7 +351,7 @@ umbilical_proc: PROCESS
    END tx_debug;
 
 BEGIN
---   switch_n     <= (OTHERS => '0');
+
    reset_n      <= '0';
    send_byte    <= '0';
    tx_buf       <= "ZZZZZZZZ";

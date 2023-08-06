@@ -2,7 +2,7 @@
 \ @file : constants.fs for the EP4CE6_OMDAZZ prototyping board
 \ ----------------------------------------------------------------------
 \
-\ Last change: KS 13.07.2023 20:23:01
+\ Last change: KS 15.07.2023 17:11:13
 \ @project: microForth/microCore
 \ @language: gforth_0.6.2
 \ @copyright (c): Free Software Foundation
@@ -84,4 +84,6 @@ H c_led2       T Bit #c-led2
 H c_led3       T Bit #c-led3
 
 #c-led0 #c-led1 or #c-led2 or #c-led3 or Constant #c-leds
+
+H TIME_REG        T Register Time-reg
 

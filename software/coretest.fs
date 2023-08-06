@@ -257,7 +257,7 @@ WITH_EXTMEM [IF]
    [ byte_addr_width 1 = ] [IF]
       $1122 #extern st @ $1122 -                  IF  $3C throw THEN
       #extern cld 1+ c@
-      #extern cst 1+ c! #extern @ $2211 -        IF  $3D throw THEN
+      #extern cst 1+ c! #extern @ $2211 -         IF  $3D throw THEN
    [THEN]                                          
    [ byte_addr_width 2 = ] [IF]                    
       $11223344 #extern st @ $11223344 -          IF  $3E throw THEN
@@ -265,7 +265,7 @@ WITH_EXTMEM [IF]
       #extern cst 1+ cst 1+ cst 1+ c!
       #extern @ $44332211 -                       IF  $3F throw THEN
       #extern wld 2 + w@
-      #extern wst 2 + w!  #extern @ $22114433 -  IF  $140 throw THEN
+      #extern wst 2 + w!  #extern @ $22114433 -   IF  $140 throw THEN
    [THEN]
 [THEN]
 ;
@@ -374,12 +374,12 @@ SIMULATION [IF]
 ;
 Variable Intvar
 
-HAVE #i-time SIMULATION AND [IF]
+HAVE #i-ext SIMULATION AND [IF]
 
-: test-interrupt ( -- )   1 Intvar !   ei   #i-time int-enable ;
+: test-interrupt ( -- )   1 Intvar !   ei   #i-ext int-enable ;
 
 : interrupt  ( -- )   Intflags @
-   #i-time and IF  Intvar @ 1- Intvar !   EXIT THEN
+   #i-ext and IF  Intvar @ 1- Intvar !   EXIT THEN
    $55 Intvar !  \ invalid interrupt source
 ;
 [ELSE]

@@ -167,6 +167,7 @@ BEGIN
 -- ---------------------------------------------------------------------
 -- serial flash configurator access thru JTAG
 -- ---------------------------------------------------------------------
+config_syn: IF  NOT SIMULATION GENERATE
 
 ncso_in <= NOT asmi_access;
 
@@ -180,6 +181,7 @@ config_flash: Configurator PORT MAP (
    data0_out            => OPEN
 );
 
+END GENERATE config_syn;
 
 -- ---------------------------------------------------------------------
 -- clk generation (perhaps a PLL will be used)
